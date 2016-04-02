@@ -1,4 +1,4 @@
 Test1,2,3,
 
 Always commit close commits by #1234: close #1234. Some text.
-Further any commit will cause an email to the participants.
+Further any commit will cause an email to the participants, if it is commited via push.
