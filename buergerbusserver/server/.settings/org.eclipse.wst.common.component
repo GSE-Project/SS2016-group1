@@ -7,6 +7,33 @@
         <dependent-module archiveName="buergerbusserver-core-0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/buergerbusserver-core/buergerbusserver-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="oasp4j-batch-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/oasp4j-batch/oasp4j-batch">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="oasp4j-jpa-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/oasp4j-jpa/oasp4j-jpa">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="oasp4j-logging-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/oasp4j-logging/oasp4j-logging">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="oasp4j-beanmapping-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/oasp4j-beanmapping/oasp4j-beanmapping">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="oasp4j-security-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/oasp4j-security/oasp4j-security">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="oasp4j-rest-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/oasp4j-rest/oasp4j-rest">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="oasp4j-basic-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/oasp4j-basic/oasp4j-basic">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="oasp4j-jpa-envers-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/oasp4j-jpa-envers/oasp4j-jpa-envers">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="oasp4j-web-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/oasp4j-web/oasp4j-web">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="buergerbusserver-server"/>
         <property name="java-output-path" value="/buergerbusserver-server/target/classes"/>
     </wb-module>
