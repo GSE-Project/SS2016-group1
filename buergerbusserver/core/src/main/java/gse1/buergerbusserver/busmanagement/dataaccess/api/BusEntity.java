@@ -1,8 +1,8 @@
-package gse1.buergerbusserver.bus.dataaccess.api;
+package gse1.buergerbusserver.busmanagement.dataaccess.api;
 
 import java.sql.Timestamp;
 
-import gse1.buergerbusserver.bus.common.api.Bus;
+import gse1.buergerbusserver.busmanagement.common.api.Bus;
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
 
 /**

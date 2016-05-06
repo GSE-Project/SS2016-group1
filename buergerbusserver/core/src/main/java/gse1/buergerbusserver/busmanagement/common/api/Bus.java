@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.bus.common.api;
+package gse1.buergerbusserver.busmanagement.common.api;
 
 import java.sql.Timestamp;
 
