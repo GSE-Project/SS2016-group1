@@ -1,4 +1,4 @@
-Test1,2,3,
+ Test1,2,3,
 
 Always commit close commits by #1234: close #1234. Some text.
 Further any commit will cause an e-mail to the participants, if it is commited via push. The groups Admins and Group1 should get informedon their group-email-address.
