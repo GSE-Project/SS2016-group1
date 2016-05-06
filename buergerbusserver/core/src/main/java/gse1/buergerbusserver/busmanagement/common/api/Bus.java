@@ -5,17 +5,18 @@ import java.sql.Timestamp;
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 
 /**
- * @author gse01
+ * @author ricarda42
  *
  */
 public interface Bus extends ApplicationEntity {
 
-  @Override
-  void setId(Long id);
-
-  @Override
-  Long getId();
-
+  // REVIEW: Referred to the documentation regarding ID which made us Confuse whether to use it or not.
+  // Please somebody help...!
+  /**
+   * @Override void setId(Long id);
+   * 
+   * @Override Long getId();
+   */
   void setNumberPlate(String numberPlate);
 
   String getNumberPlate();

@@ -6,7 +6,7 @@ import gse1.buergerbusserver.busmanagement.common.api.Bus;
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
 
 /**
- * @author gse01
+ * @author ricarda42
  *
  */
 public class BusEntity extends ApplicationPersistenceEntity implements Bus {
