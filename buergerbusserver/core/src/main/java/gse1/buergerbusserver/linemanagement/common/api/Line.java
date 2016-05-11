@@ -1,20 +1,14 @@
 package gse1.buergerbusserver.linemanagement.common.api;
 
-import java.sql.Timestamp;
-
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
+
+import java.util.Date;
 
 /**
  * @author razadfki
  *
  */
 public interface Line extends ApplicationEntity {
-
-  /*
-   * @Override void setId(Long id);
-   *
-   * @Override Long getId();
-   */
 
   void setName(String name);
 
@@ -24,8 +18,8 @@ public interface Line extends ApplicationEntity {
 
   String getRouteObjectReference();
 
-  void setTimeStamp(Timestamp timeStamp);
+  void setTimestamp(Date timeStamp);
 
-  Timestamp getTimeStamp();
+  Date getTimestamp();
 
 }
