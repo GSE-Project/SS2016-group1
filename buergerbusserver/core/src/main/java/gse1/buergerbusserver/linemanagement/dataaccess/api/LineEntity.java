@@ -20,7 +20,7 @@ public class LineEntity extends ApplicationPersistenceEntity implements Line {
 
   private String name;
 
-  private Long route_id;
+  private String routeObjectReference;
 
   private Date timestamp;
 
@@ -43,21 +43,21 @@ public class LineEntity extends ApplicationPersistenceEntity implements Line {
   }
 
   /**
-   * @return route_id
+   * @return routeObjectReference
    */
   @Override
-  public Long getRoute_id() {
+  public String getRouteObjectReference() {
 
-    return this.route_id;
+    return this.routeObjectReference;
   }
 
   /**
-   * @param route_id new value of {@link #getroute_id}.
+   * @param routeObjectReference new value of {@link #getrouteObjectReference}.
    */
   @Override
-  public void setRoute_id(Long route_id) {
+  public void setRouteObjectReference(String routeObjectReference) {
 
-    this.route_id = route_id;
+    this.routeObjectReference = routeObjectReference;
   }
 
   /**
