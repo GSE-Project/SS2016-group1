@@ -12,7 +12,7 @@ public class LineEto {
 
   private String name;
 
-  private String routeObjectReference;
+  private String rout_id;
 
   private Timestamp timeStamp;
 
@@ -33,19 +33,19 @@ public class LineEto {
   }
 
   /**
-   * @return routeObjectReference
+   * @return rout_id
    */
-  public String getRouteObjectReference() {
+  public String getrout_id() {
 
-    return this.routeObjectReference;
+    return this.rout_id;
   }
 
   /**
-   * @param routeObjectReference new value of {@link #getrouteObjectReference}.
+   * @param rout_id new value of {@link #getrout_id}.
    */
-  public void setRouteObjectReference(String routeObjectReference) {
+  public void setrout_id(String rout_id) {
 
-    this.routeObjectReference = routeObjectReference;
+    this.rout_id = rout_id;
   }
 
   /**

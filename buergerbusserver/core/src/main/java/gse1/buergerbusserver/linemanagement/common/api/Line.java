@@ -14,9 +14,9 @@ public interface Line extends ApplicationEntity {
 
   String getName();
 
-  void setRouteObjectReference(String routeObjectReference);
+  void setRoute_id(Long route_id);
 
-  String getRouteObjectReference();
+  Long getRoute_id();
 
   void setTimestamp(Date timeStamp);
 
