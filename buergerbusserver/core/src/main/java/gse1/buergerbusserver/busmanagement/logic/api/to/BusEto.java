@@ -1,36 +1,37 @@
-package gse1.buergerbusserver.busmanagement.dataaccess.api;
+package gse1.buergerbusserver.busmanagement.logic.api.to;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import gse1.buergerbusserver.busmanagement.common.api.Bus;
-import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
+import io.oasp.module.basic.common.api.to.AbstractEto;
 
 /**
- * {@link ApplicationPersistenceEntity Entity} representing a {@link Bus}. A bus has a number plate, a color and picture
- * and can have a line assigned to it.
+ * {@link AbstractEto ETO} for {@link Bus}.
  *
- * @author ricarda42
+ * @author ricarda
  *
  */
-
-@Entity
-public class BusEntity extends ApplicationPersistenceEntity implements Bus {
+public class BusEto extends AbstractEto implements Bus {
 
   private static final long serialVersionUID = 1L;
 
   private String numberPlate;
 
-  private Long lineId; // what if there is no line assigned?
+  private Long lineId;
 
   private String color;
 
   private String picture;
 
   private Date timeStamp;
+
+  /**
+   * The constructor.
+   */
+  public BusEto() {
+
+    super();
+  }
 
   @Override
   public void setNumberPlate(String numberPlate) {
@@ -79,7 +80,6 @@ public class BusEntity extends ApplicationPersistenceEntity implements Bus {
   }
 
   @Override
-  @Temporal(TemporalType.TIMESTAMP)
   public Date getTimeStamp() {
 
     return this.timeStamp;
@@ -89,6 +89,7 @@ public class BusEntity extends ApplicationPersistenceEntity implements Bus {
   public void setLineId(Long lineId) {
 
     this.lineId = lineId;
+
   }
 
   @Override
