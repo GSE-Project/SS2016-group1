@@ -3,6 +3,7 @@ package gse1.buergerbusserver.busmanagement.dataaccess.api;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -18,6 +19,7 @@ import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity
  */
 
 @Entity
+@Table(name = "BUS")
 public class BusEntity extends ApplicationPersistenceEntity implements Bus {
 
   private static final long serialVersionUID = 1L;

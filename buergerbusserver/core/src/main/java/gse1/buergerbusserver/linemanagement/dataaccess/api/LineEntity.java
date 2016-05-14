@@ -1,14 +1,14 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
-import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
-import gse1.buergerbusserver.linemanagement.common.api.Line;
-
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
+import gse1.buergerbusserver.linemanagement.common.api.Line;
 
 /**
  * @author razadfki
@@ -18,11 +18,13 @@ import javax.persistence.TemporalType;
 @Table(name = "LINE")
 public class LineEntity extends ApplicationPersistenceEntity implements Line {
 
+  private static final long serialVersionUID = 1L;
+
   private String name;
 
-  private String routeObjectReference;
+  private Long routeId;
 
-  private Date timestamp;
+  private Date timeStamp;
 
   /**
    * @return name
@@ -46,38 +48,38 @@ public class LineEntity extends ApplicationPersistenceEntity implements Line {
    * @return routeObjectReference
    */
   @Override
-  public String getRouteObjectReference() {
+  public Long getRouteId() {
 
-    return this.routeObjectReference;
+    return this.routeId;
   }
 
   /**
-   * @param routeObjectReference new value of {@link #getrouteObjectReference}.
+   * @param routeId new value of {@link #getRouteId}.
    */
   @Override
-  public void setRouteObjectReference(String routeObjectReference) {
+  public void setRouteId(Long routeId) {
 
-    this.routeObjectReference = routeObjectReference;
+    this.routeId = routeId;
   }
 
   /**
-   * @return timestamp
+   * @return timeStamp
    */
   @Override
   // see https://github.com/oasp-forge/oasp4j-wiki/wiki/guide-dataaccess-layer#date-and-time
   @Temporal(TemporalType.TIMESTAMP)
-  public Date getTimestamp() {
+  public Date getTimeStamp() {
 
-    return this.timestamp;
+    return this.timeStamp;
   }
 
   /**
-   * @param timestamp new value of {@link #gettimestamp}.
+   * @param timeStamp new value of {@link #getTimeStamp}.
    */
   @Override
-  public void setTimestamp(Date timestamp) {
+  public void setTimeStamp(Date timeStamp) {
 
-    this.timestamp = timestamp;
+    this.timeStamp = timeStamp;
   }
 
 }

@@ -12,7 +12,7 @@ CREATE TABLE BUS(
     numberPlate VARCHAR(255),
     color VARCHAR(255),
     picture VARCHAR(255),
-    line_id BIGINT,
+    lineId BIGINT,
     "timestamp" timestamp NOT NULL
 );
 
@@ -24,7 +24,7 @@ CREATE TABLE LINE(
     id BIGINT NOT NULL,
     modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
     name VARCHAR(255),
-    route_id BIGINT,
+    routeId BIGINT,
     "timestamp" timestamp NOT NULL
 );
 ALTER TABLE LINE ADD CONSTRAINT PK_LINE PRIMARY KEY(id);

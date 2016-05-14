@@ -1,24 +1,27 @@
 package gse1.buergerbusserver.linemanagement.logic.api.to;
 
-import java.sql.Timestamp;
+import java.util.Date;
+
+import gse1.buergerbusserver.linemanagement.common.api.Line;
+import io.oasp.module.basic.common.api.to.AbstractEto;
 
 /**
- * TODO mbrunnli This type ...
+ * @author razadfki
  *
- * @author mbrunnli
- * @since 0.1
  */
-public class LineEto {
+public class LineEto extends AbstractEto implements Line {
+  private static final long serialVersionUID = 1L;
 
   private String name;
 
-  private String routeObjectReference;
+  private Long routeId;
 
-  private Timestamp timeStamp;
+  private Date timeStamp;
 
   /**
    * @return name
    */
+  @Override
   public String getName() {
 
     return this.name;
@@ -27,6 +30,7 @@ public class LineEto {
   /**
    * @param name new value of {@link #getname}.
    */
+  @Override
   public void setName(String name) {
 
     this.name = name;
@@ -35,33 +39,36 @@ public class LineEto {
   /**
    * @return routeObjectReference
    */
-  public String getRouteObjectReference() {
+  @Override
+  public Long getRouteId() {
 
-    return this.routeObjectReference;
+    return this.routeId;
   }
 
   /**
-   * @param routeObjectReference new value of {@link #getrouteObjectReference}.
+   * @param routeId new value of {@link #getRouteId}.
    */
-  public void setRouteObjectReference(String routeObjectReference) {
+  @Override
+  public void setRouteId(Long routeId) {
 
-    this.routeObjectReference = routeObjectReference;
+    this.routeId = routeId;
   }
 
   /**
    * @return timeStamp
    */
-  public Timestamp getTimeStamp() {
+  @Override
+  public Date getTimeStamp() {
 
     return this.timeStamp;
   }
 
   /**
-   * @param timeStamp new value of {@link #gettimeStamp}.
+   * @param timeStamp new value of {@link #getTimeStamp}.
    */
-  public void setTimeStamp(Timestamp timeStamp) {
+  @Override
+  public void setTimeStamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
   }
-
 }

@@ -1,12 +1,11 @@
 package gse1.buergerbusserver.linemanagement.common.api;
 
-import gse1.buergerbusserver.general.common.api.ApplicationEntity;
-
 import java.util.Date;
 
+import gse1.buergerbusserver.general.common.api.ApplicationEntity;
+
 /**
- * @author razadfki
- *
+ * @author razadfki Interface of the line Entity of the system.
  */
 public interface Line extends ApplicationEntity {
 
@@ -14,12 +13,12 @@ public interface Line extends ApplicationEntity {
 
   String getName();
 
-  void setRouteObjectReference(String routeObjectReference);
+  void setRouteId(Long routeId);
 
-  String getRouteObjectReference();
+  Long getRouteId();
 
-  void setTimestamp(Date timeStamp);
+  void setTimeStamp(Date timeStamp);
 
-  Date getTimestamp();
+  Date getTimeStamp();
 
 }

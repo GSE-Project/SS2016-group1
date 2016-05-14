@@ -6,14 +6,14 @@ INSERT INTO bus(id, modificationCounter, numberPlate, color, picture, "timestamp
                            (5, 0, 'bus5numberPlate', 'blue', 'bus5pic.jpg', '2004-10-19 10:23:54');
 
 
-INSERT INTO line(id, modificationcounter, name, route_id, "timestamp")VALUES
+INSERT INTO line(id, modificationcounter, name, routeId, "timestamp")VALUES
 				       (1, 0, 'line1name', 1, '2004-10-19 10:23:54'),
 					   (2, 0, 'line2name', 2, '2004-10-19 10:23:54'),
 					   (3, 0, 'line3name', 3, '2004-10-19 10:23:54');
 
 
 
-INSERT INTO route( id, modificationcounter, gpsdata, "timestamp")VALUES 
+INSERT INTO route( id, modificationcounter, gpsdata, "timestamp")VALUES
 		 (1, 0, '[{lan:111 , long: 112},{lan:121 , long: 122}]',  '2004-10-19 10:23:54'),
 		 (2, 0, '[{lan:211 , long: 212},{lan:221 , long: 222}]',  '2004-10-19 10:23:54');
 
@@ -26,18 +26,18 @@ INSERT INTO stop(
            (4,0,41.968046,-42.420307,'2004-10-19 10:23:54'),
            (5,0,51.968046,-52.420307,'2004-10-19 10:23:54');
 
-INSERT INTO line_stop( id, line_id, stop_id, "timestamp") VALUES 
+INSERT INTO line_stop( id, line_id, stop_id, "timestamp") VALUES
 		     (1, 1, 1, '2004-10-19 10:23:54'),
 		     (2, 1, 2, '2004-10-19 10:23:54'),
 		     (3, 1, 3, '2004-10-19 10:23:54'),
 		     (4, 2, 4, '2004-10-19 10:23:54'),
 		     (5, 2, 5, '2004-10-19 10:23:54');
-    
+
 
 
 INSERT INTO schedule(
             id, modificationcounter, line_stop_id, arivingTime, "timestamp") values
------ stops for line 1      
+----- stops for line 1
             (1, 0, 1, '1:1:1', '2004-10-19 10:23:54'),
             (2, 0, 1, '1:1:2', '2004-10-19 10:23:54'),
             (3, 0, 1, '1:1:3', '2004-10-19 10:23:54'),
