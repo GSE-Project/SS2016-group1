@@ -24,10 +24,6 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   // @Inject
   private LineDao lineDao;
 
-  public LinemanagementImpl() {
-    super();
-  }
-
   @Override
   public List<LineEto> getAllLines() {
 
