@@ -6,7 +6,7 @@ INSERT INTO bus(id, modificationCounter, numberPlate, color, picture, "timestamp
                            (5, 0, 'bus5numberPlate', 'blue', 'bus5pic.jpg', '2004-10-19 10:23:54');
 
 
-INSERT INTO line(id, modificationcounter, name, routeId, "timestamp")VALUES
+INSERT INTO line(id, modificationcounter, name, routeId, "TIMESTAMP")VALUES
 				       (1, 0, 'line1name', 1, '2004-10-19 10:23:54'),
 					   (2, 0, 'line2name', 2, '2004-10-19 10:23:54'),
 					   (3, 0, 'line3name', 3, '2004-10-19 10:23:54');

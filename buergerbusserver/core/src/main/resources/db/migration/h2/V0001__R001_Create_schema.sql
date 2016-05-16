@@ -25,7 +25,7 @@ CREATE TABLE LINE(
     modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
     name VARCHAR(255),
     routeId BIGINT,
-    "timestamp" timestamp NOT NULL
+    "TIMESTAMP" timestamp NOT NULL
 );
 ALTER TABLE LINE ADD CONSTRAINT PK_LINE PRIMARY KEY(id);
 

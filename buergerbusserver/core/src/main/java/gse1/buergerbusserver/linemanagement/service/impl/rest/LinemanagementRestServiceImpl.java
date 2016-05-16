@@ -21,7 +21,13 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public List<LineEto> getAllLines() {
 
-    return this.linemanagement.getAllLines();
+    try {
+      return this.linemanagement.getAllLines();
+    } catch (Exception e) {
+      System.out.println("Exception:" + e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 
 }

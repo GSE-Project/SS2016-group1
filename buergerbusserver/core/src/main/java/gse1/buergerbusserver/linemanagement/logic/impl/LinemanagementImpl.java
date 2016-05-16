@@ -2,6 +2,7 @@ package gse1.buergerbusserver.linemanagement.logic.impl;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
@@ -21,13 +22,19 @@ import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
 @Transactional
 public class LinemanagementImpl extends AbstractComponentFacade implements Linemanagement {
 
-  // @Inject
+  @Inject
   private LineDao lineDao;
 
   @Override
   public List<LineEto> getAllLines() {
 
-    return getBeanMapper().mapList(this.lineDao.findAll(), LineEto.class);
+    try {
+      return getBeanMapper().mapList(this.lineDao.findAll(), LineEto.class);
+    } catch (Exception e) {
+      System.out.println("Error: " + e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
 
   }
 

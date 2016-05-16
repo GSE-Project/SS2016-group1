@@ -1,5 +1,7 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
+import javax.inject.Named;
+
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.LineEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LineDao;
@@ -8,6 +10,7 @@ import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LineDao;
  * @author razadfki
  *
  */
+@Named
 public class LineDaoImpl extends ApplicationMasterDataDaoImpl<LineEntity> implements LineDao {
 
   /**

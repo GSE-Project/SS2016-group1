@@ -2,14 +2,11 @@ package gse1.buergerbusserver.linemanagement.logic.api.to;
 
 import java.util.Date;
 
-import gse1.buergerbusserver.linemanagement.common.api.Line;
-import io.oasp.module.basic.common.api.to.AbstractEto;
-
 /**
  * @author razadfki
  *
  */
-public class LineEto extends AbstractEto implements Line {
+public class LineEto {
   private static final long serialVersionUID = 1L;
 
   private String name;
@@ -21,7 +18,7 @@ public class LineEto extends AbstractEto implements Line {
   /**
    * @return name
    */
-  @Override
+
   public String getName() {
 
     return this.name;
@@ -30,7 +27,7 @@ public class LineEto extends AbstractEto implements Line {
   /**
    * @param name new value of {@link #getname}.
    */
-  @Override
+
   public void setName(String name) {
 
     this.name = name;
@@ -39,7 +36,7 @@ public class LineEto extends AbstractEto implements Line {
   /**
    * @return routeObjectReference
    */
-  @Override
+
   public Long getRouteId() {
 
     return this.routeId;
@@ -48,7 +45,7 @@ public class LineEto extends AbstractEto implements Line {
   /**
    * @param routeId new value of {@link #getRouteId}.
    */
-  @Override
+
   public void setRouteId(Long routeId) {
 
     this.routeId = routeId;
@@ -57,7 +54,7 @@ public class LineEto extends AbstractEto implements Line {
   /**
    * @return timeStamp
    */
-  @Override
+
   public Date getTimeStamp() {
 
     return this.timeStamp;
@@ -66,7 +63,7 @@ public class LineEto extends AbstractEto implements Line {
   /**
    * @param timeStamp new value of {@link #getTimeStamp}.
    */
-  @Override
+
   public void setTimeStamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
