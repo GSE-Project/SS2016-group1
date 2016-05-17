@@ -11,6 +11,12 @@ INSERT INTO line(id, modificationcounter, name, routeId, "TIMESTAMP")VALUES
 					   (2, 0, 'line2name', 2, '2004-10-19 10:23:54'),
 					   (3, 0, 'line3name', 3, '2004-10-19 10:23:54');
 
+INSERT INTO ROUTE(id, modificationcounter,GPSData, "TIMESTAMP")
+    VALUES (1,0,'route1','2004-10-19 10:23:54'),
+            (2,0,'route2','2004-10-19 10:23:54'),
+            (3,0,'route3','2004-10-19 10:23:54'),
+            (4,0,'route4','2004-10-19 10:23:54');
+
 
 INSERT INTO STOP(
             id, modificationcounter,name, lat, lon, "TIMESTAMP")
