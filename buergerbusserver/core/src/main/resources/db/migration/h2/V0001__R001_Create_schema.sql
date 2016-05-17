@@ -49,14 +49,15 @@ CREATE TABLE LASTPOSITION(
 ALTER TABLE  LASTPOSITION ADD CONSTRAINT UC_LASTPOSITION_BUSID UNIQUE(busId);
 
 -- *** Stop ***
-CREATE TABLE STOP(
-    id BIGINT NOT NULL,
-    modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
-    lat  Decimal(9,6) NOT NULL,
-    Lon  Decimal(9,6) NOT NUll,
-    "timestamp" timestamp NOT NULL
+CREATE TABLE STOP (
+    id BIGINT NOT NULL ,
+    name VARCHAR( 255 ) ,
+    modificationCounter INTEGER NOT NULL ,
+    lat DOUBLE NOT NULL ,
+    Lon DOUBLE NOT NULL ,
+    TIMESTAMP TIMESTAMP NOT NULL
 );
-ALTER TABLE STOP ADD CONSTRAINT PK_STOP PRIMARY KEY(id);
+ALTER TABLE STOP ADD CONSTRAINT PK_STOP PRIMARY KEY ( id ) ;
 
 -- *** LineStop ***
 CREATE TABLE LINE_STOP(

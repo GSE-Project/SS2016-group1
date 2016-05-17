@@ -12,19 +12,13 @@ INSERT INTO line(id, modificationcounter, name, routeId, "TIMESTAMP")VALUES
 					   (3, 0, 'line3name', 3, '2004-10-19 10:23:54');
 
 
-
-INSERT INTO route( id, modificationcounter, gpsdata, "timestamp")VALUES
-		 (1, 0, '[{lan:111 , long: 112},{lan:121 , long: 122}]',  '2004-10-19 10:23:54'),
-		 (2, 0, '[{lan:211 , long: 212},{lan:221 , long: 222}]',  '2004-10-19 10:23:54');
-
-
-INSERT INTO stop(
-            id, modificationcounter, lat, lon, "timestamp")
-    VALUES (1,0,11.968046,-12.420307,'2004-10-19 10:23:54'),
-           (2,0,21.968046,-22.420307,'2004-10-19 10:23:54'),
-           (3,0,31.968046,-32.420307,'2004-10-19 10:23:54'),
-           (4,0,41.968046,-42.420307,'2004-10-19 10:23:54'),
-           (5,0,51.968046,-52.420307,'2004-10-19 10:23:54');
+INSERT INTO STOP(
+            id, modificationcounter,name, lat, lon, "TIMESTAMP")
+    VALUES (1,0,'stop1', 11.968046,-12.420307,'2004-10-19 10:23:54'),
+                 (2,0,'stop2', 21.968046,-22.420307,'2004-10-19 10:23:54'),
+                 (3,0,'stop3', 31.968046,-32.420307,'2004-10-19 10:23:54'),
+                 (4,0,'stop4', 41.968046,-42.420307,'2004-10-19 10:23:54'),
+                 (5,0,'stop5', 51.968046,-52.420307,'2004-10-19 10:23:54');
 
 INSERT INTO line_stop( id, line_id, stop_id, "timestamp") VALUES
 		     (1, 1, 1, '2004-10-19 10:23:54'),
