@@ -18,9 +18,9 @@ import gse1.buergerbusserver.linemanagement.common.api.Line;
  */
 // TODO: Communicate and correct paths
 
-@Path("busmanagement/v1")
-@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
+@Path("/busmanagement/v1")
 public interface BusmanagementRestService {
 
   /**
@@ -30,7 +30,7 @@ public interface BusmanagementRestService {
    * @return {@link List} of {@link BusEto} objects serving the {@link Line} lineID
    */
   @GET
-  @Path("/buses/{lineId}")
+  @Path("/buses/{lineId}/")
   public List<BusEto> listBusesOnLine(String lineId);
 
   /**
@@ -39,7 +39,7 @@ public interface BusmanagementRestService {
    * @return {@link List} of {@link BusEto} objects
    */
   @GET
-  @Path("/buses")
+  @Path("/buses/")
   public List<BusEto> listAllBuses();
 
 }

@@ -2,6 +2,7 @@ package gse1.buergerbusserver.busmanagement.service.impl.rest;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
@@ -20,14 +21,19 @@ import gse1.buergerbusserver.busmanagement.service.api.rest.BusmanagementRestSer
 
 @Named("BusmanagementRestService")
 public class BusmanagementRestServiceImpl implements BusmanagementRestService {
-
+  @Inject
   private Busmanagement busManagement;
 
   @Override
   public List<BusEto> listAllBuses() {
 
-    List<BusEto> allBuses = this.busManagement.findAllBuses();
-    return allBuses;
+    try {
+      return this.busManagement.findAllBuses();
+    } catch (Exception e) {
+      System.out.println("Exception:" + e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 
   @Override

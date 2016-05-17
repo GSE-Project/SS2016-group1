@@ -1,4 +1,4 @@
-INSERT INTO bus(id, modificationCounter, numberPlate, color, picture, "timestamp") VALUES
+INSERT INTO bus(id, modificationCounter, numberPlate, color, picture, "TIMESTAMP") VALUES
                            (1, 0, 'bus1numberPlate', 'blue', 'bus1pic.jpg', '2004-10-19 10:23:54'),
                            (2, 0, 'bus2numberPlate', 'blue', 'bus2pic.jpg', '2004-10-19 10:23:54'),
                            (3, 0, 'bus3numberPlate', 'blue', 'bus3pic.jpg', '2004-10-19 10:23:54'),
@@ -20,7 +20,7 @@ INSERT INTO STOP(
                  (4,0,'stop4', 41.968046,-42.420307,'2004-10-19 10:23:54'),
                  (5,0,'stop5', 51.968046,-52.420307,'2004-10-19 10:23:54');
 
-INSERT INTO line_stop( id, line_id, stop_id, "timestamp") VALUES
+INSERT INTO line_stop( id, line_id, stop_id, "TIMESTAMP") VALUES
 		     (1, 1, 1, '2004-10-19 10:23:54'),
 		     (2, 1, 2, '2004-10-19 10:23:54'),
 		     (3, 1, 3, '2004-10-19 10:23:54'),
@@ -30,7 +30,7 @@ INSERT INTO line_stop( id, line_id, stop_id, "timestamp") VALUES
 
 
 INSERT INTO schedule(
-            id, modificationcounter, line_stop_id, arivingTime, "timestamp") values
+            id, modificationcounter, line_stop_id, arivingTime, "TIMESTAMP") values
 ----- stops for line 1
             (1, 0, 1, '1:1:1', '2004-10-19 10:23:54'),
             (2, 0, 1, '1:1:2', '2004-10-19 10:23:54'),

@@ -13,7 +13,7 @@ CREATE TABLE BUS(
     color VARCHAR(255),
     picture VARCHAR(255),
     lineId BIGINT,
-    "timestamp" timestamp NOT NULL
+    "TIMESTAMP" timestamp NOT NULL
 );
 
 ALTER TABLE BUS ADD CONSTRAINT PK_BUS PRIMARY KEY(id);
@@ -34,7 +34,7 @@ CREATE TABLE ROUTE(
     id BIGINT NOT NULL,
     modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
     GPSData TEXT,
-    "timestamp" timestamp NOT NULL
+    "TIMESTAMP" timestamp NOT NULL
 );
 ALTER TABLE ROUTE ADD CONSTRAINT PK_ROUTE PRIMARY KEY(id);
 
@@ -44,7 +44,7 @@ CREATE TABLE LASTPOSITION(
     modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
     lat  Decimal(9,6) NOT NULL,
     Lon  Decimal(9,6) NOT NUll,
-    "timestamp" timestamp NOT NULL
+    "TIMESTAMP" timestamp NOT NULL
 );
 ALTER TABLE  LASTPOSITION ADD CONSTRAINT UC_LASTPOSITION_BUSID UNIQUE(busId);
 
@@ -65,7 +65,7 @@ CREATE TABLE LINE_STOP(
     --#modificationCounter INTEGER NOT NULL,  for the functional tables this is not needed
     line_id BIGINT NOT NULL,
     stop_id BIGINT NOT NULL,
-    "timestamp" timestamp NOT NULL
+    "TIMESTAMP" timestamp NOT NULL
 );
 ALTER TABLE LINE_STOP ADD CONSTRAINT PK_LINE_STOP PRIMARY KEY(id);
 ALTER TABLE LINE_STOP ADD CONSTRAINT FK_LINE_STOP2LINE FOREIGN KEY(line_id) REFERENCES LINE(id) ;
@@ -78,7 +78,7 @@ CREATE TABLE SCHEDULE(
     modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
     line_stop_Id BIGINT NOT NULL,
     arivingTime TIME NOT NULL,
-    "timestamp" timestamp NOT NULL
+    "TIMESTAMP" timestamp NOT NULL
 );
 ALTER TABLE SCHEDULE ADD CONSTRAINT PK_SCHEDULE PRIMARY KEY(id);
 ALTER TABLE SCHEDULE ADD CONSTRAINT FK_SCHEDULE2LINE_STOP FOREIGN KEY(line_stop_id) REFERENCES LINE_STOP(id);
@@ -103,7 +103,7 @@ CREATE TABLE REVINFO(
     timestamp BIGINT NOT NULL,
     user VARCHAR(255));
 
--- drop table bus;
+-- drop table bus cascade;
 -- drop table line cascade;
 -- drop table stop cascade;
 -- drop table line_stop cascade;

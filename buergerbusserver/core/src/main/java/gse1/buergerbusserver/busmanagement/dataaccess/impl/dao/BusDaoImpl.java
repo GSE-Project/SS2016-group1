@@ -2,6 +2,8 @@ package gse1.buergerbusserver.busmanagement.dataaccess.impl.dao;
 
 import java.util.List;
 
+import javax.inject.Named;
+
 import com.mysema.query.alias.Alias;
 import com.mysema.query.jpa.impl.JPAQuery;
 import com.mysema.query.types.path.EntityPathBase;
@@ -17,6 +19,7 @@ import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDa
  *
  */
 
+@Named
 public class BusDaoImpl extends ApplicationMasterDataDaoImpl<BusEntity> implements BusDao {
 
   /**

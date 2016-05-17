@@ -11,6 +11,7 @@ import gse1.buergerbusserver.linemanagement.common.api.Line;
  * @author ricarda
  *
  */
+
 public interface Busmanagement {
 
   // TODO: Check methods required by clients, create them

@@ -11,7 +11,7 @@ import io.oasp.module.basic.common.api.to.AbstractEto;
  * @author ricarda
  *
  */
-public class BusEto extends AbstractEto implements Bus {
+public class BusEto {// extends AbstractEto implements Bus {
 
   private static final long serialVersionUID = 1L;
 
@@ -33,66 +33,66 @@ public class BusEto extends AbstractEto implements Bus {
     super();
   }
 
-  @Override
+  // @Override
   public void setNumberPlate(String numberPlate) {
 
     this.numberPlate = numberPlate;
 
   }
 
-  @Override
+  // @Override
   public String getNumberPlate() {
 
     return this.numberPlate;
   }
 
-  @Override
+  // @Override
   public void setColor(String color) {
 
     this.color = color;
 
   }
 
-  @Override
+  // @Override
   public String getColor() {
 
     return this.color;
   }
 
-  @Override
+  // @Override
   public void setPicture(String picture) {
 
     this.picture = picture;
 
   }
 
-  @Override
+  // @Override
   public String getPicture() {
 
     return this.picture;
   }
 
-  @Override
+  // @Override
   public void setTimeStamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
 
   }
 
-  @Override
+  // @Override
   public Date getTimeStamp() {
 
     return this.timeStamp;
   }
 
-  @Override
+  // @Override
   public void setLineId(Long lineId) {
 
     this.lineId = lineId;
 
   }
 
-  @Override
+  // @Override
   public Long getLineId() {
 
     return this.lineId;
