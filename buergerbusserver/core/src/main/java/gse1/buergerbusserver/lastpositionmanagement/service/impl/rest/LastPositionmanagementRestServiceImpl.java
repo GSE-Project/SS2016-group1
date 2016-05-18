@@ -4,7 +4,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.PathParam;
 
 import gse1.buergerbusserver.lastpositionmanagement.logic.api.LastPositionmanagement;
 import gse1.buergerbusserver.lastpositionmanagement.logic.api.to.LastPositionEto;
@@ -23,7 +22,7 @@ public class LastPositionmanagementRestServiceImpl implements LastPositionmanage
   private LastPositionmanagement lastPositionmanagement;
 
   @Override
-  public LastPositionEto getLastPosition(@PathParam("busId") String busId) {
+  public LastPositionEto getLastPosition(String busId) {
 
     Long busIdW;
     if (busId == null) {
@@ -32,9 +31,9 @@ public class LastPositionmanagementRestServiceImpl implements LastPositionmanage
     try {
       busIdW = Long.parseLong(busId);
     } catch (NumberFormatException e) {
-      throw new BadRequestException("Line id is not a number");
+      throw new BadRequestException("Bus id is not a number");
     } catch (NotFoundException e) {
-      throw new BadRequestException("Line not found");
+      throw new BadRequestException("Bus id not found");
     }
     LastPositionEto lastPosition = this.lastPositionmanagement.getLastPosition(busIdW);
     return lastPosition;
