@@ -10,11 +10,14 @@ import java.sql.Timestamp;
  */
 public class StopEto {
 
+  private long id;
+
   private String name;
 
   private String routeObjectReference;
 
   private double lat;
+
   private double lon;
 
   private Timestamp timeStamp;
@@ -61,10 +64,23 @@ public class StopEto {
     this.lat = lat;
   }
 
-  public double getLon(){
-	  return this.lon;
+  public double getLon() {
+
+    return this.lon;
   }
-  public void setLon(double lon){
-	  this.lon = lon;
+
+  public void setLon(double lon) {
+
+    this.lon = lon;
+  }
+
+  public long getId() {
+
+    return id;
+  }
+
+  public void setId(long id) {
+
+    this.id = id;
   }
 }

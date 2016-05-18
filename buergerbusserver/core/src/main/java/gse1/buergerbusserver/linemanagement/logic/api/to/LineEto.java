@@ -9,6 +9,8 @@ import java.util.Date;
 public class LineEto {
   private static final long serialVersionUID = 1L;
 
+  private long id;
+
   private String name;
 
   private Long routeId;
@@ -67,5 +69,15 @@ public class LineEto {
   public void setTimeStamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
+  }
+
+  public long getId() {
+
+    return id;
+  }
+
+  public void setId(long id) {
+
+    this.id = id;
   }
 }
