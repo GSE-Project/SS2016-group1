@@ -1,13 +1,13 @@
 package gse1.buergerbusserver.stopmanagement.service.impl.rest;
 
-import gse1.buergerbusserver.stopmanagement.logic.api.Stopmanagement;
-import gse1.buergerbusserver.stopmanagement.logic.api.to.StopEto;
-import gse1.buergerbusserver.stopmanagement.service.api.rest.StopmanagementRestService;
-
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import gse1.buergerbusserver.stopmanagement.logic.api.Stopmanagement;
+import gse1.buergerbusserver.stopmanagement.logic.api.to.StopEto;
+import gse1.buergerbusserver.stopmanagement.service.api.rest.StopmanagementRestService;
 
 /**
  * TODO mbaniasad This type ...
@@ -22,9 +22,8 @@ public class StopmanagementRestServiceImpl implements StopmanagementRestService 
   private Stopmanagement stopmanagement;
 
   @Override
-  public List<StopEto> listAllStops() {
+  public List<StopEto> getAllStops() {
 
-    return this.stopmanagement.listAllStops();
+    return this.stopmanagement.getAllStops();
   }
 }
-

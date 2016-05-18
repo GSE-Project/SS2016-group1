@@ -35,7 +35,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
 
   @Inject
   private RouteDao routeDao;
-  
+
   @Override
   public List<LineEto> getAllLines() {
 
@@ -50,7 +50,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<BusEto> findAllBuses() {
+  public List<BusEto> getAllBuses() {
 
     // List<BusEntity> buses = this.busDao.findAll();
     // return getBeanMapper().mapList(buses, BusEto.class);
@@ -64,7 +64,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<BusEto> findBusesOnLine(Long lineId) {
+  public List<BusEto> getBusesOnLine(Long lineId) {
 
     List<BusEntity> buses = this.busDao.getBusesOnLine(lineId);
     return getBeanMapper().mapList(buses, BusEto.class);

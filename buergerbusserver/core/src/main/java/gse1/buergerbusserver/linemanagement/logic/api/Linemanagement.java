@@ -18,13 +18,13 @@ import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 public interface Linemanagement {
 
   public List<LineEto> getAllLines();
-  
+
   /**
    * Returns a {@link List} of all buses in the system.
    *
    * @return List of {@link BusEto} objects for all buses
    */
-  List<BusEto> findAllBuses();
+  List<BusEto> getAllBuses();
 
   /**
    * Returns a {@link List} of all buses serving the {@link Line} as given by lineId.
@@ -32,13 +32,13 @@ public interface Linemanagement {
    * @param lineId
    * @return List of {@link BusEto} objects of buses on line lineId.
    */
-  List<BusEto> findBusesOnLine(Long lineId);
-  
+  List<BusEto> getBusesOnLine(Long lineId);
+
   /**
    * @return getAllRoutes
    */
   @GET
   @Path("/routes/")
   public List<RouteEto> getAllRoutes();
-  
+
 }

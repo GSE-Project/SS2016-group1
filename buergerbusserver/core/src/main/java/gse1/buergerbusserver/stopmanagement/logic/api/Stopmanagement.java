@@ -1,8 +1,8 @@
 package gse1.buergerbusserver.stopmanagement.logic.api;
 
-import gse1.buergerbusserver.stopmanagement.logic.api.to.StopEto;
-
 import java.util.List;
+
+import gse1.buergerbusserver.stopmanagement.logic.api.to.StopEto;
 
 /**
  * TODO mbrunnli This type ...
@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface Stopmanagement {
 
-  public List<StopEto> listAllStops();
+  public List<StopEto> getAllStops();
 }

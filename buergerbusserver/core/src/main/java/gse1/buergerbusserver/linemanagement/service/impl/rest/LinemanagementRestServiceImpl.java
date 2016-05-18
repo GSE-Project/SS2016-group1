@@ -35,10 +35,10 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<BusEto> listAllBuses() {
+  public List<BusEto> getAllBuses() {
 
     try {
-      return this.linemanagement.findAllBuses();
+      return this.linemanagement.getAllBuses();
     } catch (Exception e) {
       System.out.println("Exception:" + e.getMessage());
       e.printStackTrace();
@@ -47,7 +47,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<BusEto> listBusesOnLine(String lineId) {
+  public List<BusEto> getBusesOnLine(String lineId) {
 
     long lineIdLong;
     if (lineId == null) {
@@ -60,7 +60,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     } catch (NotFoundException e) {
       throw new BadRequestException("Line not found");
     }
-    List<BusEto> lineBuses = this.linemanagement.findBusesOnLine(lineIdLong);
+    List<BusEto> lineBuses = this.linemanagement.getBusesOnLine(lineIdLong);
     return lineBuses;
   }
 

@@ -35,7 +35,7 @@ public interface LinemanagementRestService {
    */
   @GET
   @Path("/buses/{lineId}/")
-  public List<BusEto> listBusesOnLine(@PathParam("lineId") String lineId);
+  public List<BusEto> getBusesOnLine(@PathParam("lineId") String lineId);
 
   /**
    * Delegates to {@link Busmanagement#findAllBuses()}.
@@ -44,7 +44,7 @@ public interface LinemanagementRestService {
    */
   @GET
   @Path("/buses/")
-  public List<BusEto> listAllBuses();
+  public List<BusEto> getAllBuses();
 
   /**
    * @return getAllRoutes
