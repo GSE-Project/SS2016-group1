@@ -33,8 +33,8 @@ ALTER TABLE LINE ADD CONSTRAINT PK_LINE PRIMARY KEY(id);
 CREATE TABLE ROUTE(
     id BIGINT NOT NULL,
     modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
-    GPSData TEXT,
-    "timestamp" timestamp NOT NULL
+    GPSData varchar(255),
+    "TIMESTAMP" timestamp NOT NULL
 );
 ALTER TABLE ROUTE ADD CONSTRAINT PK_ROUTE PRIMARY KEY(id);
 
