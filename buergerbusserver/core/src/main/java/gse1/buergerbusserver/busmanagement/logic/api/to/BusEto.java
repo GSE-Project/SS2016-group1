@@ -15,6 +15,8 @@ public class BusEto {// extends AbstractEto implements Bus {
 
   private static final long serialVersionUID = 1L;
 
+  private long id;
+
   private String numberPlate;
 
   private Long lineId;
@@ -96,6 +98,14 @@ public class BusEto {// extends AbstractEto implements Bus {
   public Long getLineId() {
 
     return this.lineId;
+  }
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
   }
 
 }

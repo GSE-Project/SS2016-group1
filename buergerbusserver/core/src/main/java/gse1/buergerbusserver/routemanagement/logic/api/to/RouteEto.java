@@ -8,6 +8,8 @@ import java.util.Date;
  */
 public class RouteEto {
 
+  private Long id;
+
   private String gpsdata;
 
   private Date timeStamp;
@@ -45,6 +47,16 @@ public class RouteEto {
   public void setTimeStamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
+  }
+
+  public Long getId() {
+
+    return id;
+  }
+
+  public void setId(Long id) {
+
+    this.id = id;
   }
 
 }
