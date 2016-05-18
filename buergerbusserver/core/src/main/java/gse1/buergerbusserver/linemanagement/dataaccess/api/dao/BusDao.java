@@ -1,10 +1,10 @@
-package gse1.buergerbusserver.busmanagement.dataaccess.api.dao;
+package gse1.buergerbusserver.linemanagement.dataaccess.api.dao;
 
 import java.util.List;
 
-import gse1.buergerbusserver.busmanagement.dataaccess.api.BusEntity;
 import gse1.buergerbusserver.general.dataaccess.api.dao.ApplicationDao;
 import gse1.buergerbusserver.linemanagement.common.api.Line;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
 import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
 
 /**

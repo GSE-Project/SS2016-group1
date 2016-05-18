@@ -1,8 +1,8 @@
-package gse1.buergerbusserver.busmanagement.logic.api.to;
+package gse1.buergerbusserver.linemanagement.logic.api.to;
 
 import java.util.Date;
 
-import gse1.buergerbusserver.busmanagement.common.api.Bus;
+import gse1.buergerbusserver.linemanagement.common.api.Bus;
 import io.oasp.module.basic.common.api.to.AbstractEto;
 
 /**

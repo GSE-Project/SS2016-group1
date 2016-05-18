@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.routemanagement.logic.api.to;
+package gse1.buergerbusserver.linemanagement.logic.api.to;
 
 import java.util.Date;
 

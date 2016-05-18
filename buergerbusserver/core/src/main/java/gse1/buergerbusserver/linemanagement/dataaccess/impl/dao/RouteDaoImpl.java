@@ -1,10 +1,10 @@
-package gse1.buergerbusserver.routemanagement.dataaccess.impl.dao;
+package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
 import javax.inject.Named;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
-import gse1.buergerbusserver.routemanagement.dataaccess.api.RouteEntity;
-import gse1.buergerbusserver.routemanagement.dataaccess.api.dao.RouteDao;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.RouteEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.RouteDao;
 
 /**
  * @author MZEEN

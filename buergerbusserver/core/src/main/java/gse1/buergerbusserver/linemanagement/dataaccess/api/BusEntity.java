@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.busmanagement.dataaccess.api;
+package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
 import java.util.Date;
 
@@ -7,8 +7,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import gse1.buergerbusserver.busmanagement.common.api.Bus;
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
+import gse1.buergerbusserver.linemanagement.common.api.Bus;
 
 /**
  * {@link ApplicationPersistenceEntity Entity} representing a {@link Bus}. A bus has a number plate, a color and picture

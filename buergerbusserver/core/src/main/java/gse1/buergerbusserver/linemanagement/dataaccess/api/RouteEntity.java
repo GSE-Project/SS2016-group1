@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.routemanagement.dataaccess.api;
+package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
-import gse1.buergerbusserver.routemanagement.common.api.Route;
+import gse1.buergerbusserver.linemanagement.common.api.Route;
 
 /**
  * @author MZEEN

@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.busmanagement.common.api;
+package gse1.buergerbusserver.linemanagement.common.api;
 
 import java.util.Date;
 

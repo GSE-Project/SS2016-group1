@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.busmanagement.dataaccess.impl.dao;
+package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import com.mysema.query.alias.Alias;
 import com.mysema.query.jpa.impl.JPAQuery;
 import com.mysema.query.types.path.EntityPathBase;
 
-import gse1.buergerbusserver.busmanagement.dataaccess.api.BusEntity;
-import gse1.buergerbusserver.busmanagement.dataaccess.api.dao.BusDao;
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.BusDao;
 
 /**
  * Implementation of {@link BusDao}.
