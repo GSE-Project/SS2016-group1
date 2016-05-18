@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.PathParam;
 
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
@@ -48,7 +47,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<BusEto> listBusesOnLine(@PathParam("lineId") String lineId) {
+  public List<BusEto> listBusesOnLine(String lineId) {
 
     long lineIdLong;
     if (lineId == null) {
@@ -64,7 +63,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     List<BusEto> lineBuses = this.linemanagement.findBusesOnLine(lineIdLong);
     return lineBuses;
   }
-  
+
   @Override
   public List<RouteEto> getAllRoutes() {
 

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -25,8 +26,7 @@ public interface LinemanagementRestService {
   @GET
   @Path("/lines/")
   public List<LineEto> getAllLines();
-  
-  
+
   /**
    * Delegates to {@link Busmanagement#findBusesOnLine(Long)}.
    *
@@ -35,7 +35,7 @@ public interface LinemanagementRestService {
    */
   @GET
   @Path("/buses/{lineId}/")
-  public List<BusEto> listBusesOnLine(String lineId);
+  public List<BusEto> listBusesOnLine(@PathParam("lineId") String lineId);
 
   /**
    * Delegates to {@link Busmanagement#findAllBuses()}.
@@ -45,7 +45,7 @@ public interface LinemanagementRestService {
   @GET
   @Path("/buses/")
   public List<BusEto> listAllBuses();
-  
+
   /**
    * @return getAllRoutes
    */
