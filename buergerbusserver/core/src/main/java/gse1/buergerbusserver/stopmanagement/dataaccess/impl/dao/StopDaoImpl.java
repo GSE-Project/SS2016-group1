@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.stopmanagement.dataaccess.api.impl.dao;
+package gse1.buergerbusserver.stopmanagement.dataaccess.impl.dao;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
 import gse1.buergerbusserver.stopmanagement.dataaccess.api.StopEntity;

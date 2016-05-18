@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.lastpositionmanagement.dataaccess.api.impl.dao;
+package gse1.buergerbusserver.lastpositionmanagement.dataaccess.impl.dao;
 
 import javax.inject.Named;
 
