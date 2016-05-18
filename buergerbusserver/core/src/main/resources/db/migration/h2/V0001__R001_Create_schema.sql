@@ -40,10 +40,11 @@ ALTER TABLE ROUTE ADD CONSTRAINT PK_ROUTE PRIMARY KEY(id);
 
 -- *** LastPosition ***
 CREATE TABLE LASTPOSITION(
+    id BIGINT NOT NULL,
     busId BIGINT NOT NULL,
     modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
-    lat  Decimal(9,6) NOT NULL,
-    Lon  Decimal(9,6) NOT NUll,
+    lat  DOUBLE NOT NULL,
+    lon  DOUBLE NOT NUll,
     "TIMESTAMP" timestamp NOT NULL
 );
 ALTER TABLE  LASTPOSITION ADD CONSTRAINT UC_LASTPOSITION_BUSID UNIQUE(busId);
@@ -54,7 +55,7 @@ CREATE TABLE STOP (
     name VARCHAR( 255 ) ,
     modificationCounter INTEGER NOT NULL ,
     lat DOUBLE NOT NULL ,
-    Lon DOUBLE NOT NULL ,
+    lon DOUBLE NOT NULL ,
     TIMESTAMP TIMESTAMP NOT NULL
 );
 ALTER TABLE STOP ADD CONSTRAINT PK_STOP PRIMARY KEY ( id ) ;
