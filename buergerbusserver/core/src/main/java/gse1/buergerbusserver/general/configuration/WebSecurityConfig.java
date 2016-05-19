@@ -1,14 +1,5 @@
 package gse1.buergerbusserver.general.configuration;
 
-import gse1.buergerbusserver.general.common.impl.security.ApplicationAuthenticationProvider;
-import io.oasp.module.security.common.api.accesscontrol.AccessControlProvider;
-import io.oasp.module.security.common.base.accesscontrol.AccessControlSchemaProvider;
-import io.oasp.module.security.common.impl.accesscontrol.AccessControlProviderImpl;
-import io.oasp.module.security.common.impl.accesscontrol.AccessControlSchemaProviderImpl;
-import io.oasp.module.security.common.impl.rest.AuthenticationSuccessHandlerSendingOkHttpStatusCode;
-import io.oasp.module.security.common.impl.rest.JsonUsernamePasswordAuthenticationFilter;
-import io.oasp.module.security.common.impl.rest.LogoutSuccessHandlerReturningOkHttpStatusCode;
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.servlet.Filter;
@@ -23,13 +14,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import gse1.buergerbusserver.general.common.impl.security.ApplicationAuthenticationProvider;
+import io.oasp.module.security.common.api.accesscontrol.AccessControlProvider;
+import io.oasp.module.security.common.base.accesscontrol.AccessControlSchemaProvider;
+import io.oasp.module.security.common.impl.accesscontrol.AccessControlProviderImpl;
+import io.oasp.module.security.common.impl.accesscontrol.AccessControlSchemaProviderImpl;
+import io.oasp.module.security.common.impl.rest.AuthenticationSuccessHandlerSendingOkHttpStatusCode;
+import io.oasp.module.security.common.impl.rest.JsonUsernamePasswordAuthenticationFilter;
+import io.oasp.module.security.common.impl.rest.LogoutSuccessHandlerReturningOkHttpStatusCode;
 
 /**
  * Security configuration based on {@link WebSecurityConfigurerAdapter}. This configuration is by purpose designed most
@@ -100,36 +99,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(HttpSecurity http) throws Exception {
 
-    String[] unsecuredResources =
-        new String[] { "/login", "/security/**", "/services/rest/login", "/services/rest/logout" };
-
-    http
-    //
-    .authenticationProvider(this.authenticationProvider).anonymous();
-    // define all urls that are not to be secured
-    // .authorizeRequests().antMatchers(unsecuredResources).permitAll().anyRequest()
-    // .authenticated()
-    // .and()
-
-    // activate crsf check for a selection of urls (but not for login & logout)
-    // .csrf()
-    // .requireCsrfProtectionMatcher(new CsrfRequestMatcher())
-    // .and()
-
-    // configure parameters for simple form login (and logout)
-    // .formLogin().successHandler(new SimpleUrlAuthenticationSuccessHandler()).defaultSuccessUrl("/")
-    // .failureUrl("/login.html?error").loginProcessingUrl("/j_spring_security_login").usernameParameter("username")
-    // .passwordParameter("password").and()
-    // logout via POST is possible
-    // .logout().logoutSuccessUrl("/login.html").and()
-
-    // register login and logout filter that handles rest logins
-    // .addFilterAfter(getSimpleRestAuthenticationFilter(), BasicAuthenticationFilter.class)
-    // .addFilterAfter(getSimpleRestLogoutFilter(), LogoutFilter.class);
-
-    if (this.corsEnabled) {
-      http.addFilterBefore(getCorsFilter(), CsrfFilter.class);
-    }
+    http.csrf().disable();
+    return;
+    /*
+     * String[] unsecuredResources = new String[] { "/login", "/security/**", "/services/rest/login",
+     * "/services/rest/logout" };
+     * 
+     * http // .authenticationProvider(this.authenticationProvider).anonymous(); // define all urls that are not to be
+     * secured // .authorizeRequests().antMatchers(unsecuredResources).permitAll().anyRequest() // .authenticated() //
+     * .and()
+     * 
+     * // activate crsf check for a selection of urls (but not for login & logout) // .csrf() //
+     * .requireCsrfProtectionMatcher(new CsrfRequestMatcher()) // .and()
+     * 
+     * // configure parameters for simple form login (and logout) // .formLogin().successHandler(new
+     * SimpleUrlAuthenticationSuccessHandler()).defaultSuccessUrl("/") //
+     * .failureUrl("/login.html?error").loginProcessingUrl("/j_spring_security_login").usernameParameter("username") //
+     * .passwordParameter("password").and() // logout via POST is possible //
+     * .logout().logoutSuccessUrl("/login.html").and()
+     * 
+     * // register login and logout filter that handles rest logins //
+     * .addFilterAfter(getSimpleRestAuthenticationFilter(), BasicAuthenticationFilter.class) //
+     * .addFilterAfter(getSimpleRestLogoutFilter(), LogoutFilter.class);
+     * 
+     * if (this.corsEnabled) { http.addFilterBefore(getCorsFilter(), CsrfFilter.class); }
+     */
   }
 
   /**

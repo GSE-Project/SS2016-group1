@@ -11,4 +11,6 @@ import gse1.buergerbusserver.lastpositionmanagement.logic.api.to.LastPositionEto
 public interface LastPositionmanagement {
 
   public LastPositionEto getLastPosition(Long busId);
+
+  void setLastPosition(Long busId, double lon, double lat);
 }

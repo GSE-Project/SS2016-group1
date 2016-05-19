@@ -5,6 +5,7 @@ import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 
+import gse1.buergerbusserver.lastpositionmanagement.dataaccess.api.LastPositionEntity;
 import gse1.buergerbusserver.lastpositionmanagement.logic.api.LastPositionmanagement;
 import gse1.buergerbusserver.lastpositionmanagement.logic.api.to.LastPositionEto;
 import gse1.buergerbusserver.lastpositionmanagement.service.api.rest.LastPositionmanagementRestService;
@@ -38,4 +39,16 @@ public class LastPositionmanagementRestServiceImpl implements LastPositionmanage
     LastPositionEto lastPosition = this.lastPositionmanagement.getLastPosition(busIdW);
     return lastPosition;
   }
+
+  @Override
+  public void setLastPosition(LastPositionEntity lpo) {
+
+    try {
+
+      this.lastPositionmanagement.setLastPosition(lpo.getBusId(), lpo.getLon(), lpo.getLat());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
 }

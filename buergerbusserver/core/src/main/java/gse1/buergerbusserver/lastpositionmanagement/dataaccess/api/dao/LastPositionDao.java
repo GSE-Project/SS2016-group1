@@ -11,4 +11,6 @@ import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
 public interface LastPositionDao extends ApplicationDao<LastPositionEntity>, MasterDataDao<LastPositionEntity> {
 
   LastPositionEntity getLastPosition(Long busId);
+
+  void setLastPosition(Long busId, double lon, double lat);
 }
