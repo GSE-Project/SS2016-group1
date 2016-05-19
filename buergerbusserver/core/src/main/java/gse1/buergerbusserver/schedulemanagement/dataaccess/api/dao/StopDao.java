@@ -1,7 +1,7 @@
-package gse1.buergerbusserver.stopmanagement.dataaccess.api.dao;
+package gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao;
 
 import gse1.buergerbusserver.general.dataaccess.api.dao.ApplicationDao;
-import gse1.buergerbusserver.stopmanagement.dataaccess.api.StopEntity;
+import gse1.buergerbusserver.schedulemanagement.dataaccess.api.StopEntity;
 import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
 
 /**
