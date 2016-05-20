@@ -15,6 +15,7 @@ import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LineDao;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.RouteDao;
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 
@@ -74,5 +75,17 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   public List<RouteEto> getAllRoutes() {
 
     return getBeanMapper().mapList(this.routeDao.findAll(), RouteEto.class);
+  }
+  
+  @Override
+  public List<LineWithBusIdsCto> getAllLinesWithBusIds() {
+
+    List<LineWithBusIdsCto> lineCtoList =  getBeanMapper().mapList(this.lineDao.findAll(), LineWithBusIdsCto.class);
+
+    for (LineWithBusIdsCto lineCto : lineCtoList){
+      List<BusEntity> buses = this.busDao.getBusesOnLine(lineCto.getId());
+      lineCto.setBuses(getBeanMapper().mapList(buses, BusEto.class));
+    }
+    return lineCtoList;
   }
 }

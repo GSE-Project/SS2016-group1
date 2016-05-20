@@ -1,9 +1,9 @@
-INSERT INTO bus(id, modificationCounter, numberPlate, color, picture, "TIMESTAMP") VALUES
-                           (1, 0, 'bus1numberPlate', 'blue', 'bus1pic.jpg', '2004-10-19 10:23:54'),
-                           (2, 0, 'bus2numberPlate', 'blue', 'bus2pic.jpg', '2004-10-19 10:23:54'),
-                           (3, 0, 'bus3numberPlate', 'blue', 'bus3pic.jpg', '2004-10-19 10:23:54'),
-                           (4, 0, 'bus4numberPlate', 'blue', 'bus4pic.jpg', '2004-10-19 10:23:54'),
-                           (5, 0, 'bus5numberPlate', 'blue', 'bus5pic.jpg', '2004-10-19 10:23:54');
+INSERT INTO bus(id, modificationCounter, numberPlate, color, picture,lineId, "TIMESTAMP") VALUES
+                           (1, 0, 'bus1numberPlate', 'blue', 'bus1pic.jpg',1, '2004-10-19 10:23:54'),
+                           (2, 0, 'bus2numberPlate', 'blue', 'bus2pic.jpg',1, '2004-10-19 10:23:54'),
+                           (3, 0, 'bus3numberPlate', 'blue', 'bus3pic.jpg',2, '2004-10-19 10:23:54'),
+                           (4, 0, 'bus4numberPlate', 'blue', 'bus4pic.jpg',2, '2004-10-19 10:23:54'),
+                           (5, 0, 'bus5numberPlate', 'blue', 'bus5pic.jpg',3, '2004-10-19 10:23:54');
 
 
 INSERT INTO line(id, modificationcounter, name, routeId, "TIMESTAMP")VALUES
@@ -12,10 +12,10 @@ INSERT INTO line(id, modificationcounter, name, routeId, "TIMESTAMP")VALUES
 					   (3, 0, 'line3name', 3, '2004-10-19 10:23:54');
 
 INSERT INTO ROUTE(id, modificationcounter,GPSData, "TIMESTAMP")
-    VALUES (1,0,'route1','2004-10-19 10:23:54'),
-            (2,0,'route2','2004-10-19 10:23:54'),
-            (3,0,'route3','2004-10-19 10:23:54'),
-            (4,0,'route4','2004-10-19 10:23:54');
+    VALUES (1,0,'11.968046,-12.420307;11.968046,-12.420307;11.968046,-12.420307','2004-10-19 10:23:54'),
+                 (2,0,'21.968046,-22.420307;21.968046,-22.420307;21.968046,-22.420307','2004-10-19 10:23:54'),
+                 (3,0,'31.968046,-32.420307;31.968046,-32.420307;31.968046,-32.420307','2004-10-19 10:23:54'),
+                 (4,0,'41.968046,-42.420307;41.968046,-42.420307;41.968046,-42.420307','2004-10-19 10:23:54');
 
 --added by Hafiz
 INSERT INTO LASTPOSITION(id,busId, modificationCounter, lat, lon, "TIMESTAMP") VALUES

@@ -9,6 +9,7 @@ import javax.ws.rs.NotFoundException;
 
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
@@ -69,4 +70,11 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
     return this.linemanagement.getAllRoutes();
   }
+  
+  @Override
+  public List<LineWithBusIdsCto> getAllLinesWithBusIds() {
+    
+    return this.linemanagement.getAllLinesWithBusIds();
+  }
+  
 }
