@@ -1,6 +1,11 @@
 package gse1.buergerbusserver.linemanagement.logic.api.to;
 
+import gse1.buergerbusserver.general.common.api.datatype.Gps;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author MZEEN
@@ -10,7 +15,7 @@ public class RouteEto {
 
   private Long id;
 
-  private String gpsdata;
+  private List<Gps> gpsdata;
 
   private Date timeStamp;
 
@@ -18,7 +23,7 @@ public class RouteEto {
    * @return gpsdata
    */
 
-  public String getGpsData() {
+  public List<Gps> getGpsData() {
 
     return this.gpsdata;
   }
@@ -27,9 +32,9 @@ public class RouteEto {
    * @param gpsdata new value of {@link #getgpsdata}.
    */
 
-  public void setGpsData(String gpsData) {
-
-    this.gpsdata = gpsData;
+  public void setGpsData(List<Gps> gpsData) {
+   
+     this.gpsdata = gpsData;
   }
 
   /**

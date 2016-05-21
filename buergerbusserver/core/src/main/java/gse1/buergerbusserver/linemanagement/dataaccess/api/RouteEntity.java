@@ -1,13 +1,18 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Basic;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import gse1.buergerbusserver.general.common.api.datatype.Gps;
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
+import gse1.buergerbusserver.general.dataaccess.base.GpsConverter;
 import gse1.buergerbusserver.linemanagement.common.api.Route;
 
 /**
@@ -18,7 +23,10 @@ import gse1.buergerbusserver.linemanagement.common.api.Route;
 @Table(name = "ROUTE")
 public class RouteEntity extends ApplicationPersistenceEntity implements Route {
 
-  private String gpsdata;
+  
+  private List<Gps> gpsdata;
+  
+  
 
   private Date timeStamp;
 
@@ -26,7 +34,8 @@ public class RouteEntity extends ApplicationPersistenceEntity implements Route {
    * @return gpsdata
    */
   @Override
-  public String getGpsData() {
+  @Convert(converter = GpsConverter.class)
+  public List<Gps> getGpsData() {
 
     return this.gpsdata;
   }
@@ -35,11 +44,13 @@ public class RouteEntity extends ApplicationPersistenceEntity implements Route {
    * @param GpsData new value of {@link #getgpsdata}.
    */
   @Override
-  public void setGpsData(String gpsData) {
+  public void setGpsData(List<Gps> gpsData) {
 
     this.gpsdata = gpsData;
   }
 
+  
+  
   /**
    * @return timeStamp
    */

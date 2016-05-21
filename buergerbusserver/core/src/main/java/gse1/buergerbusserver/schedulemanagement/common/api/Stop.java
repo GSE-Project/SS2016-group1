@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.stopmanagement.common.api;
+package gse1.buergerbusserver.schedulemanagement.common.api;
 
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 

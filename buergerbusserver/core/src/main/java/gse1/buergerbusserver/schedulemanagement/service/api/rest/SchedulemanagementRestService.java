@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.stopmanagement.service.api.rest;
+package gse1.buergerbusserver.schedulemanagement.service.api.rest;
 
 import java.util.List;
 
@@ -8,7 +8,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import gse1.buergerbusserver.stopmanagement.logic.api.to.StopEto;
+import gse1.buergerbusserver.schedulemanagement.logic.api.to.ScheduleEto;
+import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
 
 /**
  * TODO mbaniasad This type ...
@@ -19,9 +20,13 @@ import gse1.buergerbusserver.stopmanagement.logic.api.to.StopEto;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Path("/stopmanagement/v1")
-public interface StopmanagementRestService {
+public interface SchedulemanagementRestService {
 
   @GET
   @Path("/stops/")
   public List<StopEto> getAllStops();
+
+  @GET
+  @Path("/schedules/")
+  List<ScheduleEto> getAllSchedules();
 }

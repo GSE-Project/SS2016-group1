@@ -1,8 +1,10 @@
 package gse1.buergerbusserver.linemanagement.common.api;
 
 import java.util.Date;
+import java.util.List;
 
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
+import gse1.buergerbusserver.general.common.api.datatype.Gps;
 
 /**
  * @author MZEEN
@@ -10,9 +12,9 @@ import gse1.buergerbusserver.general.common.api.ApplicationEntity;
  */
 public interface Route extends ApplicationEntity {
 
-  void setGpsData(String gpsData);
+  void setGpsData(List<Gps> gpsData);
 
-  String getGpsData();
+  List<Gps> getGpsData();
 
   void setTimeStamp(Date timeStamp);
 

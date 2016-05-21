@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.stopmanagement.logic.api.to;
+package gse1.buergerbusserver.schedulemanagement.logic.api.to;
 
 import java.sql.Timestamp;
 
@@ -13,8 +13,6 @@ public class StopEto {
   private long id;
 
   private String name;
-
-  private String routeObjectReference;
 
   private double lat;
 

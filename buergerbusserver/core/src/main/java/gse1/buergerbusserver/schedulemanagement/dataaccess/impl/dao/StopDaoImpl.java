@@ -1,8 +1,8 @@
-package gse1.buergerbusserver.stopmanagement.dataaccess.impl.dao;
+package gse1.buergerbusserver.schedulemanagement.dataaccess.impl.dao;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
-import gse1.buergerbusserver.stopmanagement.dataaccess.api.StopEntity;
-import gse1.buergerbusserver.stopmanagement.dataaccess.api.dao.StopDao;
+import gse1.buergerbusserver.schedulemanagement.dataaccess.api.StopEntity;
+import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
 
 import javax.inject.Named;
 

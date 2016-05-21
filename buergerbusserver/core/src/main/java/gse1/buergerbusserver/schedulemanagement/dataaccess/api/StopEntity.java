@@ -1,7 +1,7 @@
-package gse1.buergerbusserver.stopmanagement.dataaccess.api;
+package gse1.buergerbusserver.schedulemanagement.dataaccess.api;
 
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
-import gse1.buergerbusserver.stopmanagement.common.api.Stop;
+import gse1.buergerbusserver.schedulemanagement.common.api.Stop;
 
 import java.util.Date;
 
