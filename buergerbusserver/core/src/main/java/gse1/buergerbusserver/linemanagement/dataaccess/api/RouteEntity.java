@@ -1,67 +1,56 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Basic;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import gse1.buergerbusserver.general.common.api.datatype.Gps;
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
-import gse1.buergerbusserver.linemanagement.common.api.Line;
+import gse1.buergerbusserver.general.dataaccess.base.GpsConverter;
+import gse1.buergerbusserver.linemanagement.common.api.Route;
 
 /**
- * @author razadfki
+ * @author MZEEN
  *
  */
 @Entity
-@Table(name = "LINE")
-public class LineEntity extends ApplicationPersistenceEntity implements Line {
+@Table(name = "ROUTE")
+public class RouteEntity extends ApplicationPersistenceEntity implements Route {
 
-  private static final long serialVersionUID = 1L;
-
-  private String name;
-
-  private Long routeId;
+  
+  private List<Gps> gpsdata;
+  
+  
 
   private Date timeStamp;
 
   /**
-   * @return name
+   * @return gpsdata
    */
   @Override
-  public String getName() {
+  @Convert(converter = GpsConverter.class)
+  public List<Gps> getGpsData() {
 
-    return this.name;
+    return this.gpsdata;
   }
 
   /**
-   * @param name new value of {@link #getname}.
+   * @param GpsData new value of {@link #getgpsdata}.
    */
   @Override
-  public void setName(String name) {
+  public void setGpsData(List<Gps> gpsData) {
 
-    this.name = name;
+    this.gpsdata = gpsData;
   }
 
-  /**
-   * @return routeObjectReference
-   */
-  @Override
-  public Long getRouteId() {
-
-    return this.routeId;
-  }
-
-  /**
-   * @param routeId new value of {@link #getRouteId}.
-   */
-  @Override
-  public void setRouteId(Long routeId) {
-
-    this.routeId = routeId;
-  }
-
+  
+  
   /**
    * @return timeStamp
    */
@@ -81,5 +70,4 @@ public class LineEntity extends ApplicationPersistenceEntity implements Line {
 
     this.timeStamp = timeStamp;
   }
-
 }

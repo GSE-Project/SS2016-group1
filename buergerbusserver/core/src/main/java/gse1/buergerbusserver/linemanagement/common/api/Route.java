@@ -1,24 +1,22 @@
 package gse1.buergerbusserver.linemanagement.common.api;
 
 import java.util.Date;
+import java.util.List;
 
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
+import gse1.buergerbusserver.general.common.api.datatype.Gps;
 
 /**
- * @author razadfki Interface of the line Entity of the system.
+ * @author MZEEN
+ *
  */
-public interface Line extends ApplicationEntity {
+public interface Route extends ApplicationEntity {
 
-  void setName(String name);
+  void setGpsData(List<Gps> gpsData);
 
-  String getName();
-
-  void setRouteId(Long routeId);
-
-  Long getRouteId();
+  List<Gps> getGpsData();
 
   void setTimeStamp(Date timeStamp);
 
   Date getTimeStamp();
-
 }
