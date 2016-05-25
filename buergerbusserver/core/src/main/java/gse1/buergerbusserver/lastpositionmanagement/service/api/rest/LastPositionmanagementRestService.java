@@ -8,7 +8,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import gse1.buergerbusserver.lastpositionmanagement.dataaccess.api.LastPositionEntity;
 import gse1.buergerbusserver.lastpositionmanagement.logic.api.to.LastPositionEto;
 
 /**
@@ -23,15 +22,17 @@ import gse1.buergerbusserver.lastpositionmanagement.logic.api.to.LastPositionEto
 public interface LastPositionmanagementRestService {
 
   @GET
-  @Path("/getLastPosition/{busId}/")
+  @Path("/lastPosition/{busId}/")
   public LastPositionEto getLastPosition(@PathParam("busId") String busId);
 
   @POST
-  @Path("/setLastPosition/")
-  public void setLastPosition(LastPositionEntity lpe);
+  @Path("/lastPosition/{busId}/{lon}/{lat}/")
+  public void setLastPosition(@PathParam("busId") Long busId, @PathParam("lon") double lon,
+      @PathParam("lat") double lat);
+  // public void setLastPosition(LastPositionEntity lpe);
   /*
-   * public void setLastPosition(@FormParam("busId") Long busId, @FormParam("lon") double lon,
-   * 
+   * @PathParam("orderId") public void setLastPosition(@FormParam("busId") Long busId, @FormParam("lon") double lon,
+   *
    * @FormParam("lat") double lat);
    */
 
