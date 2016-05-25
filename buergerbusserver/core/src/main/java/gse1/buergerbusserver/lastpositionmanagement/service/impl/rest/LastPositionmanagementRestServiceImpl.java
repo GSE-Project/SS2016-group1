@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.core.Response;
 
 import gse1.buergerbusserver.lastpositionmanagement.logic.api.LastPositionmanagement;
 import gse1.buergerbusserver.lastpositionmanagement.logic.api.to.LastPositionEto;
@@ -40,13 +41,16 @@ public class LastPositionmanagementRestServiceImpl implements LastPositionmanage
   }
 
   @Override
-  public void setLastPosition(Long busId, double lon, double lat) {
+  public Response setLastPosition(Long busId, double lon, double lat) {
 
     try {
 
       this.lastPositionmanagement.setLastPosition(busId, lon, lat);
+      return Response.status(200).build();
+
     } catch (Exception e) {
       e.printStackTrace();
+      return Response.status(500).build();
     }
 
   }

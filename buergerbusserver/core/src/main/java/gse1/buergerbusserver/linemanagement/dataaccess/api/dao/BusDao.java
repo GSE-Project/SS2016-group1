@@ -23,4 +23,6 @@ public interface BusDao extends ApplicationDao<BusEntity>, MasterDataDao<BusEnti
    */
   List<BusEntity> getBusesOnLine(Long lineId);
 
+  void updateBusStatus(Long busId, Long lineId);
+
 }

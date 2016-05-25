@@ -2,13 +2,10 @@ package gse1.buergerbusserver.linemanagement.logic.api;
 
 import java.util.List;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-
 import gse1.buergerbusserver.linemanagement.common.api.Line;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 
 /**
@@ -35,9 +32,10 @@ public interface Linemanagement {
    */
   List<BusEto> getBusesOnLine(Long lineId);
 
-
   public List<RouteEto> getAllRoutes();
 
   public List<LineWithBusIdsCto> getAllLinesWithBusIds();
+
+  void updateBusStatus(Long busId, Long lineId);
 
 }

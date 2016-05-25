@@ -6,11 +6,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.core.Response;
 
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
@@ -70,11 +71,26 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
     return this.linemanagement.getAllRoutes();
   }
-  
+
   @Override
   public List<LineWithBusIdsCto> getAllLinesWithBusIds() {
-    
+
     return this.linemanagement.getAllLinesWithBusIds();
   }
-  
+
+  @Override
+  public Response updateBusStatus(Long busId, Long lineId) {
+
+    try {
+
+      this.linemanagement.updateBusStatus(busId, lineId);
+      return Response.status(200).build();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return Response.status(500).build();
+    }
+
+  }
+
 }

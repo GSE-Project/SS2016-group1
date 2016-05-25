@@ -4,15 +4,17 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import gse1.buergerbusserver.linemanagement.common.api.Line;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 
 /**
@@ -31,6 +33,7 @@ public interface LinemanagementRestService {
   @GET
   @Path("/linesWithBusids/")
   public List<LineWithBusIdsCto> getAllLinesWithBusIds();
+
   /**
    * Delegates to {@link Busmanagement#findBusesOnLine(Long)}.
    *
@@ -57,5 +60,8 @@ public interface LinemanagementRestService {
   @Path("/routes/")
   public List<RouteEto> getAllRoutes();
 
- 
+  @POST
+  @Path("/updateBusStatus/{busId}/{lineId}/")
+  public Response updateBusStatus(@PathParam("busId") Long busId, @PathParam("lineId") Long lineId);
+
 }
