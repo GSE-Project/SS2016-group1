@@ -1,5 +1,6 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.api.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import gse1.buergerbusserver.general.dataaccess.api.dao.ApplicationDao;
@@ -24,5 +25,7 @@ public interface BusDao extends ApplicationDao<BusEntity>, MasterDataDao<BusEnti
   List<BusEntity> getBusesOnLine(Long lineId);
 
   void updateBusStatus(Long busId, Long lineId);
+
+  Date lastUpdate();
 
 }

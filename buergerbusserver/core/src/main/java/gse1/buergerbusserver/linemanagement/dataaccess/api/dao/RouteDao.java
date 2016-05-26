@@ -9,5 +9,5 @@ import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
  *
  */
 public interface RouteDao extends ApplicationDao<RouteEntity>, MasterDataDao<RouteEntity> {
-
+  // Date lastUpdate();
 }

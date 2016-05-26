@@ -1,5 +1,6 @@
 package gse1.buergerbusserver.linemanagement.service.api.rest;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -63,5 +64,9 @@ public interface LinemanagementRestService {
   @POST
   @Path("/updateBusStatus/{busId}/{lineId}/")
   public Response updateBusStatus(@PathParam("busId") Long busId, @PathParam("lineId") Long lineId);
+
+  @GET
+  @Path("/lastUpdate/")
+  public Date lastUpdate();
 
 }

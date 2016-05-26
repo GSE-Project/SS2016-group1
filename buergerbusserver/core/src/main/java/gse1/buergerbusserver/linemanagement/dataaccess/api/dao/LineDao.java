@@ -9,5 +9,5 @@ import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
  *
  */
 public interface LineDao extends ApplicationDao<LineEntity>, MasterDataDao<LineEntity> {
-
+  // Date lastUpdate();
 }
