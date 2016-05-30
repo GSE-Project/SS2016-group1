@@ -13,11 +13,11 @@ public class StopEto {
 
   private long id;
 
-  private String name;
+  private  String name;
 
-  private double lat;
+  protected double lat;
 
-  private double lon;
+  protected double lon;
 
   private Date timeStamp;
 
@@ -53,19 +53,9 @@ public class StopEto {
     this.timeStamp = timeStamp;
   }
 
-  public double getLat() {
-
-    return this.lat;
-  }
-
   public void setLat(double lat) {
 
     this.lat = lat;
-  }
-
-  public double getLon() {
-
-    return this.lon;
   }
 
   public void setLon(double lon) {

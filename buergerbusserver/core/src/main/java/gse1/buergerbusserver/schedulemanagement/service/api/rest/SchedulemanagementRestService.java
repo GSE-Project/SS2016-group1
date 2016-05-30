@@ -24,15 +24,17 @@ import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopWithSchedulesCt
 @Path("/schedulemanagement/v1")
 public interface SchedulemanagementRestService {
 
-  @GET
-  @Path("/stops/")
+  
   public List<StopEto> getAllStops();
 
   @GET
   @Path("/schedules/")
   List<ScheduleEto> getAllSchedules();
   
-  @GET 
-  @Path("/stopsWithSchedules/")
+//  @GET 
+//  @Path("/stopsWithSchedules/")
+//  
+  @GET
+  @Path("/stops/")
   ListAndTimeStamp<StopWithSchedulesCto> GetAllStopsWithSchedules();
 }
