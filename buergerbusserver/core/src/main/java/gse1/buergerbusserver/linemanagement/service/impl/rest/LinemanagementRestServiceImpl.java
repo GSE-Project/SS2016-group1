@@ -1,5 +1,7 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -91,6 +93,12 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       return Response.status(500).build();
     }
 
+  }
+
+  @Override
+  public HashMap<String, Date> lastUpdate() {
+
+    return this.linemanagement.checkUpdate();
   }
 
 }

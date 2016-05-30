@@ -57,9 +57,9 @@ public class StopEntity extends ApplicationPersistenceEntity implements Stop {
    * @param timestamp new value of {@link #gettimestamp}.
    */
   @Override
-  public void setTimeStamp(Date timeStamp) {
+  public void setTimeStamp(Date timestamp) {
 
-    this.timeStamp = timeStamp;
+    this.timeStamp = timestamp;
   }
 
   @Override
