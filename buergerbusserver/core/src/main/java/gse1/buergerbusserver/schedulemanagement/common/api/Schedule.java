@@ -16,6 +16,10 @@ public interface Schedule extends ApplicationEntity {
 
   public void setLineName(String lineName);
 
+  public Long getLineId();
+
+  public void setLineId(Long lineId);
+
   public Long getStopId();
 
   public void setStopId(Long stopId);

@@ -1,5 +1,6 @@
 package gse1.buergerbusserver.schedulemanagement.logic.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,11 +10,15 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import gse1.buergerbusserver.general.logic.base.AbstractComponentFacade;
+import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.schedulemanagement.dataaccess.api.ScheduleEntity;
 import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
 import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.ScheduleDao;
 import gse1.buergerbusserver.schedulemanagement.logic.api.Schedulemanagement;
+import gse1.buergerbusserver.schedulemanagement.logic.api.to.ListAndTimeStamp;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.ScheduleEto;
+import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopWithSchedulesCto;
 
 /**
  * TODO mbrunnli This type ...
@@ -28,7 +33,7 @@ public class SchedulemanagementImpl extends AbstractComponentFacade implements S
 
   @Inject
   private StopDao stopDao;
-  
+
   @Inject
   private ScheduleDao ScheduleDao;
 
@@ -43,4 +48,19 @@ public class SchedulemanagementImpl extends AbstractComponentFacade implements S
 
     return getBeanMapper().mapList(this.ScheduleDao.findAll(), ScheduleEto.class);
   }
+
+  @Override
+  public ListAndTimeStamp<StopWithSchedulesCto> getAllStopsWithSchedules() {
+      
+      List<StopWithSchedulesCto> stopCtoList = getBeanMapper().mapList(this.stopDao.findAll(), StopWithSchedulesCto.class);
+      Date newestTimeStamp = stopCtoList.get(0).getTimeStamp();
+      for (StopWithSchedulesCto stopCto:stopCtoList){
+        List<ScheduleEntity> schedules= this.ScheduleDao.getSchedulesByStopId(stopCto.getId());
+        if (stopCto.getTimeStamp().after(newestTimeStamp)) newestTimeStamp = stopCto.getTimeStamp(); 
+        stopCto.setSchedules(getBeanMapper().mapList(schedules,ScheduleEto.class));
+      }
+      ListAndTimeStamp<StopWithSchedulesCto> retList = new ListAndTimeStamp<StopWithSchedulesCto>(stopCtoList,newestTimeStamp); 
+      return retList;
+  }
+  
 }

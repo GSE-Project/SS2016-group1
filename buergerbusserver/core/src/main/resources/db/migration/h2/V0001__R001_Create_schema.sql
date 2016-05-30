@@ -77,6 +77,7 @@ ALTER TABLE LINE_STOP ADD CONSTRAINT FK_LINE_STOP2STOP FOREIGN KEY(stop_id) REFE
 CREATE TABLE SCHEDULE(
     id BIGINT NOT NULL,
     modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
+    lineId BIGINT,
     lineName varchar(255) NOT NULL,
     stopId BIGINT,
     arrivingTime TIME NOT NULL,

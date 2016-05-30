@@ -6,8 +6,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import gse1.buergerbusserver.schedulemanagement.logic.api.Schedulemanagement;
+import gse1.buergerbusserver.schedulemanagement.logic.api.to.ListAndTimeStamp;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.ScheduleEto;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
+import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopWithSchedulesCto;
 import gse1.buergerbusserver.schedulemanagement.service.api.rest.SchedulemanagementRestService;
 
 /**
@@ -33,4 +35,12 @@ public class SchedulemanagementRestServiceImpl implements SchedulemanagementRest
 
     return this.schedulemanagement.getAllSchedules();
   }
+
+  @Override
+  public ListAndTimeStamp<StopWithSchedulesCto> GetAllStopsWithSchedules() {
+
+    return this.schedulemanagement.getAllStopsWithSchedules();
+  }
+  
+  
 }

@@ -20,7 +20,7 @@ public class StopEntity extends ApplicationPersistenceEntity implements Stop {
 
   private String name;
 
-  private Date timestamp;
+  private Date timeStamp;
 
   private double lat;
   private double lon;
@@ -48,18 +48,18 @@ public class StopEntity extends ApplicationPersistenceEntity implements Stop {
   @Override
   // see https://github.com/oasp-forge/oasp4j-wiki/wiki/guide-dataaccess-layer#date-and-time
   @Temporal(TemporalType.TIMESTAMP)
-  public Date getTimestamp() {
+  public Date getTimeStamp() {
 
-    return this.timestamp;
+    return this.timeStamp;
   }
 
   /**
    * @param timestamp new value of {@link #gettimestamp}.
    */
   @Override
-  public void setTimestamp(Date timestamp) {
+  public void setTimeStamp(Date timeStamp) {
 
-    this.timestamp = timestamp;
+    this.timeStamp = timeStamp;
   }
 
   @Override

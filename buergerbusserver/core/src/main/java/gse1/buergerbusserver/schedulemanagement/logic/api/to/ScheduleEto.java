@@ -13,6 +13,8 @@ public class ScheduleEto {
 
   private String lineName;
 
+  private Long lineId;
+
   private Long stopId;
 
   private Time arrivingTime;
@@ -37,6 +39,16 @@ public class ScheduleEto {
   public void setLineName(String lineName) {
 
     this.lineName = lineName;
+  }
+
+  public Long getLineId() {
+
+    return lineId;
+  }
+
+  public void setLineId(Long lineId) {
+
+    this.lineId = lineId;
   }
 
   public Long getStopId() {

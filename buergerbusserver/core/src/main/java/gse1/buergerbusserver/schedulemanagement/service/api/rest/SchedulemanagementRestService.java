@@ -8,8 +8,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import gse1.buergerbusserver.schedulemanagement.logic.api.to.ListAndTimeStamp;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.ScheduleEto;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
+import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopWithSchedulesCto;
 
 /**
  * TODO mbaniasad This type ...
@@ -19,7 +21,7 @@ import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
  */
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/stopmanagement/v1")
+@Path("/schedulemanagement/v1")
 public interface SchedulemanagementRestService {
 
   @GET
@@ -29,4 +31,8 @@ public interface SchedulemanagementRestService {
   @GET
   @Path("/schedules/")
   List<ScheduleEto> getAllSchedules();
+  
+  @GET 
+  @Path("/stopsWithSchedules/")
+  ListAndTimeStamp<StopWithSchedulesCto> GetAllStopsWithSchedules();
 }
