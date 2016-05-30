@@ -1,5 +1,7 @@
 package gse1.buergerbusserver.linemanagement.logic.api;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import gse1.buergerbusserver.linemanagement.common.api.Line;
@@ -37,5 +39,7 @@ public interface Linemanagement {
   public List<LineWithBusIdsCto> getAllLinesWithBusIds();
 
   void updateBusStatus(Long busId, Long lineId);
+
+  HashMap<String, Date> checkUpdate();
 
 }
