@@ -1,15 +1,14 @@
 package gse1.buergerbusserver.schedulemanagement.service.impl.rest;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import gse1.buergerbusserver.schedulemanagement.logic.api.Schedulemanagement;
-import gse1.buergerbusserver.schedulemanagement.logic.api.to.ListAndTimeStamp;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.ScheduleEto;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
-import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopWithSchedulesCto;
 import gse1.buergerbusserver.schedulemanagement.service.api.rest.SchedulemanagementRestService;
 
 /**
@@ -37,7 +36,7 @@ public class SchedulemanagementRestServiceImpl implements SchedulemanagementRest
   }
 
   @Override
-  public ListAndTimeStamp<StopWithSchedulesCto> GetAllStopsWithSchedules() {
+  public HashMap<String,Object> GetAllStopsWithSchedules() {
 
     return this.schedulemanagement.getAllStopsWithSchedules();
   }

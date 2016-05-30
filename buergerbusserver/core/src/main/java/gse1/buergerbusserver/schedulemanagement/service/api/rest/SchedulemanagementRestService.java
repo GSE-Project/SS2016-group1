@@ -1,5 +1,6 @@
 package gse1.buergerbusserver.schedulemanagement.service.api.rest;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -8,10 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import gse1.buergerbusserver.schedulemanagement.logic.api.to.ListAndTimeStamp;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.ScheduleEto;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
-import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopWithSchedulesCto;
 
 /**
  * TODO mbaniasad This type ...
@@ -36,5 +35,5 @@ public interface SchedulemanagementRestService {
 //  
   @GET
   @Path("/stops/")
-  ListAndTimeStamp<StopWithSchedulesCto> GetAllStopsWithSchedules();
+  HashMap<String,Object> GetAllStopsWithSchedules();
 }
