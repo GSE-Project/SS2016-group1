@@ -1,6 +1,7 @@
 package gse1.buergerbusserver.linemanagement.service.api.rest;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -67,6 +68,6 @@ public interface LinemanagementRestService {
 
   @GET
   @Path("/lastUpdate/")
-  public Date lastUpdate();
+  public HashMap<String, Date> lastUpdate();
 
 }

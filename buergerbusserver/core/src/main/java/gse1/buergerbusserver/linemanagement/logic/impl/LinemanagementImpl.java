@@ -1,6 +1,7 @@
 package gse1.buergerbusserver.linemanagement.logic.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -107,13 +108,15 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public Date checkUpdate() {
+  public HashMap<String, Date> checkUpdate() {
 
-    return this.busDao.lastUpdate();
+    HashMap<String, Date> updates= new HashMap<>();
+    updates.put("busses",this.busDao.lastUpdate());
+    updates.put("lines",this.lineDao.lastUpdate());
+    updates.put("routes",this.routeDao.lastUpdate());
+    updates.put("stops",this.stopDao.lastUpdate());
+    return updates;
   }
 
-  private BusEto lastUpdate() {
-
-    return getBeanMapper().map(this.busDao.lastUpdate(), BusEto.class);
-  }
+  
 }

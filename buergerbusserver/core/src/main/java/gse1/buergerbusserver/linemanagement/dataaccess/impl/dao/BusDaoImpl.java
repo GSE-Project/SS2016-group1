@@ -77,13 +77,18 @@ public class BusDaoImpl extends ApplicationMasterDataDaoImpl<BusEntity> implemen
   @Override
   public Date lastUpdate() {
 
-    CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
-    CriteriaQuery<Date> maxQuery = criteriaBuilder.createQuery(Date.class);
-    Root busEntityRoot = maxQuery.from(BusEntity.class);
+    try {
+      CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+      CriteriaQuery<Date> maxQuery = criteriaBuilder.createQuery(Date.class);
+      Root busEntityRoot = maxQuery.from(BusEntity.class);
 
-    maxQuery.select(criteriaBuilder.max(busEntityRoot.<Date> get("timeStamp")));
+      maxQuery.select(criteriaBuilder.max(busEntityRoot.<Date> get("timeStamp")));
 
-    return getEntityManager().createQuery(maxQuery).getSingleResult();
+      return getEntityManager().createQuery(maxQuery).getSingleResult();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
     // return null;
   }
 
