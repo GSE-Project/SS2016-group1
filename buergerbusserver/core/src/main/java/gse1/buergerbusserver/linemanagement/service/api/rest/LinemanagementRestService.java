@@ -1,5 +1,12 @@
 package gse1.buergerbusserver.linemanagement.service.api.rest;
 
+import gse1.buergerbusserver.linemanagement.common.api.Line;
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,12 +19,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import gse1.buergerbusserver.linemanagement.common.api.Line;
-import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 
 /**
  * @author ahsan
@@ -47,13 +48,13 @@ public interface LinemanagementRestService {
   public List<BusEto> getBusesOnLine(@PathParam("lineId") String lineId);
 
   /**
-   * Delegates to {@link Busmanagement#findAllBuses()}.
+   * Delegates to {@link Linemanagement#getAllBusesListWithTimeStamp()}.
    *
-   * @return {@link List} of {@link BusEto} objects
+   * @return {@link HashMap} of {@link List<String, Object>} objects
    */
   @GET
-  @Path("/buses/")
-  public List<BusEto> getAllBuses();
+  @Path("/busses/")
+  public HashMap<String, Object> getAllBuses();
 
   /**
    * @return getAllRoutes

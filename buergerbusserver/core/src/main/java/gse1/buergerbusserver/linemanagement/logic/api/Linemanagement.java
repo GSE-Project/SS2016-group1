@@ -42,4 +42,6 @@ public interface Linemanagement {
 
   HashMap<String, Date> checkUpdate();
 
+  public HashMap<String, Object> getAllBusesListWithTimeStamp();
+
 }

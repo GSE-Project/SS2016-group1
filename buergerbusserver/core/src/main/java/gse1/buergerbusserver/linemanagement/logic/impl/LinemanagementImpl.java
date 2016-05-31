@@ -1,15 +1,5 @@
 package gse1.buergerbusserver.linemanagement.logic.impl;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Component;
-
 import gse1.buergerbusserver.general.logic.base.AbstractComponentFacade;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.BusDao;
@@ -21,6 +11,16 @@ import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Component;
 
 /**
  * @author razadfki
@@ -118,5 +118,15 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     return updates;
   }
 
-  
+  @Override
+  public HashMap<String, Object> getAllBusesListWithTimeStamp() {
+
+      HashMap<String, Object>  returnHM = new HashMap<String, Object>();
+
+      returnHM.put("busses", this.getAllBuses());
+      returnHM.put("timeStamp", this.busDao.lastUpdate());
+      return returnHM;
+  }
+
+
 }

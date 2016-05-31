@@ -1,5 +1,12 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
+import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -9,13 +16,6 @@ import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
-
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
-import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
 /**
  * @author razadfki
@@ -39,10 +39,11 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<BusEto> getAllBuses() {
+  public HashMap<String, Object> getAllBuses() {
 
     try {
-      return this.linemanagement.getAllBuses();
+      return this.linemanagement.getAllBusesListWithTimeStamp();
+
     } catch (Exception e) {
       System.out.println("Exception:" + e.getMessage());
       e.printStackTrace();
