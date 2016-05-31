@@ -20,7 +20,7 @@ Buergerbus Concept
 #### Design ####
 [Component diagram](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Component%20Diagram.jpg)
 
-Traceability of System functions to components
+[Traceability of System functions to components](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Traceability%20SF%20to%20components.pdf)
 
 #### Quality Assurance ####
 System test specification
