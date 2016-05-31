@@ -2,7 +2,6 @@ package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
 import java.util.Date;
@@ -68,7 +67,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<RouteEto> getAllRoutes() {
+  public HashMap<String, Object> getAllRoutes() {
 
     return this.linemanagement.getAllRoutes();
   }

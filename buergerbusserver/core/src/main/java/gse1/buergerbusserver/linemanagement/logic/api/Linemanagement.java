@@ -3,7 +3,6 @@ package gse1.buergerbusserver.linemanagement.logic.api;
 import gse1.buergerbusserver.linemanagement.common.api.Line;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -33,7 +32,7 @@ public interface Linemanagement {
    */
   List<BusEto> getBusesOnLine(Long lineId);
 
-  public List<RouteEto> getAllRoutes();
+  public HashMap<String, Object> getAllRoutes();
 
   public HashMap<String, Object> getAllLinesWithBusIds();
 

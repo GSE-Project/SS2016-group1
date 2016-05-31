@@ -3,7 +3,6 @@ package gse1.buergerbusserver.linemanagement.service.api.rest;
 import gse1.buergerbusserver.linemanagement.common.api.Line;
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -59,7 +58,7 @@ public interface LinemanagementRestService {
    */
   @GET
   @Path("/routes/")
-  public List<RouteEto> getAllRoutes();
+  public HashMap<String, Object> getAllRoutes();
 
   @POST
   @Path("/updateBusStatus/{busId}/{lineId}/")

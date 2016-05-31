@@ -12,7 +12,6 @@ import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +20,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
 
-import org.geojson.LineString;
-import org.geojson.LngLatAlt;
 import org.springframework.stereotype.Component;
 
 /**
@@ -81,16 +78,14 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<RouteEto> getAllRoutes() {
+  public HashMap<String, Object> getAllRoutes() {
 
-    LineString ls = new LineString();
-    List<LngLatAlt> coordinates = new ArrayList<LngLatAlt>();
-    coordinates.add(new LngLatAlt(1,1) );
-    coordinates.add(new LngLatAlt(2,2) );
-    ls.setCoordinates(coordinates);
+    HashMap<String, Object> returnHM = new HashMap<String, Object>();
+    List<RouteEto> routeEtoList = getBeanMapper().mapList(this.routeDao.findAll(), RouteEto.class);
+    returnHM.put("routes", routeEtoList);
+    returnHM.put("timeStamp", this.routeDao.lastUpdate());
 
-
-    return getBeanMapper().mapList(this.routeDao.findAll(), RouteEto.class);
+    return returnHM;
   }
 
   @Override
