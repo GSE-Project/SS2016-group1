@@ -8,7 +8,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
-import gse1.buergerbusserver.linemanagement.dataaccess.api.LineEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.RouteEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.RouteDao;
 

@@ -2,8 +2,6 @@ package gse1.buergerbusserver.schedulemanagement.dataaccess.api;
 
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
 import gse1.buergerbusserver.schedulemanagement.common.api.Schedule;
-import gse1.buergerbusserver.schedulemanagement.common.api.Stop;
-
 import java.sql.Time;
 import java.util.Date;
 

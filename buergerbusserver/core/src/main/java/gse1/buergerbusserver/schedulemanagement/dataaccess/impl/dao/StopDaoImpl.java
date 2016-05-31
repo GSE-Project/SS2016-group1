@@ -1,7 +1,6 @@
 package gse1.buergerbusserver.schedulemanagement.dataaccess.impl.dao;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
-import gse1.buergerbusserver.linemanagement.dataaccess.api.LineEntity;
 import gse1.buergerbusserver.schedulemanagement.dataaccess.api.StopEntity;
 import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
 
