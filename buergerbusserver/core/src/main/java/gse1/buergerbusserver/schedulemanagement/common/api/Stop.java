@@ -20,9 +20,9 @@ public interface Stop extends ApplicationEntity {
   void setLon(double lon);
   double getLon();
 
-  void setTimestamp(Date timeStamp);
+  void setTimeStamp(Date timeStamp);
 
-  Date getTimestamp();
+  Date getTimeStamp();
 
 
 }

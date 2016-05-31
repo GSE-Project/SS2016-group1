@@ -1,12 +1,13 @@
 package gse1.buergerbusserver.linemanagement.logic.api;
 
-import java.util.List;
-
 import gse1.buergerbusserver.linemanagement.common.api.Line;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author razadfki
@@ -34,8 +35,12 @@ public interface Linemanagement {
 
   public List<RouteEto> getAllRoutes();
 
-  public List<LineWithBusIdsCto> getAllLinesWithBusIds();
+  public HashMap<String, Object> getAllLinesWithBusIds();
 
   void updateBusStatus(Long busId, Long lineId);
+
+  HashMap<String, Date> checkUpdate();
+
+  public HashMap<String, Object> getAllBusesListWithTimeStamp();
 
 }

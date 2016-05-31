@@ -1,5 +1,6 @@
 package gse1.buergerbusserver.schedulemanagement.service.api.rest;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -19,14 +20,20 @@ import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
  */
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/stopmanagement/v1")
+@Path("/schedulemanagement/v1")
 public interface SchedulemanagementRestService {
 
-  @GET
-  @Path("/stops/")
+  
   public List<StopEto> getAllStops();
 
   @GET
   @Path("/schedules/")
   List<ScheduleEto> getAllSchedules();
+  
+//  @GET 
+//  @Path("/stopsWithSchedules/")
+//  
+  @GET
+  @Path("/stops/")
+  HashMap<String,Object> GetAllStopsWithSchedules();
 }

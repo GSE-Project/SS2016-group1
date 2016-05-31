@@ -1,5 +1,12 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
+import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
+
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,13 +14,6 @@ import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
-
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
-import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
 /**
  * @author razadfki
@@ -24,23 +24,24 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Inject
   private Linemanagement linemanagement;
 
+//  @Override
+//  public List<LineEto> getAllLines() {
+//
+//    try {
+//      return this.linemanagement.getAllLines();
+//    } catch (Exception e) {
+//      System.out.println("Exception:" + e.getMessage());
+//      e.printStackTrace();
+//      return null;
+//    }
+//  }
+
   @Override
-  public List<LineEto> getAllLines() {
+  public HashMap<String, Object> getAllBuses() {
 
     try {
-      return this.linemanagement.getAllLines();
-    } catch (Exception e) {
-      System.out.println("Exception:" + e.getMessage());
-      e.printStackTrace();
-      return null;
-    }
-  }
+      return this.linemanagement.getAllBusesListWithTimeStamp();
 
-  @Override
-  public List<BusEto> getAllBuses() {
-
-    try {
-      return this.linemanagement.getAllBuses();
     } catch (Exception e) {
       System.out.println("Exception:" + e.getMessage());
       e.printStackTrace();
@@ -73,7 +74,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<LineWithBusIdsCto> getAllLinesWithBusIds() {
+  public HashMap<String, Object> getAllLinesWithBusIds() {
 
     return this.linemanagement.getAllLinesWithBusIds();
   }
@@ -91,6 +92,12 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       return Response.status(500).build();
     }
 
+  }
+
+  @Override
+  public HashMap<String, Date> lastUpdate() {
+
+    return this.linemanagement.checkUpdate();
   }
 
 }

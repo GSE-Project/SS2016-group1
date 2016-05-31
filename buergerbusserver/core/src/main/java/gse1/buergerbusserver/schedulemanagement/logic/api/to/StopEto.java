@@ -1,6 +1,7 @@
 package gse1.buergerbusserver.schedulemanagement.logic.api.to;
 
-import java.sql.Timestamp;
+import java.util.Date;
+
 
 /**
  * TODO JAYU This type ...
@@ -12,13 +13,13 @@ public class StopEto {
 
   private long id;
 
-  private String name;
+  private  String name;
 
-  private double lat;
+  protected double lat;
 
-  private double lon;
+  protected double lon;
 
-  private Timestamp timeStamp;
+  private Date timeStamp;
 
   /**
    * @return name
@@ -39,7 +40,7 @@ public class StopEto {
   /**
    * @return timeStamp
    */
-  public Timestamp getTimeStamp() {
+  public Date getTimeStamp() {
 
     return this.timeStamp;
   }
@@ -47,24 +48,14 @@ public class StopEto {
   /**
    * @param timeStamp new value of {@link #gettimeStamp}.
    */
-  public void setTimeStamp(Timestamp timeStamp) {
+  public void setTimeStamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
-  }
-
-  public double getLat() {
-
-    return this.lat;
   }
 
   public void setLat(double lat) {
 
     this.lat = lat;
-  }
-
-  public double getLon() {
-
-    return this.lon;
   }
 
   public void setLon(double lon) {

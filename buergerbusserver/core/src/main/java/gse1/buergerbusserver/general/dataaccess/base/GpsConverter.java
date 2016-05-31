@@ -8,8 +8,6 @@ import gse1.buergerbusserver.general.common.api.datatype.Gps;
 
 import javax.persistence.AttributeConverter;
 
-import org.hibernate.metamodel.domain.BasicType;
-
  public class GpsConverter  implements AttributeConverter<List<Gps>, String>  {
 
   @Override

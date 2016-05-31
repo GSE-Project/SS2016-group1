@@ -2,8 +2,6 @@ package gse1.buergerbusserver.schedulemanagement.dataaccess.api;
 
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
 import gse1.buergerbusserver.schedulemanagement.common.api.Schedule;
-import gse1.buergerbusserver.schedulemanagement.common.api.Stop;
-
 import java.sql.Time;
 import java.util.Date;
 
@@ -20,32 +18,34 @@ import javax.persistence.TemporalType;
 @Table(name = "SCHEDULE")
 public class ScheduleEntity extends ApplicationPersistenceEntity implements Schedule {
 
+  private Long lineId;
+
   private String lineName;
 
   private Long stopId;
 
   private Time arrivingTime;
 
-  private Date timestamp;
+  private Date timeStamp;
 
   /**
-   * @return timestamp
+   * @return Date
    */
   @Override
   // see https://github.com/oasp-forge/oasp4j-wiki/wiki/guide-dataaccess-layer#date-and-time
   @Temporal(TemporalType.TIMESTAMP)
   public Date getTimestamp() {
 
-    return this.timestamp;
+    return this.timeStamp;
   }
 
   /**
-   * @param timestamp new value of {@link #gettimestamp}.
+   * @param Dates new value of {@link #gettimeStamp}.
    */
   @Override
   public void setTimestamp(Date timestamp) {
 
-    this.timestamp = timestamp;
+    this.timeStamp = timestamp;
   }
 
   public String getLineName() {
@@ -57,6 +57,17 @@ public class ScheduleEntity extends ApplicationPersistenceEntity implements Sche
 
     this.lineName = lineName;
   }
+
+  public Long getLineId() {
+
+    return lineId;
+  }
+
+  public void setLineId(Long lineId) {
+
+    this.lineId = lineId;
+  }
+
 
   public Long getStopId() {
 

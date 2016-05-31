@@ -1,5 +1,12 @@
 package gse1.buergerbusserver.linemanagement.service.api.rest;
 
+import gse1.buergerbusserver.linemanagement.common.api.Line;
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
+
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -11,12 +18,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import gse1.buergerbusserver.linemanagement.common.api.Line;
-import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
-
 /**
  * @author ahsan
  *
@@ -26,13 +27,13 @@ import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 @Path("/linemanagement/v1")
 public interface LinemanagementRestService {
 
-  @GET
-  @Path("/lines/")
-  public List<LineEto> getAllLines();
+//  @GET
+//  @Path("/lines/")
+//  public List<LineEto> getAllLines();
 
   @GET
-  @Path("/linesWithBusids/")
-  public List<LineWithBusIdsCto> getAllLinesWithBusIds();
+  @Path("/lines/")
+  public HashMap<String, Object> getAllLinesWithBusIds();
 
   /**
    * Delegates to {@link Busmanagement#findBusesOnLine(Long)}.
@@ -45,13 +46,13 @@ public interface LinemanagementRestService {
   public List<BusEto> getBusesOnLine(@PathParam("lineId") String lineId);
 
   /**
-   * Delegates to {@link Busmanagement#findAllBuses()}.
+   * Delegates to {@link Linemanagement#getAllBusesListWithTimeStamp()}.
    *
-   * @return {@link List} of {@link BusEto} objects
+   * @return {@link HashMap} of {@link List<String, Object>} objects
    */
   @GET
-  @Path("/buses/")
-  public List<BusEto> getAllBuses();
+  @Path("/busses/")
+  public HashMap<String, Object> getAllBuses();
 
   /**
    * @return getAllRoutes
@@ -63,5 +64,9 @@ public interface LinemanagementRestService {
   @POST
   @Path("/updateBusStatus/{busId}/{lineId}/")
   public Response updateBusStatus(@PathParam("busId") Long busId, @PathParam("lineId") Long lineId);
+
+  @GET
+  @Path("/lastUpdate/")
+  public HashMap<String, Date> lastUpdate();
 
 }

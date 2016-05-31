@@ -1,6 +1,6 @@
 package gse1.buergerbusserver.schedulemanagement.logic.api;
 
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
@@ -16,4 +16,6 @@ public interface Schedulemanagement {
   public List<StopEto> getAllStops();
 
   public List<ScheduleEto> getAllSchedules();
+  
+  public HashMap<String,Object> getAllStopsWithSchedules();
 }

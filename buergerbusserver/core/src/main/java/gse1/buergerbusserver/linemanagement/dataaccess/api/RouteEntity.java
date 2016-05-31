@@ -3,7 +3,6 @@ package gse1.buergerbusserver.linemanagement.dataaccess.api;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Basic;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;

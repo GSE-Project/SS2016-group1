@@ -1,13 +1,5 @@
 package gse1.buergerbusserver.linemanagement.logic.impl;
 
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Component;
-
 import gse1.buergerbusserver.general.logic.base.AbstractComponentFacade;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.BusDao;
@@ -18,6 +10,17 @@ import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
+import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Component;
 
 /**
  * @author razadfki
@@ -36,6 +39,9 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
 
   @Inject
   private RouteDao routeDao;
+
+  @Inject
+  private StopDao stopDao;
 
   @Override
   public List<LineEto> getAllLines() {
@@ -78,15 +84,21 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<LineWithBusIdsCto> getAllLinesWithBusIds() {
+  public HashMap<String, Object> getAllLinesWithBusIds() {
 
+    HashMap<String, Object> returnHM = new HashMap<String, Object>();
     List<LineWithBusIdsCto> lineCtoList = getBeanMapper().mapList(this.lineDao.findAll(), LineWithBusIdsCto.class);
+
 
     for (LineWithBusIdsCto lineCto : lineCtoList) {
       List<BusEntity> buses = this.busDao.getBusesOnLine(lineCto.getId());
       lineCto.setBuses(getBeanMapper().mapList(buses, BusEto.class));
     }
-    return lineCtoList;
+
+    returnHM.put("lines", lineCtoList);
+    returnHM.put("timeStamp", this.lineDao.lastUpdate());
+
+    return returnHM;
   }
 
   @Override
@@ -100,4 +112,27 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     }
 
   }
+
+  @Override
+  public HashMap<String, Date> checkUpdate() {
+
+    HashMap<String, Date> updates= new HashMap<>();
+    updates.put("busses",this.busDao.lastUpdate());
+    updates.put("lines",this.lineDao.lastUpdate());
+    updates.put("routes",this.routeDao.lastUpdate());
+    updates.put("stops",this.stopDao.lastUpdate());
+    return updates;
+  }
+
+  @Override
+  public HashMap<String, Object> getAllBusesListWithTimeStamp() {
+
+      HashMap<String, Object>  returnHM = new HashMap<String, Object>();
+
+      returnHM.put("busses", this.getAllBuses());
+      returnHM.put("timeStamp", this.busDao.lastUpdate());
+      return returnHM;
+  }
+
+
 }

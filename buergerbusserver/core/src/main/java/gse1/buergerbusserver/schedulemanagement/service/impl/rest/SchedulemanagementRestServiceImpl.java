@@ -1,5 +1,6 @@
 package gse1.buergerbusserver.schedulemanagement.service.impl.rest;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,4 +34,12 @@ public class SchedulemanagementRestServiceImpl implements SchedulemanagementRest
 
     return this.schedulemanagement.getAllSchedules();
   }
+
+  @Override
+  public HashMap<String,Object> GetAllStopsWithSchedules() {
+
+    return this.schedulemanagement.getAllStopsWithSchedules();
+  }
+  
+  
 }

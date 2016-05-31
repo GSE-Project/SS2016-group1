@@ -2,8 +2,6 @@ package gse1.buergerbusserver.linemanagement.logic.api.to;
 
 import gse1.buergerbusserver.general.common.api.datatype.Gps;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 

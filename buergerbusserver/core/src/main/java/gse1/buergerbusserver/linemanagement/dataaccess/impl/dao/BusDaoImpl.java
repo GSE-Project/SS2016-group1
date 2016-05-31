@@ -1,9 +1,11 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Named;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 
@@ -70,6 +72,24 @@ public class BusDaoImpl extends ApplicationMasterDataDaoImpl<BusEntity> implemen
       e.printStackTrace();
     }
 
+  }
+
+  @Override
+  public Date lastUpdate() {
+
+    try {
+      CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
+      CriteriaQuery<Date> maxQuery = criteriaBuilder.createQuery(Date.class);
+      Root busEntityRoot = maxQuery.from(BusEntity.class);
+
+      maxQuery.select(criteriaBuilder.max(busEntityRoot.<Date> get("timeStamp")));
+
+      return getEntityManager().createQuery(maxQuery).getSingleResult();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+    // return null;
   }
 
 }
