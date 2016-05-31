@@ -232,6 +232,11 @@
       <artifactId>netty-all</artifactId>
       <version>4.0.30.Final</version>
     </dependency>
+    <dependency>
+    	<groupId>de.grundid.opendatalab</groupId>
+    	<artifactId>geojson-jackson</artifactId>
+    	<version>1.6</version>
+    </dependency>
   </dependencies>
 
   <build>
