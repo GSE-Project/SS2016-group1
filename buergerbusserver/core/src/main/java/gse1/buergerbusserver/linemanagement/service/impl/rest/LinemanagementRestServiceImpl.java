@@ -2,8 +2,6 @@ package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
@@ -26,17 +24,17 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Inject
   private Linemanagement linemanagement;
 
-  @Override
-  public List<LineEto> getAllLines() {
-
-    try {
-      return this.linemanagement.getAllLines();
-    } catch (Exception e) {
-      System.out.println("Exception:" + e.getMessage());
-      e.printStackTrace();
-      return null;
-    }
-  }
+//  @Override
+//  public List<LineEto> getAllLines() {
+//
+//    try {
+//      return this.linemanagement.getAllLines();
+//    } catch (Exception e) {
+//      System.out.println("Exception:" + e.getMessage());
+//      e.printStackTrace();
+//      return null;
+//    }
+//  }
 
   @Override
   public HashMap<String, Object> getAllBuses() {
@@ -76,7 +74,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<LineWithBusIdsCto> getAllLinesWithBusIds() {
+  public HashMap<String, Object> getAllLinesWithBusIds() {
 
     return this.linemanagement.getAllLinesWithBusIds();
   }

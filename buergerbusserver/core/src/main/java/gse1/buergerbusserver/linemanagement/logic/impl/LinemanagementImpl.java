@@ -84,15 +84,21 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<LineWithBusIdsCto> getAllLinesWithBusIds() {
+  public HashMap<String, Object> getAllLinesWithBusIds() {
 
+    HashMap<String, Object> returnHM = new HashMap<String, Object>();
     List<LineWithBusIdsCto> lineCtoList = getBeanMapper().mapList(this.lineDao.findAll(), LineWithBusIdsCto.class);
+
 
     for (LineWithBusIdsCto lineCto : lineCtoList) {
       List<BusEntity> buses = this.busDao.getBusesOnLine(lineCto.getId());
       lineCto.setBuses(getBeanMapper().mapList(buses, BusEto.class));
     }
-    return lineCtoList;
+
+    returnHM.put("lines", lineCtoList);
+    returnHM.put("timeStamp", this.lineDao.lastUpdate());
+
+    return returnHM;
   }
 
   @Override

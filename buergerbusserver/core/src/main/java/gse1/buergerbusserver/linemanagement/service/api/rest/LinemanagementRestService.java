@@ -3,8 +3,6 @@ package gse1.buergerbusserver.linemanagement.service.api.rest;
 import gse1.buergerbusserver.linemanagement.common.api.Line;
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 
 import java.util.Date;
@@ -29,13 +27,13 @@ import javax.ws.rs.core.Response;
 @Path("/linemanagement/v1")
 public interface LinemanagementRestService {
 
-  @GET
-  @Path("/lines/")
-  public List<LineEto> getAllLines();
+//  @GET
+//  @Path("/lines/")
+//  public List<LineEto> getAllLines();
 
   @GET
-  @Path("/linesWithBusids/")
-  public List<LineWithBusIdsCto> getAllLinesWithBusIds();
+  @Path("/lines/")
+  public HashMap<String, Object> getAllLinesWithBusIds();
 
   /**
    * Delegates to {@link Busmanagement#findBusesOnLine(Long)}.
