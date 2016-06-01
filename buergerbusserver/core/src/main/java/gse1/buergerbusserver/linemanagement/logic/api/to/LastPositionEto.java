@@ -1,6 +1,6 @@
-package gse1.buergerbusserver.lastpositionmanagement.logic.api.to;
+package gse1.buergerbusserver.linemanagement.logic.api.to;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  *
@@ -20,19 +20,20 @@ public class LastPositionEto {
 
   private double lon;
 
-  private Timestamp timeStamp;
+  private Date timeStamp;
 
   /**
    * @return delay
    */
-  public int getDelay() {
-
-    return this.delay;
-  }
-
+  /**
+   * public int getDelay() {
+   *
+   * return this.delay; }
+   */
   /**
    * @param delay new value of {@link #getdelay}.
    */
+
   public void setDelay(int delay) {
 
     this.delay = delay;
@@ -57,7 +58,7 @@ public class LastPositionEto {
   /**
    * @return timeStamp
    */
-  public Timestamp getTimeStamp() {
+  public Date getTimestamp() {
 
     return this.timeStamp;
   }
@@ -65,7 +66,7 @@ public class LastPositionEto {
   /**
    * @param timeStamp new value of {@link #gettimeStamp}.
    */
-  public void setTimeStamp(Timestamp timeStamp) {
+  public void setTimestamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
   }

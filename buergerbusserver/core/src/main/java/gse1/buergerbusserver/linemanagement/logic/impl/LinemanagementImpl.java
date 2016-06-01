@@ -1,17 +1,5 @@
 package gse1.buergerbusserver.linemanagement.logic.impl;
 
-import gse1.buergerbusserver.general.logic.base.AbstractComponentFacade;
-import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
-import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.BusDao;
-import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LineDao;
-import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.RouteDao;
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
-import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +9,22 @@ import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
+
+import gse1.buergerbusserver.general.logic.base.AbstractComponentFacade;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.LastPositionEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.LineEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.BusDao;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LastPositionDao;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LineDao;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.RouteDao;
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
+import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
 
 /**
  * @author razadfki
@@ -43,11 +47,16 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   @Inject
   private StopDao stopDao;
 
+  @Inject
+  private LastPositionDao lastPositionDao;
+
   @Override
   public List<LineEto> getAllLines() {
 
     try {
-      return getBeanMapper().mapList(this.lineDao.findAll(), LineEto.class);
+
+      List<LineEntity> lines = this.lineDao.findAll();
+      return getBeanMapper().mapList(lines, LineEto.class);
     } catch (Exception e) {
       System.out.println("Error: " + e.getMessage());
       e.printStackTrace();
@@ -62,7 +71,8 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     // List<BusEntity> buses = this.busDao.findAll();
     // return getBeanMapper().mapList(buses, BusEto.class);
     try {
-      return getBeanMapper().mapList(this.busDao.findAll(), BusEto.class);
+      List<BusEntity> buses = this.busDao.findAll();
+      return getBeanMapper().mapList(buses, BusEto.class);
     } catch (Exception e) {
       System.out.println("Error: " + e.getMessage());
       e.printStackTrace();
@@ -94,7 +104,6 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     HashMap<String, Object> returnHM = new HashMap<String, Object>();
     List<LineWithBusIdsCto> lineCtoList = getBeanMapper().mapList(this.lineDao.findAll(), LineWithBusIdsCto.class);
 
-
     for (LineWithBusIdsCto lineCto : lineCtoList) {
       List<BusEntity> buses = this.busDao.getBusesOnLine(lineCto.getId());
       lineCto.setBuses(getBeanMapper().mapList(buses, BusEto.class));
@@ -121,23 +130,46 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   @Override
   public HashMap<String, Date> checkUpdate() {
 
-    HashMap<String, Date> updates= new HashMap<>();
-    updates.put("busses",this.busDao.lastUpdate());
-    updates.put("lines",this.lineDao.lastUpdate());
-    updates.put("routes",this.routeDao.lastUpdate());
-    updates.put("stops",this.stopDao.lastUpdate());
+    HashMap<String, Date> updates = new HashMap<>();
+    updates.put("busses", this.busDao.lastUpdate());
+    updates.put("lines", this.lineDao.lastUpdate());
+    updates.put("routes", this.routeDao.lastUpdate());
+    updates.put("stops", this.stopDao.lastUpdate());
     return updates;
   }
 
   @Override
   public HashMap<String, Object> getAllBusesListWithTimeStamp() {
 
-      HashMap<String, Object>  returnHM = new HashMap<String, Object>();
+    HashMap<String, Object> returnHM = new HashMap<String, Object>();
 
-      returnHM.put("busses", this.getAllBuses());
-      returnHM.put("timeStamp", this.busDao.lastUpdate());
-      return returnHM;
+    returnHM.put("busses", getAllBuses());
+    returnHM.put("timeStamp", this.busDao.lastUpdate());
+    return returnHM;
   }
 
+  @Override
+  public LastPositionEto getLastPosition(Long busId) {
+
+    try {
+      LastPositionEntity lastPosition = this.lastPositionDao.getLastPosition(busId);
+      return getBeanMapper().map(lastPosition, LastPositionEto.class);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+
+  @Override
+  public void setLastPosition(Long busId, double lon, double lat) {
+
+    try {
+      this.lastPositionDao.setLastPosition(busId, lon, lat);
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+  }
 
 }

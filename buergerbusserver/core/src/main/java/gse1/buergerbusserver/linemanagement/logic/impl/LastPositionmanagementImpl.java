@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.lastpositionmanagement.logic.impl;
+package gse1.buergerbusserver.linemanagement.logic.impl;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -7,10 +7,10 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 
 import gse1.buergerbusserver.general.logic.base.AbstractComponentFacade;
-import gse1.buergerbusserver.lastpositionmanagement.dataaccess.api.LastPositionEntity;
-import gse1.buergerbusserver.lastpositionmanagement.dataaccess.api.dao.LastPositionDao;
-import gse1.buergerbusserver.lastpositionmanagement.logic.api.LastPositionmanagement;
-import gse1.buergerbusserver.lastpositionmanagement.logic.api.to.LastPositionEto;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.LastPositionEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LastPositionDao;
+import gse1.buergerbusserver.linemanagement.logic.api.LastPositionmanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 
 /**
  *

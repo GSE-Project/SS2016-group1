@@ -1,6 +1,6 @@
-package gse1.buergerbusserver.lastpositionmanagement.logic.api;
+package gse1.buergerbusserver.linemanagement.logic.api;
 
-import gse1.buergerbusserver.lastpositionmanagement.logic.api.to.LastPositionEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 
 /**
  *

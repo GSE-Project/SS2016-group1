@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.lastpositionmanagement.dataaccess.api;
+package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
-import gse1.buergerbusserver.lastpositionmanagement.common.api.LastPosition;
+import gse1.buergerbusserver.linemanagement.common.api.LastPosition;
 
 /**
  * @author razadfki

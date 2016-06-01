@@ -1,9 +1,5 @@
 package gse1.buergerbusserver.linemanagement.service.api.rest;
 
-import gse1.buergerbusserver.linemanagement.common.api.Line;
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +13,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import gse1.buergerbusserver.linemanagement.common.api.Line;
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+
 /**
  * @author ahsan
  *
@@ -26,9 +27,9 @@ import javax.ws.rs.core.Response;
 @Path("/linemanagement/v1")
 public interface LinemanagementRestService {
 
-//  @GET
-//  @Path("/lines/")
-//  public List<LineEto> getAllLines();
+  // @GET
+  // @Path("/lines/")
+  // public List<LineEto> getAllLines();
 
   @GET
   @Path("/lines/")
@@ -67,5 +68,14 @@ public interface LinemanagementRestService {
   @GET
   @Path("/update/")
   public HashMap<String, Date> lastUpdate();
+
+  @GET
+  @Path("/busses/:{busId}/")
+  public LastPositionEto getLastPosition(@PathParam("busId") String busId);
+
+  @POST
+  @Path("/lastPosition/{busId}/{lon}/{lat}/")
+  public Response setLastPosition(@PathParam("busId") Long busId, @PathParam("lon") double lon,
+      @PathParam("lat") double lat);
 
 }

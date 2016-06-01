@@ -1,7 +1,7 @@
-package gse1.buergerbusserver.lastpositionmanagement.dataaccess.api.dao;
+package gse1.buergerbusserver.linemanagement.dataaccess.api.dao;
 
 import gse1.buergerbusserver.general.dataaccess.api.dao.ApplicationDao;
-import gse1.buergerbusserver.lastpositionmanagement.dataaccess.api.LastPositionEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.LastPositionEntity;
 import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
 
 /**

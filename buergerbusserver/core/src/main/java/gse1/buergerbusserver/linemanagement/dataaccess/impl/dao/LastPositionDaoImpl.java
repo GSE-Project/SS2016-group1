@@ -1,4 +1,4 @@
-package gse1.buergerbusserver.lastpositionmanagement.dataaccess.impl.dao;
+package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
 import javax.inject.Named;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -10,8 +10,8 @@ import com.mysema.query.jpa.impl.JPAQuery;
 import com.mysema.query.types.path.EntityPathBase;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
-import gse1.buergerbusserver.lastpositionmanagement.dataaccess.api.LastPositionEntity;
-import gse1.buergerbusserver.lastpositionmanagement.dataaccess.api.dao.LastPositionDao;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.LastPositionEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LastPositionDao;
 
 /**
  * @author razadfki
