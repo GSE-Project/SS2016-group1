@@ -65,7 +65,7 @@ public interface LinemanagementRestService {
   public Response updateBusStatus(@PathParam("busId") Long busId, @PathParam("lineId") Long lineId);
 
   @GET
-  @Path("/lastUpdate/")
+  @Path("/update/")
   public HashMap<String, Date> lastUpdate();
 
 }
