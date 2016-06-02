@@ -42,7 +42,9 @@ Step 1 :  Start the Apache  Tomcat server by clicking on' startup.bat' file  whi
 Step 2 :  To check if the server is running successfully: open the web browser and type " http://localhost:8080/"  in the address bar. The Tomcat Server page will be displayed. If the server is not running properly, then shutdown the server by clicking on 'shutdown.bat' and start again.
 
 Step 3 :  Exporting Project Modules into a WAR file
+
            To convert the project into WAR files : 
+           
          	(a)Open Eclipse.
          	
         	(b) Click on 'Export' under the  'FILE drop down'.
@@ -54,6 +56,7 @@ Step 3 :  Exporting Project Modules into a WAR file
         	(e) Now click on Browse and save the  ' buergerbusserver-server.war file' in any directory.
 
 Step 4 :  Deployment of Application on the server : 
+
           (a) Go to the address bar and type : " http://localhost:8080/". Server page is displayed and thus server is running successfully.
           
           (b) Click on the  Managerapp button on the right hand side, and enter the Username (example : admin) and Password  (example:admin) , which is given during the installation of the Tomcat Server.
