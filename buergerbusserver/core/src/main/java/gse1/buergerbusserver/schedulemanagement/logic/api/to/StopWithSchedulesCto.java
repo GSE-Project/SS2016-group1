@@ -6,25 +6,25 @@ import java.util.List;
 
 public class StopWithSchedulesCto extends StopEto {
 
-  private List<ScheduleEto> schedules;
-  
+  private List<ScheduleEto> schedule;
+
   public StopWithSchedulesCto() {
     super();
   }
 
-  public List<ScheduleEto> getSchedules() {
+  public List<ScheduleEto> getSchedule() {
 
     // List<ScheduleEto> returnlist = new ArrayList<ScheduleEto>();
 
     // for(ScheduleEto schedule:this.schedules)
     //   returnlist.add(schedule);
     // return returnlist;
-    return this.schedules;
+    return this.schedule;
   }
 
-  public void setSchedules(List<ScheduleEto> schedules) {
+  public void setSchedule(List<ScheduleEto> schedule) {
 
-    this.schedules = schedules;
+    this.schedule = schedule;
   }
 
   public GeoJsonPoint getLocation()
