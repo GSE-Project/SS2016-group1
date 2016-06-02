@@ -1,20 +1,18 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
+import gse1.buergerbusserver.linemanagement.logic.api.LastPositionmanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
+
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
-
-import gse1.buergerbusserver.linemanagement.logic.api.LastPositionmanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
-import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
 /**
  * @author razadfki
@@ -50,23 +48,23 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     }
   }
 
-  @Override
-  public List<BusEto> getBusesOnLine(String lineId) {
-
-    long lineIdLong;
-    if (lineId == null) {
-      throw new BadRequestException("missing line id");
-    }
-    try {
-      lineIdLong = Long.parseLong(lineId);
-    } catch (NumberFormatException e) {
-      throw new BadRequestException("Line id is not a number");
-    } catch (NotFoundException e) {
-      throw new BadRequestException("Line not found");
-    }
-    List<BusEto> lineBuses = this.linemanagement.getBusesOnLine(lineIdLong);
-    return lineBuses;
-  }
+//  @Override
+//  public List<BusEto> getBusesOnLine(String lineId) {
+//
+//    long lineIdLong;
+//    if (lineId == null) {
+//      throw new BadRequestException("missing line id");
+//    }
+//    try {
+//      lineIdLong = Long.parseLong(lineId);
+//    } catch (NumberFormatException e) {
+//      throw new BadRequestException("Line id is not a number");
+//    } catch (NotFoundException e) {
+//      throw new BadRequestException("Line not found");
+//    }
+//    List<BusEto> lineBuses = this.linemanagement.getBusesOnLine(lineIdLong);
+//    return lineBuses;
+//  }
 
   @Override
   public HashMap<String, Object> getAllRoutes() {

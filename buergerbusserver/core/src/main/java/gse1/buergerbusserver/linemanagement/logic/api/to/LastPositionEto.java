@@ -2,6 +2,8 @@ package gse1.buergerbusserver.linemanagement.logic.api.to;
 
 import java.util.Date;
 
+import org.geojson.Point;
+
 /**
  *
  *
@@ -71,19 +73,15 @@ public class LastPositionEto {
     this.timeStamp = timeStamp;
   }
 
-  public double getLat() {
-
-    return this.lat;
-  }
-
   public void setLat(double lat) {
 
     this.lat = lat;
   }
 
-  public double getLon() {
+  public Point getPosition() {
 
-    return this.lon;
+    Point retVal = new Point(this.lon,this.lat);
+    return retVal;
   }
 
   public void setLon(double lon) {
