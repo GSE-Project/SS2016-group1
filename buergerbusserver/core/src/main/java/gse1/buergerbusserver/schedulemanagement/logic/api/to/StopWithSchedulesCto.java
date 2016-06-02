@@ -2,6 +2,8 @@ package gse1.buergerbusserver.schedulemanagement.logic.api.to;
 
 import gse1.buergerbusserver.general.common.api.datatype.GeoJsonPoint;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class StopWithSchedulesCto extends StopEto {
@@ -22,6 +24,16 @@ public class StopWithSchedulesCto extends StopEto {
     return this.schedule;
   }
 
+  public ArrayList<HashMap> getLines(){
+    ArrayList<HashMap> retVal = new ArrayList<HashMap>();
+    HashMap<String, String> obj = new HashMap<String, String>();
+
+    for(ScheduleEto sch:this.getSchedule()){
+      obj.put("id", sch.getLineId().toString());
+    }
+    retVal.add(obj);
+    return retVal;
+  }
   public void setSchedule(List<ScheduleEto> schedule) {
 
     this.schedule = schedule;
