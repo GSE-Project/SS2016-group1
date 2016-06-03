@@ -52,10 +52,11 @@ Traceability of System functions to test cases
 
 Locate your JAR package <path>\SS2016-group1\buergerbusserver\core\target\
  
- Type the following cmd and press Enter, Java -jar buergerbusserver-core-0.1-SNAPSHOT.jar
+ run command
+ 
+        Java -jar buergerbusserver-core-0.1-SNAPSHOT.jar
 
-		* the server should be running now on localhost:8080
-
-      type in your browser localhost:8080 and follow the first link (Services Overview) i.e., service description language.
+ the server should be running now on localhost:8080   
+ type in your browser localhost:8080 and follow the first link (Services Overview) i.e., service description language.
 
 
