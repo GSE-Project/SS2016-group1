@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -60,9 +59,9 @@ public interface LinemanagementRestService {
   public HashMap<String, Object> getAllRoutes();
 
   @POST
-  @Consumes(MediaType.MULTIPART_FORM_DATA)
+  @Consumes(MediaType.APPLICATION_JSON )
   @Path("/updateBusStatus/")
-  public Response updateBusStatus(@FormParam("busId") Long busId, @FormParam("lineId") Long lineId);
+  public Response updateBusStatus(HashMap<String, Long> jsonRequest);
 
   @GET
   @Path("/update/")

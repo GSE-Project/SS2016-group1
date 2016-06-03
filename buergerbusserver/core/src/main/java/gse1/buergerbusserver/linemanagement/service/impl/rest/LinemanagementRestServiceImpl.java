@@ -79,7 +79,9 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public Response updateBusStatus(Long busId, Long lineId) {
+  public Response updateBusStatus(HashMap<String, Long> jsonRequest) {
+    Long busId = jsonRequest.get("busId");
+    Long lineId = jsonRequest.get("lineId");
 
     try {
 
