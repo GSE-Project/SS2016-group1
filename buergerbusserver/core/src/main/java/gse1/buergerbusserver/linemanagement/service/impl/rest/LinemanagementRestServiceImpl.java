@@ -5,6 +5,7 @@ import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -123,8 +124,16 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public Response setLastPosition(Long busId, double lon, double lat) {
+  public Response setLastPosition(HashMap<String, Object> jsonRequest) {
+    Long busId;
+    Double lon, lat;
+    busId = Long.valueOf(jsonRequest.get("busId").toString());
 
+
+      HashMap obj  = (HashMap) jsonRequest.get("position");
+      ArrayList coordinates = (ArrayList) obj.get("coordinates") ;
+      lon = (Double) coordinates.get(0);
+      lat = (Double) coordinates.get(1);
     try {
 
       this.linemanagement.setLastPosition(busId, lon, lat);

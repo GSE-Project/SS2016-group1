@@ -72,8 +72,7 @@ public interface LinemanagementRestService {
   public LastPositionEto getLastPosition(@PathParam("busId") String busId);
 
   @POST
-  @Path("/lastPosition/{busId}/{lon}/{lat}/")
-  public Response setLastPosition(@PathParam("busId") Long busId, @PathParam("lon") double lon,
-      @PathParam("lat") double lat);
+  @Path("/realTimeData")
+  public Response setLastPosition(HashMap<String, Object> jsonRequest);
 
 }
