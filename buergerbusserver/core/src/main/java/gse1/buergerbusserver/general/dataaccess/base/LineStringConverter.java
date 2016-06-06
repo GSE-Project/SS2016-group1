@@ -32,7 +32,7 @@ import org.geojson.LngLatAlt;
     for(String gpsString:listOfLocations){
       LngLatAlt lla = new LngLatAlt();
       lla.setLongitude(Double.parseDouble(gpsString.substring(0, gpsString.indexOf(','))));
-      lla.setLatitude(Double.parseDouble(gpsString.substring(gpsString.indexOf(',')+1,gpsString.length()-1)));
+      lla.setLatitude(Double.parseDouble(gpsString.substring(gpsString.indexOf(',')+1,gpsString.length())));
       coordinates.add(lla);
     }
 
