@@ -1,9 +1,9 @@
 package gse1.buergerbusserver.linemanagement.logic.api.to;
 
-import java.util.Date;
-
 import gse1.buergerbusserver.linemanagement.common.api.Bus;
 import io.oasp.module.basic.common.api.to.AbstractEto;
+
+import java.util.Date;
 
 /**
  * {@link AbstractEto ETO} for {@link Bus}.
@@ -82,7 +82,7 @@ public class BusEto {// extends AbstractEto implements Bus {
   }
 
   // @Override
-  public Date getTimeStamp() {
+  protected  Date getTimeStamp() {
 
     return this.timeStamp;
   }

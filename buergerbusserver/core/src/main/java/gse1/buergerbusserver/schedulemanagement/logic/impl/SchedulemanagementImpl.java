@@ -9,7 +9,6 @@ import gse1.buergerbusserver.schedulemanagement.logic.api.to.ScheduleEto;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
 import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopWithSchedulesCto;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -52,15 +51,13 @@ public class SchedulemanagementImpl extends AbstractComponentFacade implements S
   public HashMap<String,Object> getAllStopsWithSchedules() {
 
       List<StopWithSchedulesCto> stopCtoList = getBeanMapper().mapList(this.stopDao.findAll(), StopWithSchedulesCto.class);
-      Date newestTimeStamp = stopCtoList.get(0).getTimeStamp();
       for (StopWithSchedulesCto stopCto:stopCtoList){
         List<ScheduleEntity> schedules= this.ScheduleDao.getSchedulesByStopId(stopCto.getId());
-        if (stopCto.getTimeStamp().after(newestTimeStamp)) newestTimeStamp = stopCto.getTimeStamp();
         stopCto.setSchedule(getBeanMapper().mapList(schedules,ScheduleEto.class));
       }
 
       HashMap returnHash = new HashMap<String,Object>();
-      returnHash.put("timeStamp", newestTimeStamp);
+      returnHash.put("timeStamp", this.stopDao.lastUpdate());
       returnHash.put("stops", stopCtoList);
       return returnHash;
 

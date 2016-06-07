@@ -1,7 +1,6 @@
 package gse1.buergerbusserver.schedulemanagement.logic.api.to;
 
 import java.sql.Time;
-
 import java.util.Date;
 
 
@@ -21,7 +20,7 @@ public class ScheduleEto {
 
   private Date timestamp;
 
-  public Date getTimestamp() {
+  protected Date getTimestamp() {
 
     return this.timestamp;
   }
