@@ -27,14 +27,12 @@ public class LastPositionEto {
   /**
    * @return delay
    */
-  /**
-   * public int getDelay() {
-   *
-   * return this.delay; }
-   */
-  /**
-   * @param delay new value of {@link #getdelay}.
-   */
+
+    public int getDelay() {
+
+    return 0; }
+
+
 
   public void setDelay(int delay) {
 
