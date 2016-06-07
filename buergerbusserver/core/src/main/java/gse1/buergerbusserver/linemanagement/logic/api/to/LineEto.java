@@ -57,7 +57,7 @@ public class LineEto {
    * @return timeStamp
    */
 
-  public Date getTimeStamp() {
+  protected Date getTimeStamp() {
 
     return this.timeStamp;
   }
