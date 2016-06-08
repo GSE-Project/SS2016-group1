@@ -29,9 +29,9 @@ Traceability of System functions to test cases
 
 *Links to be added*
 
-## How to install the server ##
+## Installation guide ##
 
-## Prerequisite:
+#### Prerequisite: ####
 
 (1) First, Download and Install a Java SE Runtime Environment (JRE) including JDK.
 
@@ -54,9 +54,21 @@ Locate your JAR package <path>\SS2016-group1\buergerbusserver\core\target\
  
  run command
  
-        Java -jar buergerbusserver-core-0.1-SNAPSHOT.jar
+        java -jar buergerbusserver-core-0.1-SNAPSHOT.jar
 
  the server should be running now on localhost:8080   
  type in your browser localhost:8080 and follow the first link (Services Overview) i.e., service description language.
 
+#### Troubleshooting ####
 
+###### Symptom: ######
+On Debian 7.1 the execution of `mvn clean package` fails with error message:
+```
+error: unmappable character for encoding ASCII
+```
+
+###### Solution: ######
+Change the default encoding to `UTF8` via the command:
+```
+export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
+```
