@@ -61,6 +61,7 @@ Locate your JAR package <path>\SS2016-group1\buergerbusserver\core\target\
 
 #### Troubleshooting ####
 
+##### Problems with Step (3): `mvn clean package`
 ###### Symptom: ######
 On Debian 7.1 the execution of `mvn clean package` fails with error message:
 ```
@@ -72,3 +73,22 @@ Change the default encoding to `UTF8` via the command:
 ```
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 ```
+
+###### Symptom: ######
+Build failure in execution of `mvn clean package` due to compilation error: `No compiler is provided in this environment. Perhaps you are running on a JRE rather than a JDK?`
+
+###### Solution: ######
+Make sure that maven utilizes a java JDK and not a JRE. You can check this by running
+```
+<path>\maven\bin\mvn -v
+```
+The output should look like this (in this case on linux):
+```
+Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-10T17:41:47+01:00)
+Maven home: /home/ricarda/test_server/apache-maven-3.3.9
+Java version: 1.8.0_91, vendor: Oracle Corporation
+Java home: /opt/jdk1.8.0_91/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "3.19.0-59-generic", arch: "amd64", family: "unix"
+```
+Now check if the java referenced by `Java home` is a JDK or a JRE. If it is not a JDK, install one if necessary and set the JAVA_HOME variable of your computer accordingly.
