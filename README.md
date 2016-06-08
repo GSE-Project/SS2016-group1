@@ -48,7 +48,7 @@ Traceability of System functions to test cases
 
 (4) When its done, then go to the \SS2016-group1\buergerbusserver\core\target\ , you'll find a JAR package here.
 
-## How to start the server ##
+#### How to start the server ####
 
 Locate your JAR package <path>\SS2016-group1\buergerbusserver\core\target\
  
