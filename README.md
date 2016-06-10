@@ -18,7 +18,7 @@ Buergerbus Concept
 [Traceability matrix](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Traceability%20matrix.pdf)
 
 #### Design ####
-[Component Diagram](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Componentdiagram1.jpg)
+[Component Diagram](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Component%20Diagram.png)
 
 [Traceability of System functions to components](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Traceability%20SF%20to%20components.pdf)
 
