@@ -56,8 +56,15 @@ Locate your JAR package <path>\SS2016-group1\buergerbusserver\core\target\
  
         java -jar buergerbusserver-core-0.1-SNAPSHOT.jar
 
- the server should be running now on localhost:8080   
- type in your browser localhost:8080 and follow the first link (Services Overview) i.e., service description language.
+ the server should be running on default port i.e., on localhost:8080
+ 
+ to run the server other than default port you need to provide **--server.port** argument, cmd should be as follows:
+ 
+         java -jar buergerbusserver-core-0.1-SNAPSHOT.jar --server.port=8082
+
+ now the server should be running on port 8082.
+ 
+ type in your browser localhost:8080 or localhost:PortNumber and follow the first link (Services Overview) i.e., service description language.
 
 #### Troubleshooting ####
 
@@ -85,7 +92,7 @@ Make sure that maven utilizes a java JDK and not a JRE. You can check this by ru
 The output should look like this (in this case on linux):
 ```
 Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-10T17:41:47+01:00)
-Maven home: /home/ricarda/test_server/apache-maven-3.3.9
+Maven home: /home/<user name>/test_server/apache-maven-3.3.9
 Java version: 1.8.0_91, vendor: Oracle Corporation
 Java home: /opt/jdk1.8.0_91/jre
 Default locale: en_US, platform encoding: UTF-8
