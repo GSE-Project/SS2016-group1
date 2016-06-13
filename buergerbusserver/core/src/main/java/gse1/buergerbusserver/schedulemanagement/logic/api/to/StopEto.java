@@ -2,9 +2,8 @@ package gse1.buergerbusserver.schedulemanagement.logic.api.to;
 
 import java.util.Date;
 
-
 /**
- * TODO JAYU This type ...
+ * JAYU This type ...
  *
  * @author JAYU
  * @since 0.1
@@ -13,10 +12,16 @@ public class StopEto {
 
   private long id;
 
-  private  String name;
+  private String name;
 
+  /**
+   * Latitude of the Stop
+   */
   protected double lat;
 
+  /**
+   * Longitude of the Stop
+   */
   protected double lon;
 
   private Date timeStamp;
@@ -30,7 +35,9 @@ public class StopEto {
   }
 
   /**
-   * @param name new value of {@link #getname}.
+   * Sets name of the Stop
+   *
+   * @param name to the Stop
    */
   public void setName(String name) {
 
@@ -46,28 +53,48 @@ public class StopEto {
   }
 
   /**
-   * @param timeStamp new value of {@link #gettimeStamp}.
+   * Sets date time on create/update
+   *
+   * @param timeStamp timeStamp
+   *
+   *
+   *
    */
   public void setTimeStamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
   }
 
+  /**
+   * @param lat Latitude of the Stop
+   *
+   */
   public void setLat(double lat) {
 
     this.lat = lat;
   }
 
+  /**
+   * @param lon Longitude of the Stop
+   */
   public void setLon(double lon) {
 
     this.lon = lon;
   }
 
+  /**
+   * @return Id
+   */
   public long getId() {
 
-    return id;
+    return this.id;
   }
 
+  /**
+   * Set reference Id for stop
+   *
+   * @param id Id for Stop
+   */
   public void setId(long id) {
 
     this.id = id;

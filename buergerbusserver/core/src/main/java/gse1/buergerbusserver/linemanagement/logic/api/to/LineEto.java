@@ -7,8 +7,6 @@ import java.util.Date;
  *
  */
 public class LineEto {
-  private static final long serialVersionUID = 1L;
-
   private long id;
 
   private String name;
@@ -27,7 +25,7 @@ public class LineEto {
   }
 
   /**
-   * @param name new value of {@link #getname}.
+   * @param name new value of {@link #getName}.
    */
 
   public void setName(String name) {
@@ -71,11 +69,17 @@ public class LineEto {
     this.timeStamp = timeStamp;
   }
 
+  /**
+   * @return Id
+   */
   public long getId() {
 
-    return id;
+    return this.id;
   }
 
+  /**
+   * @param id new value of {@link #getId}
+   */
   public void setId(long id) {
 
     this.id = id;

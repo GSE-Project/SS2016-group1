@@ -1,8 +1,5 @@
 package gse1.buergerbusserver.schedulemanagement.service.api.rest;
 
-import gse1.buergerbusserver.schedulemanagement.logic.api.to.ScheduleEto;
-import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,8 +9,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import gse1.buergerbusserver.schedulemanagement.logic.api.to.ScheduleEto;
+import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
+
 /**
- * TODO mbaniasad This type ...
+ *
  *
  * @author mbaniasad
  * @since 0.1
@@ -23,17 +23,32 @@ import javax.ws.rs.core.MediaType;
 @Path("/linemanagement/v1")
 public interface SchedulemanagementRestService {
 
-
+  /**
+   * Returns a {@link List} of all Stops in the Schedule.
+   *
+   * @return List of Stops in the Schedule
+   */
   public List<StopEto> getAllStops();
 
+  /**
+   * Returns a {@link List} of schedules .
+   *
+   * @return List of {@link ScheduleEto} objects for Schedules
+   */
   @GET
   @Path("/schedules/")
   List<ScheduleEto> getAllSchedules();
 
-//  @GET
-//  @Path("/stopsWithSchedules/")
-//
+  /**
+   * Returns a {@link HashMap} of all Stops with Schedules .
+   *
+   * @return {@link HashMap} of all the Stops with Schedules
+   */
+  // @GET
+  // @Path("/stopsWithSchedules/")
+  //
+
   @GET
   @Path("/stops/")
-  HashMap<String,Object> GetAllStopsWithSchedules();
+  HashMap<String, Object> GetAllStopsWithSchedules();
 }

@@ -41,12 +41,18 @@ public class BusEntity extends ApplicationPersistenceEntity implements Bus {
 
   }
 
+  /**
+   * @return NumberPLate
+   */
   @Override
   public String getNumberPlate() {
 
     return this.numberPlate;
   }
 
+  /**
+   * @param color new value of {@link #getColor}.
+   */
   @Override
   public void setColor(String color) {
 
@@ -54,32 +60,45 @@ public class BusEntity extends ApplicationPersistenceEntity implements Bus {
 
   }
 
+  /**
+   * @return color
+   */
   @Override
   public String getColor() {
 
     return this.color;
   }
 
+  /**
+   * @param picture new value of {@link #getPicture}.
+   */
   @Override
   public void setPicture(String picture) {
 
     this.picture = picture;
-
   }
 
+  /**
+   * @return picture
+   */
   @Override
   public String getPicture() {
 
     return this.picture;
   }
 
+  /**
+   * @param timeStamp new value of {@link #getTimeStamp}.
+   */
   @Override
   public void setTimeStamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
-
   }
 
+  /**
+   * @return timeStamp
+   */
   @Override
   @Temporal(TemporalType.TIMESTAMP)
   public Date getTimeStamp() {
@@ -87,12 +106,18 @@ public class BusEntity extends ApplicationPersistenceEntity implements Bus {
     return this.timeStamp;
   }
 
+  /**
+   * @param lineId new value of {@link #getLineId}.
+   */
   @Override
   public void setLineId(Long lineId) {
 
     this.lineId = lineId;
   }
 
+  /**
+   * @return LineObjectReference
+   */
   @Override
   public Long getLineId() {
 

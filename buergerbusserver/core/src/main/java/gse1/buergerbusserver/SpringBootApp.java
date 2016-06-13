@@ -8,7 +8,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 
 import io.oasp.module.jpa.dataaccess.api.AdvancedRevisionEntity;
 
-//@SpringBootApplication(exclude = { SecurityAutoConfiguration.class, SecurityFilterAutoConfiguration.class })
+/**
+ * @author mbrunnli
+ *
+ */
+// @SpringBootApplication(exclude = { SecurityAutoConfiguration.class, SecurityFilterAutoConfiguration.class })
+
 @SpringBootApplication(exclude = { EndpointAutoConfiguration.class })
 @EntityScan(basePackages = { "gse1.buergerbusserver" }, basePackageClasses = { AdvancedRevisionEntity.class })
 @EnableGlobalMethodSecurity(jsr250Enabled = true)

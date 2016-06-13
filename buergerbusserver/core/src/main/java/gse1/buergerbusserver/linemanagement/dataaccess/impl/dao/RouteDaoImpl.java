@@ -24,8 +24,10 @@ public class RouteDaoImpl extends ApplicationMasterDataDaoImpl<RouteEntity> impl
     return RouteEntity.class;
   }
 
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   @Override
   public Date lastUpdate() {
+
     try {
       CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
       CriteriaQuery<Date> maxQuery = criteriaBuilder.createQuery(Date.class);

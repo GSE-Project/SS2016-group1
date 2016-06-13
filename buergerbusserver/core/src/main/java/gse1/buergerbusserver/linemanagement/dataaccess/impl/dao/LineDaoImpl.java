@@ -34,8 +34,10 @@ public class LineDaoImpl extends ApplicationMasterDataDaoImpl<LineEntity> implem
   // AND
   // https://github.com/oasp-forge/oasp4j-wiki/wiki/guide-dataaccess-layer#dynamic-queries
 
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   @Override
   public Date lastUpdate() {
+
     try {
       CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
       CriteriaQuery<Date> maxQuery = criteriaBuilder.createQuery(Date.class);

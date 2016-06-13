@@ -12,6 +12,10 @@ import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
  */
 public interface ScheduleDao extends ApplicationDao<ScheduleEntity>, MasterDataDao<ScheduleEntity> {
 
-  List<ScheduleEntity> getSchedulesByStopId (Long stopId);
+  /**
+   * @param stopId Reference StopId of the Stop in the Schedule
+   * @return Schedules from the specified Stop with StopId
+   */
+  List<ScheduleEntity> getSchedulesByStopId(Long stopId);
 
 }

@@ -1,15 +1,15 @@
 package gse1.buergerbusserver.schedulemanagement.dataaccess.impl.dao;
 
-import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
-import gse1.buergerbusserver.schedulemanagement.dataaccess.api.StopEntity;
-import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
-
 import java.util.Date;
 
 import javax.inject.Named;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
+import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
+import gse1.buergerbusserver.schedulemanagement.dataaccess.api.StopEntity;
+import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
 
 /**
  * @author mbaniasad
@@ -24,6 +24,12 @@ public class StopDaoImpl extends ApplicationMasterDataDaoImpl<StopEntity> implem
     return StopEntity.class;
   }
 
+  /**
+   * get the last updated timestamp in {@link StopEntity}
+   *
+   * @return timeStamp
+   */
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   @Override
   public Date lastUpdate() {
 
@@ -46,4 +52,3 @@ public class StopDaoImpl extends ApplicationMasterDataDaoImpl<StopEntity> implem
   // https://github.com/oasp-forge/oasp4j-wiki/wiki/guide-dataaccess-layer#dynamic-queries
 
 }
-

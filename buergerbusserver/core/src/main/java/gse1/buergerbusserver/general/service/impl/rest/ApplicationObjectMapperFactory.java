@@ -6,7 +6,6 @@ import io.oasp.module.rest.service.impl.json.ObjectMapperFactory;
 import javax.inject.Named;
 
 import com.fasterxml.jackson.databind.jsontype.NamedType;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 
 /**
  * The MappingFactory class to resolve polymorphic conflicts within the buergerbusserver application.
@@ -25,7 +24,8 @@ public class ApplicationObjectMapperFactory extends ObjectMapperFactory {
     // register polymorphic base classes
     
 
-    NamedType[] subtypes;
+    @SuppressWarnings("unused")
+	NamedType[] subtypes;
     // register mapping for polymorphic sub-classes
     
   }

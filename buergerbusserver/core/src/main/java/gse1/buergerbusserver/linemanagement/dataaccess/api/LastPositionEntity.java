@@ -11,12 +11,19 @@ import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity
 import gse1.buergerbusserver.linemanagement.common.api.LastPosition;
 
 /**
- * @author razadfki
+ * {@link ApplicationPersistenceEntity Entity} representing a {@link LastPosition}. It provides information about the
+ * LastPosition of the bus ,which inlcudes BusId, TimeStamp, Latitude and Longitude.
+ *
+ * @author Jay
  *
  */
 @Entity
 @Table(name = "LASTPOSITION")
 public class LastPositionEntity extends ApplicationPersistenceEntity implements LastPosition {
+  /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
 
   private Long busId;
 
@@ -27,7 +34,7 @@ public class LastPositionEntity extends ApplicationPersistenceEntity implements 
   private double lon;
 
   /**
-   * @return name
+   * @return Id
    */
   @Override
   public Long getBusId() {
@@ -36,7 +43,7 @@ public class LastPositionEntity extends ApplicationPersistenceEntity implements 
   }
 
   /**
-   * @param name new value of {@link #getname}.
+   * @param busId new value of {@link #getBusId}.
    */
   @Override
   public void setBusId(Long busId) {
@@ -56,7 +63,7 @@ public class LastPositionEntity extends ApplicationPersistenceEntity implements 
   }
 
   /**
-   * @param timestamp new value of {@link #gettimestamp}.
+   * @param timestamp new value of {@link #getTimestamp}.
    */
   @Override
   public void setTimestamp(Date timestamp) {
@@ -64,24 +71,36 @@ public class LastPositionEntity extends ApplicationPersistenceEntity implements 
     this.timestamp = timestamp;
   }
 
+  /**
+   * @param lat new value of {@link #getLat}.
+   */
   @Override
   public void setLat(double lat) {
 
     this.lat = lat;
   }
 
+  /**
+   * @return lat Latitude of the LastPosition
+   */
   @Override
   public double getLat() {
 
     return this.lat;
   }
 
+  /**
+   * @param lon new value of {@link #getLon}.
+   */
   @Override
   public void setLon(double lon) {
 
     this.lon = lon;
   }
 
+  /**
+   * @return lon Longitude of the LastPosition
+   */
   @Override
   public double getLon() {
 

@@ -3,7 +3,6 @@ package gse1.buergerbusserver.schedulemanagement.logic.api.to;
 import java.sql.Time;
 import java.util.Date;
 
-
 /**
  * @author MOH
  * @since 0.1
@@ -20,51 +19,98 @@ public class ScheduleEto {
 
   private Date timestamp;
 
+  /**
+   *
+   *
+   * @return timestamp
+   */
   protected Date getTimestamp() {
 
     return this.timestamp;
   }
 
+  /**
+   *
+   * @param timestamp Sets date time on create/update
+   */
   public void setTimestamp(Date timestamp) {
 
     this.timestamp = timestamp;
   }
 
+  /**
+   *
+   *
+   * @return linename
+   */
   public String getLineName() {
 
-    return lineName;
+    return this.lineName;
   }
 
+  /**
+   * Sets name to the line
+   *
+   * @param lineName to the line
+   */
   public void setLineName(String lineName) {
 
     this.lineName = lineName;
   }
 
+  /**
+   *
+   *
+   * @return lineId of the Line
+   */
   public Long getLineId() {
 
-    return lineId;
+    return this.lineId;
   }
 
+  /**
+   * Set reference lineId to the Line
+   *
+   * @param lineId to the Line
+   */
   public void setLineId(Long lineId) {
 
     this.lineId = lineId;
   }
 
+  /**
+   *
+   *
+   * @return StopId of the Stop
+   */
   public Long getStopId() {
 
-    return stopId;
+    return this.stopId;
   }
 
+  /**
+   * Set reference stopId to the Stop
+   *
+   * @param stopId to the Stop
+   */
   public void setStopId(Long stopId) {
 
     this.stopId = stopId;
   }
 
+  /**
+   * @return arrivingTime of the Bus
+   */
   public Time getArrivingTime() {
 
-    return arrivingTime;
+    return this.arrivingTime;
   }
 
+  /**
+   * Sets the arriving Time of the bus
+   *
+   * @param arrivingTime of the bus
+   */
   public void setArrivingTime(Time arrivingTime) {
 
     this.arrivingTime = arrivingTime;

@@ -5,7 +5,7 @@ import java.util.Date;
 import org.geojson.LineString;
 
 /**
- * @author MZEEN
+ * @author JAYU
  *
  */
 public class RouteEto {
@@ -33,21 +33,35 @@ public class RouteEto {
     this.timeStamp = timeStamp;
   }
 
+  /**
+   * @return Id
+   */
+
   public Long getId() {
 
-    return id;
+    return this.id;
   }
+
+  /**
+   * @param id new value of {@link #getId}.
+   */
 
   public void setId(Long id) {
 
     this.id = id;
   }
 
+  /**
+   * @return Route
+   */
   public LineString getRoute() {
 
     return this.route;
   }
 
+  /**
+   * @param route new value of {@link #getRoute}.
+   */
   public void setRoute(LineString route) {
 
     this.route = route;

@@ -14,7 +14,7 @@ import gse1.buergerbusserver.linemanagement.dataaccess.api.LastPositionEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LastPositionDao;
 
 /**
- * @author razadfki
+ * @author ricarda42
  *
  */
 @Named
@@ -48,8 +48,8 @@ public class LastPositionDaoImpl extends ApplicationMasterDataDaoImpl<LastPositi
 
     try {
       CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
-      CriteriaUpdate update = criteriaBuilder.createCriteriaUpdate(LastPositionEntity.class);
-      Root lastPosition = update.from(LastPositionEntity.class);
+      CriteriaUpdate<LastPositionEntity> update = criteriaBuilder.createCriteriaUpdate(LastPositionEntity.class);
+      Root<LastPositionEntity> lastPosition = update.from(LastPositionEntity.class);
 
       update.set(lastPosition.get("lon"), lon);
       update.set(lastPosition.get("lat"), lat);

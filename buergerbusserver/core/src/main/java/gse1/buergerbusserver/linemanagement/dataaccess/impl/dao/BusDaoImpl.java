@@ -30,7 +30,6 @@ public class BusDaoImpl extends ApplicationMasterDataDaoImpl<BusEntity> implemen
   /**
    * the constructor
    */
-
   public BusDaoImpl() {
 
     super();
@@ -60,8 +59,8 @@ public class BusDaoImpl extends ApplicationMasterDataDaoImpl<BusEntity> implemen
 
     try {
       CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
-      CriteriaUpdate update = criteriaBuilder.createCriteriaUpdate(BusEntity.class);
-      Root busEntityRoot = update.from(BusEntity.class);
+      CriteriaUpdate<BusEntity> update = criteriaBuilder.createCriteriaUpdate(BusEntity.class);
+      Root<BusEntity> busEntityRoot = update.from(BusEntity.class);
 
       update.set(busEntityRoot.get("lineId"), lineId);
       update.where(criteriaBuilder.equal(busEntityRoot.get("id"), busId));
@@ -74,6 +73,7 @@ public class BusDaoImpl extends ApplicationMasterDataDaoImpl<BusEntity> implemen
 
   }
 
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   @Override
   public Date lastUpdate() {
 

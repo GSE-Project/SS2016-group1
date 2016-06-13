@@ -5,7 +5,9 @@ import java.util.Date;
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 
 /**
- * @author razadfki Interface of the line Entity of the system.
+ * Interface of the line Entity of the system.
+ *
+ * @author JAYU
  */
 public interface Line extends ApplicationEntity {
 
@@ -17,7 +19,7 @@ public interface Line extends ApplicationEntity {
   void setName(String name);
 
   /**
-   * 
+   *
    *
    * @return name of the line
    */
@@ -31,7 +33,7 @@ public interface Line extends ApplicationEntity {
   void setRouteId(Long routeId);
 
   /**
-   * 
+   *
    *
    * @return Id of the route associated with the line
    */
@@ -40,12 +42,13 @@ public interface Line extends ApplicationEntity {
   /**
    * Sets date time on create/update
    *
-   * @param timestamp
+   * @param timeStamp
+   *
    */
   void setTimeStamp(Date timeStamp);
 
   /**
-   * 
+   *
    *
    * @return timestamp for the line when it last updated
    */

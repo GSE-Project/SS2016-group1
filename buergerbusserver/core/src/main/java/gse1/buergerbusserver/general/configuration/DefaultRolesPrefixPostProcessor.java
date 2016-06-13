@@ -9,7 +9,7 @@ import org.springframework.security.web.access.expression.DefaultWebSecurityExpr
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 
 /**
- * TODO hohwille This type ...
+ *
  *
  * @author hohwille
  */

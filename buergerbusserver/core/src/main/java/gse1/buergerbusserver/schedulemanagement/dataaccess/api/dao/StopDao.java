@@ -14,7 +14,8 @@ public interface StopDao extends ApplicationDao<StopEntity>, MasterDataDao<StopE
 
   /**
    * get the last updated timestamp in {@link StopEntity}
-   * @return Date
+   *
+   * @return timeStamp
    */
   Date lastUpdate();
 }

@@ -11,6 +11,9 @@ import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity
 import gse1.buergerbusserver.linemanagement.common.api.Line;
 
 /**
+ * {@link ApplicationPersistenceEntity Entity} representing a {@link Line}. A line has a name, routeID and timestamp and
+ * a bus is asociated to the line.
+ * 
  * @author razadfki
  *
  */
@@ -36,7 +39,7 @@ public class LineEntity extends ApplicationPersistenceEntity implements Line {
   }
 
   /**
-   * @param name new value of {@link #getname}.
+   * @param name new value of {@link #getName}.
    */
   @Override
   public void setName(String name) {

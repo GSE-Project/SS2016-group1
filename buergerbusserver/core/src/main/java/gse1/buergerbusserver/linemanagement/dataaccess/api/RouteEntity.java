@@ -1,9 +1,5 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
-import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
-import gse1.buergerbusserver.general.dataaccess.base.LineStringConverter;
-import gse1.buergerbusserver.linemanagement.common.api.Route;
-
 import java.util.Date;
 
 import javax.persistence.Convert;
@@ -14,7 +10,14 @@ import javax.persistence.TemporalType;
 
 import org.geojson.LineString;
 
+import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
+import gse1.buergerbusserver.general.dataaccess.base.LineStringConverter;
+import gse1.buergerbusserver.linemanagement.common.api.Route;
+
 /**
+ * {@link ApplicationPersistenceEntity Entity} representing a {@link Route}. A route has a name, route and timestamp and
+ * a bus associated to the route.
+ * 
  * @author MZEEN
  *
  */
@@ -22,6 +25,10 @@ import org.geojson.LineString;
 @Table(name = "ROUTE")
 public class RouteEntity extends ApplicationPersistenceEntity implements Route {
 
+  /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
 
   private LineString route;
 

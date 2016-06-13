@@ -12,7 +12,7 @@ import gse1.buergerbusserver.schedulemanagement.logic.api.to.StopEto;
 import gse1.buergerbusserver.schedulemanagement.service.api.rest.SchedulemanagementRestService;
 
 /**
- * TODO mbaniasad This type ...
+ *
  *
  * @author mbaniasad
  * @since 0.1
@@ -28,7 +28,7 @@ public class SchedulemanagementRestServiceImpl implements SchedulemanagementRest
 
     return this.schedulemanagement.getAllStops();
   }
-  
+
   @Override
   public List<ScheduleEto> getAllSchedules() {
 
@@ -36,10 +36,9 @@ public class SchedulemanagementRestServiceImpl implements SchedulemanagementRest
   }
 
   @Override
-  public HashMap<String,Object> GetAllStopsWithSchedules() {
+  public HashMap<String, Object> GetAllStopsWithSchedules() {
 
     return this.schedulemanagement.getAllStopsWithSchedules();
   }
-  
-  
+
 }

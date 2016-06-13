@@ -1,9 +1,9 @@
 package gse1.buergerbusserver.linemanagement.logic.api.to;
 
+import java.util.Date;
+
 import gse1.buergerbusserver.linemanagement.common.api.Bus;
 import io.oasp.module.basic.common.api.to.AbstractEto;
-
-import java.util.Date;
 
 /**
  * {@link AbstractEto ETO} for {@link Bus}.
@@ -12,8 +12,6 @@ import java.util.Date;
  *
  */
 public class BusEto {// extends AbstractEto implements Bus {
-
-  private static final long serialVersionUID = 1L;
 
   private long id;
 
@@ -36,18 +34,28 @@ public class BusEto {// extends AbstractEto implements Bus {
   }
 
   // @Override
+
+  /**
+   * @param numberPlate new value of {@link #getNumberPlate}.
+   */
   public void setNumberPlate(String numberPlate) {
 
     this.numberPlate = numberPlate;
 
   }
 
+  /**
+   * @return NumberPlate
+   */
   // @Override
   public String getNumberPlate() {
 
     return this.numberPlate;
   }
 
+  /**
+   * @param color new value of {@link #getColor}.
+   */
   // @Override
   public void setColor(String color) {
 
@@ -55,12 +63,18 @@ public class BusEto {// extends AbstractEto implements Bus {
 
   }
 
+  /**
+   * @return Color
+   */
   // @Override
   public String getColor() {
 
     return this.color;
   }
 
+  /**
+   * @param picture new value of {@link #getPicture}.
+   */
   // @Override
   public void setPicture(String picture) {
 
@@ -68,24 +82,42 @@ public class BusEto {// extends AbstractEto implements Bus {
 
   }
 
+  /**
+   * @return Picture
+   */
   // @Override
   public String getPicture() {
 
     return this.picture;
   }
 
+  /**
+   * Sets date time on create/update
+   *
+   * @param timeStamp
+   *
+   */
   // @Override
+  @SuppressWarnings("javadoc")
   public void setTimeStamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
 
   }
 
+  /**
+   *
+   * @return timestamp for the line when it last updated
+   */
   // @Override
-  protected  Date getTimeStamp() {
+  protected Date getTimeStamp() {
 
     return this.timeStamp;
   }
+
+  /**
+   * @param lineId new value of {@link #getLineId}.
+   */
 
   // @Override
   public void setLineId(Long lineId) {
@@ -94,17 +126,29 @@ public class BusEto {// extends AbstractEto implements Bus {
 
   }
 
+  /**
+   * @return LineId
+   */
+
   // @Override
   public Long getLineId() {
 
     return this.lineId;
   }
 
+  /**
+   * @return Id
+   */
   public long getId() {
-    return id;
+
+    return this.id;
   }
 
+  /**
+   * @param id new value of {@link #getId}.
+   */
   public void setId(long id) {
+
     this.id = id;
   }
 

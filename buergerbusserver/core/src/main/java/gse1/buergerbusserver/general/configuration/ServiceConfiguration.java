@@ -6,12 +6,9 @@ import java.util.Collection;
 import javax.inject.Inject;
 import javax.ws.rs.Path;
 import javax.ws.rs.ext.Provider;
-import javax.xml.ws.Endpoint;
-
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.apache.cxf.jaxws.EndpointImpl;
 import org.apache.cxf.transport.servlet.CXFServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -7,13 +7,16 @@ import gse1.buergerbusserver.linemanagement.dataaccess.api.LineEntity;
 import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
 
 /**
+ * {@link ApplicationDao Data Access Object} for {@link LineEntity} entity
+ *
  * @author razadfki
  *
  */
 public interface LineDao extends ApplicationDao<LineEntity>, MasterDataDao<LineEntity> {
   /**
    * get the last updated timestamp in {@link LineEntity}
-   * @return Date
+   *
+   * @return timeStamp
    */
   Date lastUpdate();
 }

@@ -28,7 +28,7 @@ public class LatestUpdateCto extends AbstractCto {
   }
 
   /**
-   * @param bus new value of {@link #getbus}.
+   * @param bus new value of {@link #getBus}.
    */
   public void setBus(BusEto bus) {
 
@@ -44,7 +44,7 @@ public class LatestUpdateCto extends AbstractCto {
   }
 
   /**
-   * @param line new value of {@link #getline}.
+   * @param line new value of {@link #getLine}.
    */
   public void setLine(LineEto line) {
 
@@ -60,7 +60,7 @@ public class LatestUpdateCto extends AbstractCto {
   }
 
   /**
-   * @param route new value of {@link #getroute}.
+   * @param route new value of {@link #getRoute}.
    */
   public void setRoute(RouteEto route) {
 
@@ -76,7 +76,7 @@ public class LatestUpdateCto extends AbstractCto {
   }
 
   /**
-   * @param stop new value of {@link #getstop}.
+   * @param stop new value of {@link #getStop}.
    */
   public void setStop(StopEto stop) {
 

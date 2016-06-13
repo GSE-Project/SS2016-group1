@@ -5,18 +5,15 @@ import java.util.Date;
 import org.geojson.Point;
 
 /**
- *
- *
  * @author razadfki
  * @since 0.1
  */
 public class LastPositionEto {
 
+  @SuppressWarnings("unused")
   private int delay;
 
   private Long busId;
-
-  private String routeObjectReference;
 
   private double lat;
 
@@ -28,19 +25,22 @@ public class LastPositionEto {
    * @return delay
    */
 
-    public int getDelay() {
+  public int getDelay() {
 
-    return 0; }
+    return 0;
+  }
 
-
-
+  /**
+   * @param delay
+   */
+  @SuppressWarnings("javadoc")
   public void setDelay(int delay) {
 
     this.delay = delay;
   }
 
   /**
-   * @return name
+   * @return BusId
    */
   public Long getBusId() {
 
@@ -48,7 +48,7 @@ public class LastPositionEto {
   }
 
   /**
-   * @param name new value of {@link #getname}.
+   * @param busId new value of {@link #getBusId}.
    */
   public void setBusId(Long busId) {
 
@@ -64,24 +64,38 @@ public class LastPositionEto {
   }
 
   /**
-   * @param timeStamp new value of {@link #gettimeStamp}.
+   * @param timeStamp new value of {@link #getTimestamp}.
    */
   public void setTimestamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
   }
 
+  /**
+   * Set the Latitude of the lastPosition
+   *
+   * @param lat latitude of the LastPosition
+   *
+   */
   public void setLat(double lat) {
 
     this.lat = lat;
   }
 
+  /**
+   * @return Position of the point Return position with Longitude and Latitude of the Point
+   */
   public Point getPosition() {
 
-    Point retVal = new Point(this.lon,this.lat);
+    Point retVal = new Point(this.lon, this.lat);
     return retVal;
   }
 
+  /**
+   * Set Longitude of the LastPosition
+   *
+   * @param lon Longitude of the LastPosition
+   */
   public void setLon(double lon) {
 
     this.lon = lon;
