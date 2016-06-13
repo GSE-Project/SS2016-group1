@@ -25,9 +25,8 @@ Buergerbus Concept
 [Traceability of System functions to components](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Traceability%20SF%20to%20components.pdf)
 
 #### Quality Assurance ####
-[System test specification](https://github.com/GSE-Project/SS2016-group1/blob/master/Test/Test%20Cases_reviewed.pdf)
-
-Traceability of System functions to test cases
+[System test specification for server tests](https://github.com/GSE-Project/SS2016-group1/blob/master/Test/Test%20Cases_reviewed.pdf)
+[System test specification for integration tests](https://github.com/GSE-Project/SS2016-group1/blob/master/Test/System%20Test%20cases%20Document%20for%20Integration%20tests.pdf)
 
 *Links to be added*
 
