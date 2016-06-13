@@ -13,6 +13,8 @@ Implementation follows the framework of the [Open Application Standard Platform 
 #### Requirements ####
 Buergerbus Concept
 
+[Requirements Document](https://docs.google.com/document/d/1E5iwka3XbtIlKH7SrMoKiDbxiYQo_cI9NPrwxsgaUqY/edit?pref=2&pli=1)
+
 [Interfaces to clients](https://github.com/GSE-Project/SS2016-group1/wiki/Server-interfaces)
 
 [Traceability matrix](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Traceability%20matrix.pdf)
