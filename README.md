@@ -11,8 +11,6 @@ Implementation follows the framework of the [Open Application Standard Platform 
 ## Documents ##
 
 #### Requirements ####
-Buergerbus Concept
-
 [Requirements Document](https://docs.google.com/document/d/1E5iwka3XbtIlKH7SrMoKiDbxiYQo_cI9NPrwxsgaUqY/edit?pref=2&pli=1)
 
 [Interfaces to clients](https://github.com/GSE-Project/SS2016-group1/wiki/Server-interfaces)
@@ -28,7 +26,6 @@ Buergerbus Concept
 [System test specification for server tests](https://github.com/GSE-Project/SS2016-group1/blob/master/Test/Test%20Cases_reviewed.pdf)
 [System test specification for integration tests](https://github.com/GSE-Project/SS2016-group1/blob/master/Test/System%20Test%20cases%20Document%20for%20Integration%20tests.pdf)
 
-*Links to be added*
 
 ## Installation guide ##
 
