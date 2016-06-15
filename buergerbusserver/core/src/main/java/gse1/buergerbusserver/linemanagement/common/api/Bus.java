@@ -53,6 +53,19 @@ public interface Bus extends ApplicationEntity {
   String getPicture();
 
   /**
+   * Set total number of seats of the bus
+   *
+   * @param totalSeats
+   */
+  void setTotalSeats(int totalSeats);
+
+  /**
+   *
+   * @return total number of seats of the bus
+   */
+  int getTotalSeats();
+  
+  /**
    * Sets timestamp
    *
    * @param timeStamp the new timestamp

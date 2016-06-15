@@ -22,6 +22,8 @@ public class BusEto {// extends AbstractEto implements Bus {
   private String color;
 
   private String picture;
+  
+  private int totalSeats;
 
   private Date timeStamp;
 
@@ -91,6 +93,16 @@ public class BusEto {// extends AbstractEto implements Bus {
     return this.picture;
   }
 
+  public int getTotalSeats() {
+  
+    return totalSeats;
+  }
+
+  public void setTotalSeats(int totalSeats) {
+  
+    this.totalSeats = totalSeats;
+  }
+  
   /**
    * Sets date time on create/update
    *

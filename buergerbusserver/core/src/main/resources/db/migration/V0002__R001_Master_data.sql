@@ -1,6 +1,6 @@
-INSERT INTO bus(id, modificationCounter, numberPlate, color, picture,lineId, "TIMESTAMP") VALUES
-                    (1, 0, 'KL-AB345', 'green', 'http://www.tm4.com/wp-content/uploads/2014/08/Foton-bus-12-m-e1407525133477.png',1, '2004-10-19 10:23:54'),
-                    (2, 0, 'KL-CD678', 'red', 'http://littlebabybum.com/wp-content/uploads/2015/01/wheels-on-the-bus-red.png',2, '2004-10-19 10:23:54');
+INSERT INTO bus(id, modificationCounter, numberPlate, color, picture,totalSeats, lineId, "TIMESTAMP") VALUES
+                    (1, 0, 'KL-AB345', 'green', 'http://www.tm4.com/wp-content/uploads/2014/08/Foton-bus-12-m-e1407525133477.png', 10 ,1, '2004-10-19 10:23:54'),
+                    (2, 0, 'KL-CD678', 'red', 'http://littlebabybum.com/wp-content/uploads/2015/01/wheels-on-the-bus-red.png', 12 ,2, '2004-10-19 10:23:54');
 
 
 INSERT INTO line(id, modificationcounter, name, routeId, "TIMESTAMP")VALUES
