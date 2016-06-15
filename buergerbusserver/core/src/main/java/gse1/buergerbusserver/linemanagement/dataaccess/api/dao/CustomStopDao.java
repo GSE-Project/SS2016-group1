@@ -48,9 +48,9 @@ public interface CustomStopDao extends ApplicationDao<CustomStopEntity>, MasterD
    *
    * @param status
    * @return {@link List} of Custom Stop requests in that status (1 - Accepted, 2 - Declined, 3 - Pending, 4 -
-   *         Completed)
+   *         Completed, 5 - Cancelled) Not really needed right now...
    **/
-  List<CustomStopEntity> getCustomStopStatus(int status);
+  List<CustomStopEntity> getCustomStopRequests(int status);
 
   /**
    * Update the status of the {@link CustomStopEntity} request for {@link CustomStop} as given by request ID
@@ -63,11 +63,22 @@ public interface CustomStopDao extends ApplicationDao<CustomStopEntity>, MasterD
   /**
    * Update the status of the {@link CustomStopEntity} request for {@link CustomStop} as given by request ID
    *
+   * @param lineId
+   * @param pickUpTime
+   * @param lat
+   * @param lon
+   * @param numberOfPersons
+   * @param deviceId
+   * @param userName
+   * @param userAddress
+   * @param userAssistance
+   *
    * @param status
    * @param requestId
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  List<CustomStopEntity> newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons);
+  List<CustomStopEntity> newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
+      String deviceId, String userName, String userAddress, List<Integer> userAssistance);
 
   /**
    * get the last updated timeStamp in {@link CustomStopEntity}
