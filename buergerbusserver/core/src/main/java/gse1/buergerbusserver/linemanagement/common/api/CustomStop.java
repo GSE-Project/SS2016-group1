@@ -75,12 +75,12 @@ public interface CustomStop extends ApplicationEntity {
   /**
    * @param deviceId
    */
-  void setDeviceId(Long deviceId);
+  void setDeviceId(String deviceId);
 
   /**
    * @return Id of the device which sent the request
    */
-  Long getDeviceId();
+  String getDeviceId();
 
   /**
    * @param userName

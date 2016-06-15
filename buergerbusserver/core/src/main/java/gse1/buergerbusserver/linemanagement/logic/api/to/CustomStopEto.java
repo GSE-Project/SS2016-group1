@@ -16,6 +16,8 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
 
   private Long lineId;
 
+  private Long requestId;
+
   private Date pickUpTime;
 
   private double lon;
@@ -24,7 +26,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
 
   private int numberOfPersons;
 
-  private Long deviceId;
+  private String deviceId;
 
   private String userName;
 
@@ -55,6 +57,16 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   public Long getLineId() {
 
     return this.lineId;
+  }
+
+  public void setRequestId(Long requestId) {
+
+    this.requestId = requestId;
+  }
+
+  public Long getRequestId() {
+
+    return this.requestId;
   }
 
   public void setPickUpTime(Date pickUpTime) {
@@ -101,13 +113,13 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
     return this.numberOfPersons;
   }
 
-  public void setDeviceId(Long deviceId) {
+  public void setDeviceId(String deviceId) {
 
     this.deviceId = deviceId;
 
   }
 
-  public Long getDeviceId() {
+  public String getDeviceId() {
 
     return this.deviceId;
   }

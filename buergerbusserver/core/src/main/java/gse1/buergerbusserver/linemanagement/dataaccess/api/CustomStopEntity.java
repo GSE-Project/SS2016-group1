@@ -40,7 +40,7 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
 
   private int numberOfPersons;
 
-  private Long deviceId;
+  private String deviceId;
 
   private String userName;
 
@@ -137,13 +137,13 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   }
 
   @Override
-  public Long getDeviceId() {
+  public String getDeviceId() {
 
     return this.deviceId;
   }
 
   @Override
-  public void setDeviceId(Long deviceId) {
+  public void setDeviceId(String deviceId) {
 
     this.deviceId = deviceId;
   }
