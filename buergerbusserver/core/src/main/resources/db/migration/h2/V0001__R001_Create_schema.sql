@@ -12,6 +12,7 @@ CREATE TABLE BUS(
     numberPlate VARCHAR(255),
     color VARCHAR(255),
     picture VARCHAR(255),
+    totalSeats int,
     lineId BIGINT,
     "TIMESTAMP" timestamp NOT NULL
 );

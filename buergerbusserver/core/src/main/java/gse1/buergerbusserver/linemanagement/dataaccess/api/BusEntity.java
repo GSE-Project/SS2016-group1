@@ -31,6 +31,8 @@ public class BusEntity extends ApplicationPersistenceEntity implements Bus {
   private String color;
 
   private String picture;
+  
+  private int totalSeats;
 
   private Date timeStamp;
 
@@ -87,6 +89,18 @@ public class BusEntity extends ApplicationPersistenceEntity implements Bus {
     return this.picture;
   }
 
+  @Override
+  public int getTotalSeats() {
+  
+    return totalSeats;
+  }
+
+  @Override
+  public void setTotalSeats(int totalSeats) {
+  
+    this.totalSeats = totalSeats;
+  }
+  
   /**
    * @param timeStamp new value of {@link #getTimeStamp}.
    */
