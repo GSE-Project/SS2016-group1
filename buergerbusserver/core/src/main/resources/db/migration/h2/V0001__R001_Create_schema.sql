@@ -1,6 +1,6 @@
 -- This is the SQL script for setting up the DDL for the h2 database
 -- In a typical project you would only distinguish between main and test for flyway SQLs
--- However, in this sample application we provde support for multiple databases in parallel
+-- However, in this sample application we provide support for multiple databases in parallel
 -- You can simply choose the DB of your choice by setting spring.profiles.active=XXX in config/application.properties
 -- Assuming that the preconfigured user exists with according credentials using the included SQLs
 
@@ -89,7 +89,7 @@ ALTER TABLE SCHEDULE ADD CONSTRAINT FK_SCHEDULE2STOP FOREIGN KEY(stopId) REFEREN
 
 -- *** CustomStops ***
 CREATE TABLE CUSTOMSTOP(
-    id BIGINT NOT NULL,
+    requestId BIGINT NOT NULL,
     modificationCounter INTEGER NOT NULL,
     lineId BIGINT NOT NULL,
     pickUpTime timestamp NOT NULL,
@@ -97,13 +97,15 @@ CREATE TABLE CUSTOMSTOP(
     lon DOUBLE NOT NULL,
     numberOfPersons INTEGER NOT NULL,
     deviceId BIGINT NOT NULL,
-    infoName VARCHAR(255) NOT NULL,
-    infoAddress VARCHAR(255) NOT NULL,
-    infoAssistance INTEGER NOT NULL,
-    state INTEGER NOT NULL,
-    busId BIGINT
+    infoName VARCHAR(255),
+    infoAddress VARCHAR(MAX),
+    infoAssistance VARCHAR(255),
+    status INTEGER NOT NULL,
+    busId BIGINT,
+    "TIMESTAMP" timestamp NOT NULL
 );
-ALTER TABLE CUSTOMSTOP ADD CONSTRAINT PK_CUSTOMSTOP PRIMARY KEY(id);
+ALTER TABLE CUSTOMSTOP ADD CONSTRAINT PK_CUSTOMSTOP PRIMARY KEY(requestId);
+
 
 
 -------------------------
