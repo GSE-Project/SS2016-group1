@@ -1,6 +1,7 @@
 package gse1.buergerbusserver.linemanagement.common.api;
 
 import java.util.Date;
+import java.util.List;
 
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 
@@ -71,34 +72,34 @@ public interface CustomStop extends ApplicationEntity {
   Long getDeviceId();
 
   /**
-   * @param infoName
+   * @param userName
    */
-  void setInfoName(String infoName);
+  void setUserName(String userName);
 
   /**
    * @return Name of the customer
    */
-  String getInfoName();
+  String getUserName();
 
   /**
-   * @param infoAddress
+   * @param userAddress
    */
-  void setInfoAddress(String infoAddress);
+  void setUserAddress(String userAddress);
 
   /**
    * @return address where the customer wants to be picked up
    */
-  String getInfoAddress();
+  String getUserAddress();
 
   /**
-   * @param infoAssistance
+   * @param userAssistance
    */
-  void setInfoAssistance(int[] infoAssistance);
+  void setUserAssistance(List<Integer> userAssistance);
 
   /**
    * @return array of encoded assistance requirements
    */
-  int[] getInfoAssistance();
+  List<Integer> getUserAssistance();
 
   /**
    * @param status
