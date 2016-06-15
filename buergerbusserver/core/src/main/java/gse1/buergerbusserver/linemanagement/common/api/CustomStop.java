@@ -22,6 +22,17 @@ public interface CustomStop extends ApplicationEntity {
   Long getLineId();
 
   /**
+   * @param requestId
+   */
+
+  void setRequestId(Long requestId);
+
+  /**
+   * @return id of the request
+   */
+  Long getRequestId();
+
+  /**
    * @param pickUpTime
    */
   void setPickUpTime(Date pickUpTime);
