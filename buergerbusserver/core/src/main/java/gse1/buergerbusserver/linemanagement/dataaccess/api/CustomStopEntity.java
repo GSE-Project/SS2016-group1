@@ -1,5 +1,7 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
 
   private static final long serialVersionUID = 1L;
 
-  private List<Integer> userAssistance;
+  private String userAssistance;
 
   private Long requestId;
 
@@ -175,13 +177,23 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   @Override
   public List<Integer> getUserAssistance() {
 
-    return this.userAssistance;
+    // List<Integer> returnList = Arrays.asList("\\s*,\\s*").toArray<Integer>;
+    // Iterable<String> splitIterator = Splitter.on(',').split(numbers);
+    // List<Integer> returnList= Lists.newArrayList(splitIterator );
+
+    List<String> stringList = Arrays.asList(this.userAssistance.split(","));
+    List<Integer> returnList = new ArrayList<>();
+    for (String num : stringList) {
+      returnList.add(Integer.valueOf(num));
+    }
+
+    return returnList;
   }
 
   @Override
   public void setUserAssistance(List<Integer> userAssistance) {
 
-    this.userAssistance = userAssistance;
+    this.userAssistance = userAssistance.toString();
   }
 
   @Override
