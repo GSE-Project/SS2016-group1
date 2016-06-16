@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.util.StringUtils;
+
 /**
  * @author ricarda
  *
@@ -203,12 +205,13 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   }
 
   /**
-   * @param userAssistance new value of {@link #getUserAssistance}
+   * @param userAssist new value of {@link #getUserAssistance}
    *
    */
-  public void setUserAssistance(List<Integer> userAssistance) {
+  public void setUserAssistance(List<Integer> userAssist) {
 
-    this.userAssistance = userAssistance.toString();
+    String assist = StringUtils.collectionToDelimitedString(userAssist, ",");
+    this.userAssistance = assist;
 
   }
 

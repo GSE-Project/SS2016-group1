@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.util.StringUtils;
+
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
 import gse1.buergerbusserver.linemanagement.common.api.CustomStop;
 import gse1.buergerbusserver.linemanagement.common.api.Line;
@@ -191,9 +193,9 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   }
 
   @Override
-  public void setUserAssistance(List<Integer> userAssistance) {
+  public void setUserAssistance(List<Integer> userAssist) {
 
-    this.userAssistance = userAssistance.toString();
+    this.userAssistance = StringUtils.collectionToDelimitedString(userAssist, ",");
   }
 
   @Override

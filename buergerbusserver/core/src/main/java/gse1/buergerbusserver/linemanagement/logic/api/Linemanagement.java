@@ -9,6 +9,7 @@ import gse1.buergerbusserver.linemanagement.common.api.Line;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.CustomStopEntity;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
@@ -107,7 +108,7 @@ public interface Linemanagement {
    * @param deviceId
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  List<CustomStopEntity> getCustomStopDevice(String deviceId);
+  List<CustomStopEto> getCustomStopDevice(String deviceId);
 
   /**
    * Returns a list of all {@link CustomStopEntity} pending {@link Line} as given by lineId (For Driver)
@@ -115,7 +116,7 @@ public interface Linemanagement {
    * @param lineId
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  List<CustomStopEntity> getCustomStopLine(Long lineId);
+  List<CustomStopEto> getCustomStopLine(Long lineId);
 
   /**
    * Returns a list of all {@link CustomStopEntity} for {@link CustomStop} as given by Status (For Driver/Citizen)
@@ -152,12 +153,4 @@ public interface Linemanagement {
   public List<CustomStopEntity> newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
       String deviceId, String userName, String userAddress, List<Integer> userAssistance);
 
-  /**
-   * get the last updated timeStamp in {@link CustomStopEntity}
-   *
-   * @return Date
-   */
-  Date lastUpdate();
-
 }
-

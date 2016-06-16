@@ -192,6 +192,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
+
   public List<CustomStopEto> getCustomStopDevice(String deviceId) {
 
     List<CustomStopEntity> buses = this.CustomStopDao.getCustomStopDevice(deviceId);
@@ -203,7 +204,6 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
 
     List<CustomStopEntity> buses = this.CustomStopDao.getCustomStopLine(lineId);
     return getBeanMapper().mapList(buses, CustomStopEto.class);
-
   }
 
   @Override
@@ -228,6 +228,8 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   public List<CustomStopEntity> newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
       String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
 
+    // TODO Auto-generated method stub
     return null;
   }
+
 }
