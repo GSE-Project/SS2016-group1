@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import gse1.buergerbusserver.general.logic.base.AbstractComponentFacade;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.CustomStopEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.LastPositionEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.LineEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.BusDao;
@@ -172,6 +173,56 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
       e.printStackTrace();
     }
 
+  }
+
+  @Override
+  public List<CustomStopEntity> getCustomStopStatus(Long requestId, String deviceId) {
+
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<CustomStopEntity> getCustomStopDevice(String deviceId) {
+
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<CustomStopEntity> getCustomStopLine(Long lineId) {
+
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<CustomStopEntity> getCustomStopRequests(int status) {
+
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void updateCustomStopStatus(Long requestId, int status) {
+
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public List<CustomStopEntity> newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
+      String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
+
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Date lastUpdate() {
+
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }
