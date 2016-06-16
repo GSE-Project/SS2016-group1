@@ -1,16 +1,11 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.springframework.util.StringUtils;
 
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
 import gse1.buergerbusserver.linemanagement.common.api.CustomStop;
@@ -30,9 +25,7 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
 
   private static final long serialVersionUID = 1L;
 
-  private String userAssistance;
-
-  private Long requestId;
+  // private String userAssistance;
 
   private Long lineId;
 
@@ -55,18 +48,6 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   private Long busId;
 
   private Date timeStamp;
-
-  @Override
-  public Long getRequestId() {
-
-    return this.requestId;
-  }
-
-  @Override
-  public void setRequestId(Long requestId) {
-
-    this.requestId = requestId;
-  }
 
   @Override
   public Long getBusId() {
@@ -176,27 +157,27 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
     this.userAddress = userAddress;
   }
 
-  @Override
-  public List<Integer> getUserAssistance() {
-
-    // List<Integer> returnList = Arrays.asList("\\s*,\\s*");
-    // Iterable<String> splitIterator = Splitter.on(',').split(numbers);
-    // List<Integer> returnList= Lists.newArrayList(splitIterator );
-
-    List<String> stringList = Arrays.asList(this.userAssistance.split(","));
-    List<Integer> returnList = new ArrayList<>();
-    for (String num : stringList) {
-      returnList.add(Integer.valueOf(num));
-    }
-
-    return returnList;
-  }
-
-  @Override
-  public void setUserAssistance(List<Integer> userAssist) {
-
-    this.userAssistance = StringUtils.collectionToDelimitedString(userAssist, ",");
-  }
+  // @Override
+  // public List<Integer> getUserAssistance() {
+  //
+  // // List<Integer> returnList = Arrays.asList("\\s*,\\s*");
+  // // Iterable<String> splitIterator = Splitter.on(',').split(numbers);
+  // // List<Integer> returnList= Lists.newArrayList(splitIterator );
+  //
+  // List<String> stringList = Arrays.asList(this.userAssistance.split(","));
+  // List<Integer> returnList = new ArrayList<>();
+  // for (String num : stringList) {
+  // returnList.add(Integer.valueOf(num));
+  // }
+  //
+  // return returnList;
+  // }
+  //
+  // @Override
+  // public void setUserAssistance(List<Integer> userAssist) {
+  //
+  // this.userAssistance = StringUtils.collectionToDelimitedString(userAssist, ",");
+  // }
 
   @Override
   public int getStatus() {

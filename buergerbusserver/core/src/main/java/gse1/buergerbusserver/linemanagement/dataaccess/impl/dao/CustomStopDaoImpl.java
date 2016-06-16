@@ -170,7 +170,7 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       cq.select(cb.max(ro.<Date> get("TIMESTAMP")));
 
       // Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
-      // cq.select(cb.greatest(ro.get(CustomStopEntity.TIMESTAMP)));
+      // cq.select(cb.greatest(ro.get(CustomStopEntity_."TIMESTAMP")));
 
       return em.createQuery(cq).getSingleResult();
     } catch (Exception e) {
