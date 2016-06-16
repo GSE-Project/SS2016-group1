@@ -35,7 +35,6 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   /**
    *
    */
-  public EntityManager em;
 
   @Override
   protected Class<CustomStopEntity> getEntityClass() {
@@ -47,14 +46,15 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   public List<CustomStopEntity> getCustomStopStatus(Long requestId, String deviceId) {
 
     try {
-      CriteriaBuilder cb = this.em.getCriteriaBuilder();
+      EntityManager em = getEntityManager();
+      CriteriaBuilder cb = em.getCriteriaBuilder();
       CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
 
       cq.select(ro);
       cq.where(cb.and(cb.equal(ro.get("requestId"), requestId), cb.equal(ro.get("deviceId"), deviceId)));
 
-      List<CustomStopEntity> result = this.em.createQuery(cq).getResultList();
+      List<CustomStopEntity> result = em.createQuery(cq).getResultList();
       return result;
     } catch (Exception e) {
       e.printStackTrace();
