@@ -78,6 +78,6 @@ INSERT INTO schedule(
             (23, 0, 2, 'Uni', 8, '12:0:0', '2004-10-19 10:23:54'),
             (24, 0, 2, 'Uni', 8, '13:0:0', '2004-10-19 10:23:54');
 
-INSERT INTO CUSTOMSTOP(id, modificationCounter, lineId, pickUpTime, lat, lon, numberOfPersons, deviceId
-            userName, userAddress, userAssistance, state, busId) VALUES
-            (1,0,1,'12:0:0', 7.60497, 49.21059, 3, '7', 'Schmidt', 'Brahmsweg 3, 67655 Kaiserslautern', '1,2,5', 2, 3, '2004-10-19 10:23:54');
+INSERT INTO CUSTOMSTOP(requestId, modificationCounter, lineId, pickUpTime, lat, lon, numberOfPersons, deviceId,
+            userName, userAddress, userAssistance, status, busId, "TIMESTAMP") VALUES
+            (1,0,1,'2016-6-19 12:00:00', 7.60497, 49.21059, 3, '7', 'Schmidt', 'Brahmsweg 3, 67655 Kaiserslautern', '1,2,5', 2, 3, '2004-10-19 10:23:54');

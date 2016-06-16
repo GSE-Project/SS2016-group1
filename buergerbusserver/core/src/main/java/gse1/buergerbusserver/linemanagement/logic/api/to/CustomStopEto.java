@@ -1,5 +1,7 @@
 package gse1.buergerbusserver.linemanagement.logic.api.to;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
 
   private String userAddress;
 
-  private List<Integer> userAssistance;
+  private String userAssistance;
 
   private int status;
 
@@ -206,7 +208,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
    */
   public void setUserAssistance(List<Integer> userAssistance) {
 
-    this.userAssistance = userAssistance;
+    this.userAssistance = userAssistance.toString();
 
   }
 
@@ -215,7 +217,13 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
    */
   public List<Integer> getUserAssistance() {
 
-    return this.userAssistance;
+    List<String> stringList = Arrays.asList(this.userAssistance.split(","));
+    List<Integer> returnList = new ArrayList<>();
+    for (String num : stringList) {
+      returnList.add(Integer.valueOf(num));
+    }
+
+    return returnList;
   }
 
   /**
