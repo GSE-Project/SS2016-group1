@@ -177,7 +177,7 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   @Override
   public List<Integer> getUserAssistance() {
 
-    // List<Integer> returnList = Arrays.asList("\\s*,\\s*").toArray<Integer>;
+    // List<Integer> returnList = Arrays.asList("\\s*,\\s*");
     // Iterable<String> splitIterator = Splitter.on(',').split(numbers);
     // List<Integer> returnList= Lists.newArrayList(splitIterator );
 
