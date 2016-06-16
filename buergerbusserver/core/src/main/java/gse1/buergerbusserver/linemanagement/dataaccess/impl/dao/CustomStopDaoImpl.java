@@ -7,6 +7,8 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
@@ -66,28 +68,84 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   @Override
   public List<CustomStopEntity> getCustomStopDevice(String deviceId) {
 
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      EntityManager em = getEntityManager();
+      CriteriaBuilder cb = em.getCriteriaBuilder();
+      CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
+      Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
+
+      cq.select(ro);
+      cq.where(cb.equal(ro.get("deviceId"), deviceId));
+
+      List<CustomStopEntity> result = em.createQuery(cq).getResultList();
+      return result;
+    } catch (Exception e) {
+      e.printStackTrace();
+      List<CustomStopEntity> result = null;
+      return result;
+    }
   }
 
   @Override
   public List<CustomStopEntity> getCustomStopLine(Long lineId) {
 
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      EntityManager em = getEntityManager();
+      CriteriaBuilder cb = em.getCriteriaBuilder();
+      CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
+      Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
+      Expression<java.sql.Date> currDate = cb.currentDate();
+
+      cq.select(ro);
+      cq.where(cb.and(cb.equal(ro.get("lineId"), lineId), (cb.equal(ro.<Date> get("pickUpTime"), currDate))));
+
+      List<CustomStopEntity> result = em.createQuery(cq).getResultList();
+      return result;
+    } catch (Exception e) {
+      e.printStackTrace();
+      List<CustomStopEntity> result = null;
+      return result;
+    }
   }
 
   @Override
   public List<CustomStopEntity> getCustomStopRequests(int status) {
 
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      EntityManager em = getEntityManager();
+      CriteriaBuilder cb = em.getCriteriaBuilder();
+      CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
+      Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
+
+      cq.select(ro);
+      cq.where(cb.equal(ro.get("status"), status));
+
+      List<CustomStopEntity> result = em.createQuery(cq).getResultList();
+      return result;
+    } catch (Exception e) {
+      e.printStackTrace();
+      List<CustomStopEntity> result = null;
+      return result;
+    }
   }
 
   @Override
   public void updateCustomStopStatus(Long requestId, int status) {
 
-    // TODO Auto-generated method stub
+    try {
+      EntityManager em = getEntityManager();
+      CriteriaBuilder cb = em.getCriteriaBuilder();
+      CriteriaUpdate<CustomStopEntity> cu = cb.createCriteriaUpdate((CustomStopEntity.class));
+      Root<CustomStopEntity> ro = cu.from(CustomStopEntity.class);
+
+      cu.set(ro.get("status"), status);
+      cu.where(cb.equal(ro.get("requestId"), requestId));
+
+      em.createQuery(cu).executeUpdate();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
   }
 
@@ -102,8 +160,22 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   @Override
   public Date lastUpdate() {
 
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      EntityManager em = getEntityManager();
+      CriteriaBuilder cb = em.getCriteriaBuilder();
+      CriteriaQuery<Date> cq = cb.createQuery(Date.class);
+
+      Root ro = cq.from(CustomStopEntity.class);
+      cq.select(cb.max(ro.<Date> get("TIMESTAMP")));
+
+      // Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
+      // cq.select(cb.greatest(ro.get(CustomStopEntity.TIMESTAMP)));
+
+      return em.createQuery(cq).getSingleResult();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
 }

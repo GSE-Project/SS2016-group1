@@ -205,12 +205,13 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   }
 
   /**
-   * @param userAssistance new value of {@link #getUserAssistance}
+   * @param userAssist new value of {@link #getUserAssistance}
    *
    */
-  public void setUserAssistance(List<Integer> userAssistance) {
+  public void setUserAssistance(List<Integer> userAssist) {
 
-    this.userAssistance = StringUtils.collectionToDelimitedString(userAssistance, ",");
+    String assist = StringUtils.collectionToDelimitedString(userAssist, ",");
+    this.userAssistance = assist;
 
   }
 

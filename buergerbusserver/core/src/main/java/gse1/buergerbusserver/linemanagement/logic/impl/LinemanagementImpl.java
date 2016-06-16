@@ -211,8 +211,8 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<CustomStopEntity> newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
-      String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
+  public Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
+      String userName, String userAddress, List<Integer> userAssistance) {
 
     // TODO Auto-generated method stub
     return null;

@@ -149,8 +149,8 @@ public interface Linemanagement {
    *
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  public List<CustomStopEntity> newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
-      String deviceId, String userName, String userAddress, List<Integer> userAssistance);
+  public Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
+      String userName, String userAddress, List<Integer> userAssistance);
 
   /**
    * get the last updated timeStamp in {@link CustomStopEntity}
@@ -160,4 +160,3 @@ public interface Linemanagement {
   Date lastUpdate();
 
 }
-

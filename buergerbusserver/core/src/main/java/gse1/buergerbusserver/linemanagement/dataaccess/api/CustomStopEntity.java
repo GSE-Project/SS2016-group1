@@ -193,9 +193,9 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   }
 
   @Override
-  public void setUserAssistance(List<Integer> userAssistance) {
+  public void setUserAssistance(List<Integer> userAssist) {
 
-    this.userAssistance = StringUtils.collectionToDelimitedString(userAssistance, ",");
+    this.userAssistance = StringUtils.collectionToDelimitedString(userAssist, ",");
   }
 
   @Override
