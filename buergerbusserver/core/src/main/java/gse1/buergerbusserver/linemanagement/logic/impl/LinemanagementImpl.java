@@ -1,5 +1,7 @@
 package gse1.buergerbusserver.linemanagement.logic.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +11,7 @@ import javax.inject.Named;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import gse1.buergerbusserver.general.logic.base.AbstractComponentFacade;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
@@ -229,6 +232,14 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
       String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
 
     // TODO Auto-generated method stub
+    String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
+
+    List<String> stringList = Arrays.asList(userAssist.split(","));
+    List<Integer> returnList = new ArrayList<>();
+    for (String num : stringList) {
+      returnList.add(Integer.valueOf(num));
+    }
+
     return null;
   }
 

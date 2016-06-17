@@ -92,14 +92,14 @@ public interface CustomStop extends ApplicationEntity {
 
   /**
    * @param userAssistance
-   *
-   *        void setUserAssistance(List<Integer> userAssistance);
    */
+  void setUserAssistance(String userAssistance);
+
   /**
    * @return array of encoded assistance requirements
-   *
-   *         List<Integer> getUserAssistance();
    */
+  String getUserAssistance();
+
   /**
    * @param status
    */

@@ -1,11 +1,6 @@
 package gse1.buergerbusserver.linemanagement.logic.api.to;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-
-import org.springframework.util.StringUtils;
 
 /**
  * @author ricarda
@@ -205,28 +200,21 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   }
 
   /**
-   * @param userAssist new value of {@link #getUserAssistance}
+   * @param userAssistance new value of {@link #getUserAssistance}
    *
    */
-  public void setUserAssistance(List<Integer> userAssist) {
+  public void setUserAssistance(String userAssistance) {
 
-    String assist = StringUtils.collectionToDelimitedString(userAssist, ",");
-    this.userAssistance = assist;
+    this.userAssistance = userAssistance;
 
   }
 
   /**
    * @return UserAssistance
    */
-  public List<Integer> getUserAssistance() {
+  public String getUserAssistance() {
 
-    List<String> stringList = Arrays.asList(this.userAssistance.split(","));
-    List<Integer> returnList = new ArrayList<>();
-    for (String num : stringList) {
-      returnList.add(Integer.valueOf(num));
-    }
-
-    return returnList;
+    return this.userAssistance;
   }
 
   /**

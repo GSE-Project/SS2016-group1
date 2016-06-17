@@ -77,8 +77,8 @@ public interface CustomStopDao extends ApplicationDao<CustomStopEntity>, MasterD
    * @param requestId
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
-      String deviceId, String userName, String userAddress, List<Integer> userAssistance);
+  Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
+      String userName, String userAddress, String userAssistance);
 
   /**
    * get the last updated timeStamp in {@link CustomStopEntity}

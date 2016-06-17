@@ -1,5 +1,6 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,14 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.CustomStopEntity;
@@ -151,10 +160,55 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
 
   @Override
   public Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
-      String userName, String userAddress, List<Integer> userAssistance) {
+      String userName, String userAddress, String userAssistance) {
 
-    // TODO Auto-generated method stub
-    return null;
+    // Session session = HibernateUtil.getSessionFactory().openSession();
+    // buildSessionFactory
+    // session.beginTransaction();
+
+    Configuration configuration = new Configuration();
+    configuration.configure();
+    ServiceRegistry serviceRegistry =
+        new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+    ;
+    SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory(serviceRegistry);
+    ;
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
+    Date date = new Date();
+    Date currTimeStamp = new Timestamp(date.getTime());
+
+    try {
+      tx = session.beginTransaction();
+
+      CustomStopEntity cse = new CustomStopEntity();
+
+      cse.setDeviceId(deviceId);
+      cse.setLat(lat);
+      cse.setLon(lon);
+      cse.setLineId(lineId);
+      cse.setPickUpTime(pickUpTime);
+      cse.setNumberOfPersons(numberOfPersons);
+      cse.setStatus(5);
+      cse.setUserName(userName);
+      cse.setUserAddress(userAddress);
+      cse.setUserAssistance(userAssistance);
+      cse.setTimeStamp(currTimeStamp);
+      Long requestID = (Long) session.save(cse);
+      tx.commit();
+
+      return requestID;
+    } catch (HibernateException e) {
+      if (tx != null)
+        tx.rollback();
+      e.printStackTrace();
+      return null;
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    } finally {
+      session.close();
+    }
   }
 
   @SuppressWarnings({ "rawtypes", "unchecked" })
