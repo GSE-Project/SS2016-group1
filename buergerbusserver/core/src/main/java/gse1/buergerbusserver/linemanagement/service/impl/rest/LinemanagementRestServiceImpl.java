@@ -160,8 +160,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public List<CustomStopEto> getCustomStopLine(Long lineId) {
 
-    // TODO Auto-generated method stub
-    return null;
+    return this.linemanagement.getCustomStopLine(lineId);
   }
 
   @Override
@@ -199,6 +198,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     String deviceId = (String) jsonRequest.get("deviceId");
     String userName = (String) jsonRequest.get("userName");
     String userAddress = (String) jsonRequest.get("userAddress");
+    @SuppressWarnings("unchecked")
     List<Integer> userAssistance = (List<Integer>) jsonRequest.get("userAssistance");
 
     try {
