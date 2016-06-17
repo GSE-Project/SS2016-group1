@@ -100,7 +100,7 @@ public interface Linemanagement {
    * @param deviceId
    * @return {@link List} of Custom Stop requests pending for the request ID and device ID
    **/
-  List<CustomStopEntity> getCustomStopStatus(Long requestId, String deviceId);
+  List<CustomStopEto> getCustomStopStatus(Long requestId, String deviceId);
 
   /**
    * Returns a list of all {@link CustomStopEntity} pending {@link CustomStop} as given by deviceId (For Citizen)
