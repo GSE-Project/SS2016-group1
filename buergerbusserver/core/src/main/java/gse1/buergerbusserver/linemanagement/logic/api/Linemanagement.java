@@ -100,7 +100,7 @@ public interface Linemanagement {
    * @param deviceId
    * @return {@link List} of Custom Stop requests pending for the request ID and device ID
    **/
-  List<CustomStopEto> getCustomStopStatus(Long requestId, String deviceId);
+  HashMap<String, Integer> getCustomStopStatus(Long requestId, String deviceId);
 
   /**
    * Returns a list of all {@link CustomStopEntity} pending {@link CustomStop} as given by deviceId (For Citizen)
@@ -150,7 +150,7 @@ public interface Linemanagement {
    *
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  public List<CustomStopEntity> newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
-      String deviceId, String userName, String userAddress, List<Integer> userAssistance);
+  public Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
+      String userName, String userAddress, List<Integer> userAssistance);
 
 }
