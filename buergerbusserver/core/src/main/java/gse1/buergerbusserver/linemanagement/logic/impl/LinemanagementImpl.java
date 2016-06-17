@@ -1,7 +1,5 @@
 package gse1.buergerbusserver.linemanagement.logic.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -184,29 +182,28 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<CustomStopEto> getCustomStopStatus(Long requestId, String deviceId) {
+  public HashMap<String, Integer> getCustomStopStatus(Long requestId, String deviceId) {
 
-    try {
-      this.CustomStopDao.getCustomStopStatus(requestId, deviceId);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
+    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopStatus(requestId, deviceId);
+    List<CustomStopEto> customStopsMapped = getBeanMapper().mapList(customStops, CustomStopEto.class);
+    HashMap<String, Integer> customStopStatus = new HashMap<>();
+    customStopStatus.put("Status", customStopsMapped.get(0).getStatus());
+    return customStopStatus;
   }
 
   @Override
 
   public List<CustomStopEto> getCustomStopDevice(String deviceId) {
 
-    List<CustomStopEntity> buses = this.CustomStopDao.getCustomStopDevice(deviceId);
-    return getBeanMapper().mapList(buses, CustomStopEto.class);
+    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopDevice(deviceId);
+    return getBeanMapper().mapList(customStops, CustomStopEto.class);
   }
 
   @Override
   public List<CustomStopEto> getCustomStopLine(Long lineId) {
 
-    List<CustomStopEntity> buses = this.CustomStopDao.getCustomStopLine(lineId);
-    return getBeanMapper().mapList(buses, CustomStopEto.class);
+    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopLine(lineId);
+    return getBeanMapper().mapList(customStops, CustomStopEto.class);
   }
 
   @Override
@@ -228,19 +225,19 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<CustomStopEntity> newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
-      String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
+  public Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
+      String userName, String userAddress, List<Integer> userAssistance) {
 
     // TODO
     String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
+    Long requestId = this.CustomStopDao.newCustomStop(lineId, pickUpTime, lat, lon, numberOfPersons, deviceId, userName,
+        userAddress, userAssist);
+    /*
+     * List<String> stringList = Arrays.asList(userAssist.split(",")); List<Integer> returnList = new ArrayList<>(); for
+     * (String num : stringList) { returnList.add(Integer.valueOf(num)); }
+     */
 
-    List<String> stringList = Arrays.asList(userAssist.split(","));
-    List<Integer> returnList = new ArrayList<>();
-    for (String num : stringList) {
-      returnList.add(Integer.valueOf(num));
-    }
-
-    return null;
+    return requestId;
   }
 
 }
