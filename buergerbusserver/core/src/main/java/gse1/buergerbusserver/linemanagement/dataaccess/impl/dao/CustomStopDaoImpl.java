@@ -63,7 +63,7 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
 
       cq.select(ro);
-      cq.where(cb.and(cb.equal(ro.get("requestId"), requestId), cb.equal(ro.get("deviceId"), deviceId)));
+      cq.where(cb.and(cb.equal(ro.get("id"), requestId), cb.equal(ro.get("deviceId"), deviceId)));
 
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
       return result;
@@ -148,7 +148,7 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       Root<CustomStopEntity> ro = cu.from(CustomStopEntity.class);
 
       cu.set(ro.get("status"), status);
-      cu.where(cb.equal(ro.get("requestId"), requestId));
+      cu.where(cb.equal(ro.get("id"), requestId));
 
       em.createQuery(cu).executeUpdate();
 
