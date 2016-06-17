@@ -207,7 +207,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<CustomStopEntity> getCustomStopRequests(int status) {
+  public List<CustomStopEto> getCustomStopRequests(int status) {
 
     // TODO Auto-generated method stub
     return null;

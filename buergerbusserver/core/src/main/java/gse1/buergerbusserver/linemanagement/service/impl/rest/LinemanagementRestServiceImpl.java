@@ -3,6 +3,7 @@ package gse1.buergerbusserver.linemanagement.service.impl.rest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -145,28 +146,26 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public CustomStopEto getCustomStopStatus(Long requestId) {
+  public HashMap<String, Integer> getCustomStopStatus(Long requestId, String deviceId) {
+
+    return this.linemanagement.getCustomStopStatus(requestId, deviceId);
+  }
+
+  @Override
+  public List<CustomStopEto> getCustomStopDevice(String deviceId) {
+
+    return this.linemanagement.getCustomStopDevice(deviceId);
+  }
+
+  @Override
+  public List<CustomStopEto> getCustomStopLine(Long lineId) {
 
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public CustomStopEto getCustomStopDevice(Long deviceId) {
-
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public CustomStopEto getCustomStopLine(Long lineId) {
-
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public CustomStopEto getCustomStopRequests(int status) {
+  public List<CustomStopEto> getCustomStopRequests(int status) {
 
     // TODO Auto-generated method stub
     return null;
@@ -175,15 +174,43 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public Response updateCustomStopStatus(HashMap<String, Object> jsonRequest) {
 
-    // TODO Auto-generated method stub
-    return null;
+    Long requestId = (Long) jsonRequest.get("requestId");
+    int status = (int) jsonRequest.get("status");
+
+    try {
+
+      this.linemanagement.updateCustomStopStatus(requestId, status);
+      return Response.status(200).build();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return Response.status(500).build();
+    }
   }
 
   @Override
-  public Long newCustomStop(HashMap<String, Object> jsonRequest) {
+  public Response newCustomStop(HashMap<String, Object> jsonRequest) {
 
-    // TODO Auto-generated method stub
-    return null;
+    Long lineId = (Long) jsonRequest.get("lineId");
+    Date pickUpTime = (Date) jsonRequest.get("pickUpTime");
+    double lat = (double) jsonRequest.get("lat");
+    double lon = (double) jsonRequest.get("lon");
+    int numberOfPersons = (int) jsonRequest.get("numberOfPersons");
+    String deviceId = (String) jsonRequest.get("deviceId");
+    String userName = (String) jsonRequest.get("userName");
+    String userAddress = (String) jsonRequest.get("userAddress");
+    List<Integer> userAssistance = (List<Integer>) jsonRequest.get("userAssistance");
+
+    try {
+
+      this.linemanagement.newCustomStop(lineId, pickUpTime, lat, lon, numberOfPersons, deviceId, userName, userAddress,
+          userAssistance);
+      return Response.status(200).build();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return Response.status(500).build();
+    }
   }
 
 }

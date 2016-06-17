@@ -2,6 +2,7 @@ package gse1.buergerbusserver.linemanagement.service.api.rest;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -100,12 +101,14 @@ public interface LinemanagementRestService {
 
   /**
    * @param requestId requestID of the request
+   * @param deviceId device ID from which the request was made
    * @return Status of the custom stop request along with other customer info
    */
   @GET
   // @Path("/customStop?requestId={requestId}")
   @Path("/customStop/requestid/{requestId}")
-  public CustomStopEto getCustomStopStatus(@PathParam("requestId") Long requestId);
+  public HashMap<String, Integer> getCustomStopStatus(@PathParam("requestId") Long requestId,
+      @PathParam("deviceId") String deviceId);
 
   /**
    * @param deviceId Device ID from which the request was received
@@ -113,7 +116,7 @@ public interface LinemanagementRestService {
    */
   @GET
   @Path("/customStop/deviceid/{deviceId}")
-  public CustomStopEto getCustomStopDevice(@PathParam("deviceId") Long deviceId);
+  public List<CustomStopEto> getCustomStopDevice(@PathParam("deviceId") String deviceId);
 
   /**
    * @param lineId Line ID of the bus
@@ -121,7 +124,7 @@ public interface LinemanagementRestService {
    */
   @GET
   @Path("/customStop/lineid/{lineId}")
-  public CustomStopEto getCustomStopLine(@PathParam("lineId") Long lineId);
+  public List<CustomStopEto> getCustomStopLine(@PathParam("lineId") Long lineId);
 
   /**
    * @param status Status of the Custom Stop Request
@@ -129,7 +132,7 @@ public interface LinemanagementRestService {
    */
   @GET
   @Path("/customStop/status/{status}")
-  public CustomStopEto getCustomStopRequests(@PathParam("status") int status);
+  public List<CustomStopEto> getCustomStopRequests(@PathParam("status") int status);
 
   /**
    * @param jsonRequest Set the Status with the jsonRequest
@@ -147,6 +150,6 @@ public interface LinemanagementRestService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("customStop/newRequest/")
-  public Long newCustomStop(HashMap<String, Object> jsonRequest);
+  public Response newCustomStop(HashMap<String, Object> jsonRequest);
 
 }
