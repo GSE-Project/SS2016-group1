@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 
 /**
@@ -96,5 +97,56 @@ public interface LinemanagementRestService {
   @POST
   @Path("/realTimeData")
   public Response setLastPosition(HashMap<String, Object> jsonRequest);
+
+  /**
+   * @param requestId requestID of the request
+   * @return Status of the custom stop request along with other customer info
+   */
+  @GET
+  // @Path("/customStop?requestId={requestId}")
+  @Path("/customStop/requestid/{requestId}")
+  public CustomStopEto getCustomStopStatus(@PathParam("requestId") Long requestId);
+
+  /**
+   * @param deviceId Device ID from which the request was received
+   * @return All the requests from that device
+   */
+  @GET
+  @Path("/customStop/deviceid/{deviceId}")
+  public CustomStopEto getCustomStopDevice(@PathParam("deviceId") Long deviceId);
+
+  /**
+   * @param lineId Line ID of the bus
+   * @return All pending requests for that day
+   */
+  @GET
+  @Path("/customStop/lineid/{lineId}")
+  public CustomStopEto getCustomStopLine(@PathParam("lineId") Long lineId);
+
+  /**
+   * @param status Status of the Custom Stop Request
+   * @return All requests in that status
+   */
+  @GET
+  @Path("/customStop/status/{status}")
+  public CustomStopEto getCustomStopRequests(@PathParam("status") int status);
+
+  /**
+   * @param jsonRequest Set the Status with the jsonRequest
+   * @return {@link HashMap} of the Status with jsonRequest
+   */
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Path("/customStop/updStatus/")
+  public Response updateCustomStopStatus(HashMap<String, Object> jsonRequest);
+
+  /**
+   * @param jsonRequest create a new custom stop request with the jsonRequest
+   * @return {@link HashMap} requestID of the request with jsonRequest
+   */
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Path("customStop/newRequest/")
+  public Long newCustomStop(HashMap<String, Object> jsonRequest);
 
 }

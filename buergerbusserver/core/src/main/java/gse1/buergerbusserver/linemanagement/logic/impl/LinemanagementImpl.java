@@ -232,8 +232,10 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
       String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
 
     // TODO Auto-generated method stub
+    // list of integers to String csv
     String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
 
+    // converts a csv into a list on integers
     List<String> stringList = Arrays.asList(userAssist.split(","));
     List<Integer> returnList = new ArrayList<>();
     for (String num : stringList) {

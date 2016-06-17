@@ -11,6 +11,7 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
@@ -141,6 +142,48 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       return Response.status(500).build();
     }
 
+  }
+
+  @Override
+  public CustomStopEto getCustomStopStatus(Long requestId) {
+
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public CustomStopEto getCustomStopDevice(Long deviceId) {
+
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public CustomStopEto getCustomStopLine(Long lineId) {
+
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public CustomStopEto getCustomStopRequests(int status) {
+
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Response updateCustomStopStatus(HashMap<String, Object> jsonRequest) {
+
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Long newCustomStop(HashMap<String, Object> jsonRequest) {
+
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }
