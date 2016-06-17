@@ -184,7 +184,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<CustomStopEntity> getCustomStopStatus(Long requestId, String deviceId) {
+  public List<CustomStopEto> getCustomStopStatus(Long requestId, String deviceId) {
 
     try {
       this.CustomStopDao.getCustomStopStatus(requestId, deviceId);
@@ -231,7 +231,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   public List<CustomStopEntity> newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
       String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
 
-    // TODO Auto-generated method stub
+    // TODO
     String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
 
     List<String> stringList = Arrays.asList(userAssist.split(","));
