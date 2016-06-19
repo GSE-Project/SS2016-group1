@@ -1,7 +1,6 @@
 package gse1.buergerbusserver.linemanagement.common.api;
 
 import java.util.Date;
-import java.util.List;
 
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 
@@ -20,17 +19,6 @@ public interface CustomStop extends ApplicationEntity {
    * @return id of the line requested
    */
   Long getLineId();
-
-  /**
-   * @param requestId
-   */
-
-  void setRequestId(Long requestId);
-
-  /**
-   * @return id of the request
-   */
-  Long getRequestId();
 
   /**
    * @param pickUpTime
@@ -105,12 +93,12 @@ public interface CustomStop extends ApplicationEntity {
   /**
    * @param userAssistance
    */
-  void setUserAssistance(List<Integer> userAssistance);
+  void setUserAssistance(String userAssistance);
 
   /**
    * @return array of encoded assistance requirements
    */
-  List<Integer> getUserAssistance();
+  String getUserAssistance();
 
   /**
    * @param status

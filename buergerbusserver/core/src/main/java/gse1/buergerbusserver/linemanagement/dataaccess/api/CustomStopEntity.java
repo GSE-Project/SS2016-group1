@@ -1,12 +1,15 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
 import gse1.buergerbusserver.linemanagement.common.api.CustomStop;
@@ -21,14 +24,17 @@ import gse1.buergerbusserver.linemanagement.common.api.Line;
  **/
 
 @Entity
-@Table(name = "CUSTOMSTOP")
+@Table(name = "CUSTOMSTOP", uniqueConstraints = { @UniqueConstraint(columnNames = "id") })
 public class CustomStopEntity extends ApplicationPersistenceEntity implements CustomStop {
 
   private static final long serialVersionUID = 1L;
 
-  private List<Integer> userAssistance;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
+  private Long id;
 
-  private Long requestId;
+  private String userAssistance;
 
   private Long lineId;
 
@@ -53,15 +59,21 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   private Date timeStamp;
 
   @Override
-  public Long getRequestId() {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
+  public Long getId() {
 
-    return this.requestId;
+    return this.id;
   }
 
   @Override
-  public void setRequestId(Long requestId) {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
+  public void setId(Long id) {
 
-    this.requestId = requestId;
+    this.id = id;
   }
 
   @Override
@@ -173,13 +185,14 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   }
 
   @Override
-  public List<Integer> getUserAssistance() {
+  public String getUserAssistance() {
 
     return this.userAssistance;
+
   }
 
   @Override
-  public void setUserAssistance(List<Integer> userAssistance) {
+  public void setUserAssistance(String userAssistance) {
 
     this.userAssistance = userAssistance;
   }
