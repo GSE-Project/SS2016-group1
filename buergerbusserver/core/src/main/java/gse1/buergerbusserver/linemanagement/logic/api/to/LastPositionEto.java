@@ -20,6 +20,8 @@ public class LastPositionEto {
   private double lon;
 
   private Date timeStamp;
+  
+  private int takenSeats;
 
   /**
    * @return delay
@@ -99,5 +101,16 @@ public class LastPositionEto {
   public void setLon(double lon) {
 
     this.lon = lon;
+  }
+  
+  public void setTakenSeats(int takenSeats) {
+
+    this.takenSeats = takenSeats;
+    
+  }
+
+  public int getTakenSeats() {
+
+    return this.takenSeats;
   }
 }

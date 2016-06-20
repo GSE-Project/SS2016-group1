@@ -46,6 +46,7 @@ CREATE TABLE LASTPOSITION(
     modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
     lat  DOUBLE NOT NULL,
     lon  DOUBLE NOT NUll,
+    takenSeats int,
     "TIMESTAMP" timestamp NOT NULL
 );
 ALTER TABLE  LASTPOSITION ADD CONSTRAINT UC_LASTPOSITION_BUSID UNIQUE(busId);

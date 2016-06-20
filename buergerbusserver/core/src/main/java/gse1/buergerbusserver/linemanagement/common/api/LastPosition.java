@@ -69,4 +69,16 @@ public interface LastPosition extends ApplicationEntity {
    * @return timestamp for the line when it last updated
    */
   Date getTimestamp();
+  
+  /**
+   * 
+   * @param takenSeats number of occupied seats
+   */
+  void setTakenSeats(int takenSeats);
+  
+  /**
+   * 
+   * @return number of occupied seats
+   */
+  int getTakenSeats();
 }
