@@ -141,7 +141,7 @@ public interface LinemanagementRestService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("/customStop/updStatus/")
-  public Response updateCustomStopStatus(HashMap<String, Object> jsonRequest);
+  public Response updateCustomStopStatus(HashMap<String, Long> jsonRequest);
 
   /**
    * @param jsonRequest create a new custom stop request with the jsonRequest

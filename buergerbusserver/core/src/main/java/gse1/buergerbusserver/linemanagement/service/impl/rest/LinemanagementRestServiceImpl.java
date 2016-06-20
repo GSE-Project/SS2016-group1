@@ -1,5 +1,8 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -171,10 +174,11 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public Response updateCustomStopStatus(HashMap<String, Object> jsonRequest) {
+  public Response updateCustomStopStatus(HashMap<String, Long> jsonRequest) {
 
-    Long requestId = (Long) jsonRequest.get("requestId");
-    int status = (int) jsonRequest.get("status");
+    Long requestId = jsonRequest.get("requestId");
+    long temp = Long.valueOf(jsonRequest.get("status"));
+    int status = (int) temp;
 
     try {
 
@@ -190,16 +194,25 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public Response newCustomStop(HashMap<String, Object> jsonRequest) {
 
-    Long lineId = (Long) jsonRequest.get("lineId");
-    Date pickUpTime = (Date) jsonRequest.get("pickUpTime");
-    double lat = (double) jsonRequest.get("lat");
-    double lon = (double) jsonRequest.get("lon");
-    int numberOfPersons = (int) jsonRequest.get("numberOfPersons");
-    String deviceId = (String) jsonRequest.get("deviceId");
-    String userName = (String) jsonRequest.get("userName");
-    String userAddress = (String) jsonRequest.get("userAddress");
+    System.out.println("Ricardas phone is ringing");
+    Long lineId = Long.valueOf(jsonRequest.get("lineId").toString());
+    Double lat = Double.valueOf(jsonRequest.get("lat").toString());
+    Double lon = Double.valueOf(jsonRequest.get("lon").toString());
+    int numberOfPersons = Integer.valueOf(jsonRequest.get("numberOfPersons").toString());
+    String deviceId = jsonRequest.get("deviceId").toString();
+    String userName = jsonRequest.get("userName").toString();
+    String userAddress = jsonRequest.get("userAddress").toString();
     @SuppressWarnings("unchecked")
     List<Integer> userAssistance = (List<Integer>) jsonRequest.get("userAssistance");
+
+    DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    Date pickUpTime;
+    try {
+      pickUpTime = format.parse(jsonRequest.get("pickUpTime").toString());
+    } catch (ParseException e1) {
+      e1.printStackTrace();
+      pickUpTime = null;
+    }
 
     try {
 

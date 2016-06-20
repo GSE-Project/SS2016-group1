@@ -11,7 +11,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
 
   private Long lineId;
 
-  private Long requestId;
+  private Long id;
 
   private Date pickUpTime;
 
@@ -43,6 +43,16 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
     super();
   }
 
+  public Long getId() {
+
+    return this.id;
+  }
+
+  public void setId(Long id) {
+
+    this.id = id;
+  }
+
   /**
    *
    * @param lineId new value of {@link #getLineId}.
@@ -68,7 +78,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
 
   public void setRequestId(Long requestId) {
 
-    this.requestId = requestId;
+    this.id = requestId;
   }
 
   /**
@@ -76,7 +86,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
    */
   public Long getRequestId() {
 
-    return this.requestId;
+    return this.id;
   }
 
   /**

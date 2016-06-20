@@ -9,16 +9,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.CustomStopEntity;
@@ -103,10 +100,14 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       CriteriaBuilder cb = em.getCriteriaBuilder();
       CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
-      Expression<java.sql.Date> currDate = cb.currentDate();
+
+      // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+      // Date date = new Date();
+      // Date currDate = dateFormat.format(date);
 
       cq.select(ro);
-      cq.where(cb.and(cb.equal(ro.get("lineId"), lineId), (cb.equal(ro.<Date> get("pickUpTime"), currDate))));
+      // cq.where(cb.and(cb.equal(ro.get("lineId"), lineId), (cb.equal(ro.<Date> get("pickUpTime"), currDate))));
+      cq.where(cb.equal(ro.get("lineId"), lineId));
 
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
       return result;
@@ -166,17 +167,21 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
     // buildSessionFactory
     // session.beginTransaction();
 
-    Configuration configuration = new Configuration();
-    configuration.configure();
-    ServiceRegistry serviceRegistry =
-        new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-    ;
-    SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory(serviceRegistry);
-    ;
+    System.out.println("Ricardas phone stopped ringing");
+
+    // Configuration configuration = new Configuration();
+    // configuration.configure();
+    // ServiceRegistry serviceRegistry =
+    // new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+    // ;
+    SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+
     Session session = sessionFactory.openSession();
     Transaction tx = null;
     Date date = new Date();
     Date currTimeStamp = new Timestamp(date.getTime());
+
+    System.out.println("Ricardas phone stopped ringing twice");
 
     try {
       tx = session.beginTransaction();
