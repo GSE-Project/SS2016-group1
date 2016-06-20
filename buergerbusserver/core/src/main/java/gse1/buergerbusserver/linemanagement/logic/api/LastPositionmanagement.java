@@ -21,5 +21,5 @@ public interface LastPositionmanagement {
    * @param lon Sets the Longitude of the Last Position
    * @param lat sets the Latitude of the last Position
    */
-  void setLastPosition(Long busId, double lon, double lat);
+  void setLastPosition(Long busId, double lon, double lat,int takenSeats);
 }

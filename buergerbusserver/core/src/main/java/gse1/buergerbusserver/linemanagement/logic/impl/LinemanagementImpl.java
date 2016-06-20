@@ -171,10 +171,10 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public void setLastPosition(Long busId, double lon, double lat) {
+  public void setLastPosition(Long busId, double lon, double lat,int takenSeats) {
 
     try {
-      this.lastPositionDao.setLastPosition(busId, lon, lat);
+      this.lastPositionDao.setLastPosition(busId, lon, lat,takenSeats);
     } catch (Exception e) {
       e.printStackTrace();
     }

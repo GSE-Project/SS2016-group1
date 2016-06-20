@@ -14,9 +14,9 @@ INSERT INTO ROUTE(id, modificationcounter,route, "TIMESTAMP")
 
 
 --added by Hafiz
-INSERT INTO LASTPOSITION(id,busId, modificationCounter, lon, lat, "TIMESTAMP") VALUES
-                 (1,1,0, 7.60497,49.21059,'2004-10-19 10:23:54'),
-                 (2,2,0, 7.75349,49.42257,'2004-10-19 10:23:54');
+INSERT INTO LASTPOSITION(id,busId, modificationCounter, lon, lat, takenSeats, "TIMESTAMP") VALUES
+                 (1,1,0, 7.60497,49.21059,2,'2004-10-19 10:23:54'),
+                 (2,2,0, 7.75349,49.42257,7,'2004-10-19 10:23:54');
 
 
 INSERT INTO STOP(id, modificationcounter,name, lon, lat, "TIMESTAMP")

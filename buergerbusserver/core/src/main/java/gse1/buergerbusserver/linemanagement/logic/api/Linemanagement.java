@@ -90,7 +90,7 @@ public interface Linemanagement {
    * @param lon sets the Longitude of the Last Position of bus
    * @param lat Sets the Latitude of the last position of bus
    */
-  void setLastPosition(Long busId, double lon, double lat);
+  void setLastPosition(Long busId, double lon, double lat,int takenSeats);
 
   /**
    * Returns a list of all {@link CustomStopEntity} pending {@link CustomStop} as given by requestId and deviceId (For

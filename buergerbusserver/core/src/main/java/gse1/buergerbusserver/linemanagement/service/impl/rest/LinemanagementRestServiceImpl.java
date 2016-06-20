@@ -129,13 +129,15 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     Double lon, lat;
     busId = Long.valueOf(jsonRequest.get("busId").toString());
 
+    int takenSeats = Integer.parseInt(jsonRequest.get("takenSeats").toString());
+    
     HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("position");
     ArrayList<?> coordinates = (ArrayList<?>) obj.get("coordinates");
     lon = (Double) coordinates.get(0);
     lat = (Double) coordinates.get(1);
     try {
 
-      this.linemanagement.setLastPosition(busId, lon, lat);
+      this.linemanagement.setLastPosition(busId, lon, lat,takenSeats);
       return Response.status(200).build();
 
     } catch (Exception e) {

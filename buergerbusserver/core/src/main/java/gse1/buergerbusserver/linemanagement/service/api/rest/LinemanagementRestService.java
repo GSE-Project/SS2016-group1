@@ -96,7 +96,7 @@ public interface LinemanagementRestService {
    * @return {@link HashMap} of the Last Position with jsonRequest
    */
   @POST
-  @Path("/realTimeData")
+  @Path("/realTimeData/")
   public Response setLastPosition(HashMap<String, Object> jsonRequest);
 
   /**

@@ -27,5 +27,5 @@ public interface LastPositionDao extends ApplicationDao<LastPositionEntity>, Mas
    * @param lon Sets the Longitude of the Last position
    * @param lat Sets the Latitude of the Last position
    */
-  void setLastPosition(Long busId, double lon, double lat);
+  void setLastPosition(Long busId, double lon, double lat, int takenSeats);
 }
