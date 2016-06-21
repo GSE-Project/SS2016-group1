@@ -107,7 +107,7 @@ public interface LinemanagementRestService {
   @GET
   // @Path("/customStop?requestId={requestId}")
   @Path("/customStop/requestid/{requestId}/{deviceId}")
-  public HashMap<String, Integer> getCustomStopStatus(@PathParam("requestId") Long requestId,
+  public CustomStopEto getCustomStopStatus(@PathParam("requestId") Long requestId,
       @PathParam("deviceId") String deviceId);
 
   /**

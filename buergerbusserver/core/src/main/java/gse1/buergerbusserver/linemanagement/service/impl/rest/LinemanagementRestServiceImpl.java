@@ -133,14 +133,14 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     busId = Long.valueOf(jsonRequest.get("busId").toString());
 
     int takenSeats = Integer.parseInt(jsonRequest.get("takenSeats").toString());
-    
+
     HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("position");
     ArrayList<?> coordinates = (ArrayList<?>) obj.get("coordinates");
     lon = (Double) coordinates.get(0);
     lat = (Double) coordinates.get(1);
     try {
 
-      this.linemanagement.setLastPosition(busId, lon, lat,takenSeats);
+      this.linemanagement.setLastPosition(busId, lon, lat, takenSeats);
       return Response.status(200).build();
 
     } catch (Exception e) {
@@ -151,7 +151,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public HashMap<String, Integer> getCustomStopStatus(Long requestId, String deviceId) {
+  public CustomStopEto getCustomStopStatus(Long requestId, String deviceId) {
 
     return this.linemanagement.getCustomStopStatus(requestId, deviceId);
   }
@@ -196,7 +196,6 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public Response newCustomStop(HashMap<String, Object> jsonRequest) {
 
-    System.out.println("Ricardas phone is ringing");
     Long lineId = Long.valueOf(jsonRequest.get("lineId").toString());
     Double lat = Double.valueOf(jsonRequest.get("lat").toString());
     Double lon = Double.valueOf(jsonRequest.get("lon").toString());
