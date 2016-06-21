@@ -1,6 +1,9 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +18,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
@@ -169,19 +174,26 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
 
     System.out.println("Ricardas phone stopped ringing");
 
-    // Configuration configuration = new Configuration();
-    // configuration.configure();
-    // ServiceRegistry serviceRegistry =
-    // new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-    // ;
-    SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+    // Configuration config = new Configuration().configure("hibernate.cfg.xml");
+    Configuration config = new Configuration().configure("hibernate.cfg.xml");
+    StandardServiceRegistry serviceRegistry =
+        new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
+
+    SessionFactory sessionFactory = config.buildSessionFactory(serviceRegistry);
 
     Session session = sessionFactory.openSession();
     Transaction tx = null;
-    Date date = new Date();
-    Date currTimeStamp = new Timestamp(date.getTime());
 
-    System.out.println("Ricardas phone stopped ringing twice");
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    Date date = new Date();
+    String currDateTemp = dateFormat.format(date);
+    long a = date.getTime();
+
+    Date currTimeStamp = new Timestamp(date.getTime());
+    int b = date.compareTo(currTimeStamp);
+
+    System.out.println("Ricardas phone stopped ringing twice at " + currTimeStamp + " also at " + currDateTemp);
+    System.out.println(a + "*****" + b + "*****" + date);
 
     try {
       tx = session.beginTransaction();
@@ -199,10 +211,19 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       cse.setUserAddress(userAddress);
       cse.setUserAssistance(userAssistance);
       cse.setTimeStamp(currTimeStamp);
-      Long requestID = (Long) session.save(cse);
+      // Long requestId = (Long) session.save(cse);
+
+      Long requestId = cse.getId();
+      System.out.println("requestId: " + requestId);
+      // session.save(cse);
+      Serializable reqID = session.save(cse);
+      Long req = (Long) reqID;
+      long requestID = req.longValue();
+
+      System.out.println("requestID: " + requestID);
       tx.commit();
 
-      return requestID;
+      return requestId;
     } catch (HibernateException e) {
       if (tx != null)
         tx.rollback();
