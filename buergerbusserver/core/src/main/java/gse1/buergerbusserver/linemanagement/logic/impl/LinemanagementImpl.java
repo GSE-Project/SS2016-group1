@@ -171,10 +171,10 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public void setLastPosition(Long busId, double lon, double lat,int takenSeats) {
+  public void setLastPosition(Long busId, double lon, double lat, int takenSeats) {
 
     try {
-      this.lastPositionDao.setLastPosition(busId, lon, lat,takenSeats);
+      this.lastPositionDao.setLastPosition(busId, lon, lat, takenSeats);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -182,13 +182,11 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public HashMap<String, Integer> getCustomStopStatus(Long requestId, String deviceId) {
+  public CustomStopEto getCustomStopStatus(Long requestId, String deviceId) {
 
     List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopStatus(requestId, deviceId);
     List<CustomStopEto> customStopsMapped = getBeanMapper().mapList(customStops, CustomStopEto.class);
-    HashMap<String, Integer> customStopStatus = new HashMap<>();
-    customStopStatus.put("Status", customStopsMapped.get(0).getStatus());
-    return customStopStatus;
+    return customStopsMapped.get(0);
   }
 
   @Override
