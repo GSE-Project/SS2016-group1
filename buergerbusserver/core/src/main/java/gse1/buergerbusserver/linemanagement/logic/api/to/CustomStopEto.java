@@ -177,7 +177,7 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
   }
 
   /**
-   * @param deviceId new value of {@link #getRequestId}.
+   * @param deviceId new value of {@link #getId}.
    */
   @Override
   public void setDeviceId(String deviceId) {

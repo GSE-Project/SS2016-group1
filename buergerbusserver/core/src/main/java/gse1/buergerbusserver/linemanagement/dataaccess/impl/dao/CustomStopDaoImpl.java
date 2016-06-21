@@ -2,8 +2,7 @@ package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -106,13 +105,13 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
 
-      // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-      // Date date = new Date();
-      // Date currDate = dateFormat.format(date);
+      Calendar cal = Calendar.getInstance();
+      Date currDate = cal.getTime();
 
       cq.select(ro);
-      // cq.where(cb.and(cb.equal(ro.get("lineId"), lineId), (cb.equal(ro.<Date> get("pickUpTime"), currDate))));
-      cq.where(cb.equal(ro.get("lineId"), lineId));
+      cq.where(cb.and(cb.equal(ro.get("lineId"), lineId),
+          (cb.greaterThanOrEqualTo(ro.<Date> get("pickUpTime"), currDate)), (cb.equal(ro.get("status"), 1))));
+      // cq.where(cb.equal(ro.get("lineId"), lineId));
 
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
       return result;
@@ -172,28 +171,16 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
     // buildSessionFactory
     // session.beginTransaction();
 
-    System.out.println("Ricardas phone stopped ringing");
+    Date date = new Date();
+    Date currTimeStamp = new Timestamp(date.getTime());
 
-    // Configuration config = new Configuration().configure("hibernate.cfg.xml");
     Configuration config = new Configuration().configure("hibernate.cfg.xml");
     StandardServiceRegistry serviceRegistry =
         new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
 
     SessionFactory sessionFactory = config.buildSessionFactory(serviceRegistry);
-
     Session session = sessionFactory.openSession();
     Transaction tx = null;
-
-    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-    Date date = new Date();
-    String currDateTemp = dateFormat.format(date);
-    long a = date.getTime();
-
-    Date currTimeStamp = new Timestamp(date.getTime());
-    int b = date.compareTo(currTimeStamp);
-
-    System.out.println("Ricardas phone stopped ringing twice at " + currTimeStamp + " also at " + currDateTemp);
-    System.out.println(a + "*****" + b + "*****" + date);
 
     try {
       tx = session.beginTransaction();

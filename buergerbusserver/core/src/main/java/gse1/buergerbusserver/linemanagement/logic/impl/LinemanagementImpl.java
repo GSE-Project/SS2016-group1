@@ -1,5 +1,6 @@
 package gse1.buergerbusserver.linemanagement.logic.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -131,7 +132,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     try {
       this.busDao.updateBusStatus(busId, lineId);
     } catch (Exception e) {
-      // TODO Auto-generated catch block
+
       e.printStackTrace();
     }
 
@@ -227,7 +228,6 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   public Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
       String userName, String userAddress, List<Integer> userAssistance) {
 
-    // TODO
     String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
     Long requestId = this.CustomStopDao.newCustomStop(lineId, pickUpTime, lat, lon, numberOfPersons, deviceId, userName,
         userAddress, userAssist);
@@ -240,15 +240,19 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public Long newCustomStopE(@Valid CustomStopEto customStop) {
+  public List<CustomStopEto> newCustomStopE(@Valid CustomStopEto customStop) {
 
-    Long requestId = customStop.getId();
+    // Long requestId = customStop.getId();
 
     CustomStopEntity customStopEntity = getBeanMapper().map(customStop, CustomStopEntity.class);
 
     Long modReqId = this.CustomStopDao.save(customStopEntity).getId();
+    System.out.println("modReqId: " + modReqId);
 
-    return modReqId;
+    List<CustomStopEto> cseto = new ArrayList<>();
+    cseto.add(customStop);
+
+    return cseto;
   }
 
 }

@@ -197,7 +197,22 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public Response newCustomStop(HashMap<String, Object> jsonRequest) {
+  public List<CustomStopEto> newCustomStop(HashMap<String, Object> jsonRequest) {
+
+    @SuppressWarnings("unchecked")
+    List<Integer> userAssistance = (List<Integer>) jsonRequest.get("userAssistance");
+    String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
+
+    Date date = new Date();
+    Date currTimeStamp = new Timestamp(date.getTime());
+    DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    Date pickUpTime;
+    try {
+      pickUpTime = format.parse(jsonRequest.get("pickUpTime").toString());
+    } catch (ParseException e1) {
+      e1.printStackTrace();
+      pickUpTime = null;
+    }
 
     CustomStopEto customStop = new CustomStopEto();
 
@@ -208,33 +223,19 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     customStop.setDeviceId(jsonRequest.get("deviceId").toString());
     customStop.setUserName(jsonRequest.get("userName").toString());
     customStop.setUserAddress(jsonRequest.get("userAddress").toString());
-    @SuppressWarnings("unchecked")
-    List<Integer> userAssistance = (List<Integer>) jsonRequest.get("userAssistance");
-    String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
     customStop.setUserAssistance(userAssist);
-    DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    Date pickUpTime;
-    try {
-      pickUpTime = format.parse(jsonRequest.get("pickUpTime").toString());
-    } catch (ParseException e1) {
-      e1.printStackTrace();
-      pickUpTime = null;
-    }
     customStop.setPickUpTime(pickUpTime);
-
     customStop.setStatus(1); // Status set to "pending" initially
-    Date date = new Date();
-    Date currTimeStamp = new Timestamp(date.getTime());
     customStop.setTimeStamp(currTimeStamp);
 
     try {
-
-      this.linemanagement.newCustomStopE(customStop);
-      return Response.status(200).build();
-
+      List<CustomStopEto> theRequest = this.linemanagement.newCustomStopE(customStop);
+      // return Response.status(200).build();
+      return theRequest;
     } catch (Exception e) {
       e.printStackTrace();
-      return Response.status(500).build();
+      // return Response.status(500).build();
+      return null;
     }
   }
 
