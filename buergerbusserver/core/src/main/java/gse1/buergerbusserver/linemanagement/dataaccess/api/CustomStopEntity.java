@@ -3,9 +3,6 @@ package gse1.buergerbusserver.linemanagement.dataaccess.api;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,10 +26,10 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
 
   private static final long serialVersionUID = 1L;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
-  private Long id;
+  // @Id
+  // @GeneratedValue(strategy = GenerationType.IDENTITY)
+  // // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
+  // private Long id;
 
   private String userAssistance;
 
@@ -58,23 +55,23 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
 
   private Date timeStamp;
 
-  @Override
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
-  public Long getId() {
-
-    return this.id;
-  }
-
-  @Override
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
-  public void setId(Long id) {
-
-    this.id = id;
-  }
+  // @Override
+  // @Id
+  // @GeneratedValue(strategy = GenerationType.IDENTITY)
+  // // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
+  // public Long getId() {
+  //
+  // return this.id;
+  // }
+  //
+  // @Override
+  // @Id
+  // @GeneratedValue(strategy = GenerationType.IDENTITY)
+  // // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
+  // public void setId(Long id) {
+  //
+  // this.id = id;
+  // }
 
   @Override
   public Long getBusId() {

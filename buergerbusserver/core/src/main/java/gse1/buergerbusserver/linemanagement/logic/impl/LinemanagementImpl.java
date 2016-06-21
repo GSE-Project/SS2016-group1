@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -236,6 +237,18 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
      */
 
     return requestId;
+  }
+
+  @Override
+  public Long newCustomStopE(@Valid CustomStopEto customStop) {
+
+    Long requestId = customStop.getId();
+
+    CustomStopEntity customStopEntity = getBeanMapper().map(customStop, CustomStopEntity.class);
+
+    Long modReqId = this.CustomStopDao.save(customStopEntity).getId();
+
+    return modReqId;
   }
 
 }

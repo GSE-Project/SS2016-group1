@@ -1,5 +1,6 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,8 @@ import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
+
+import org.springframework.util.StringUtils;
 
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
@@ -196,16 +199,19 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public Response newCustomStop(HashMap<String, Object> jsonRequest) {
 
-    Long lineId = Long.valueOf(jsonRequest.get("lineId").toString());
-    Double lat = Double.valueOf(jsonRequest.get("lat").toString());
-    Double lon = Double.valueOf(jsonRequest.get("lon").toString());
-    int numberOfPersons = Integer.valueOf(jsonRequest.get("numberOfPersons").toString());
-    String deviceId = jsonRequest.get("deviceId").toString();
-    String userName = jsonRequest.get("userName").toString();
-    String userAddress = jsonRequest.get("userAddress").toString();
+    CustomStopEto customStop = new CustomStopEto();
+
+    customStop.setLineId(Long.valueOf(jsonRequest.get("lineId").toString()));
+    customStop.setLat(Double.valueOf(jsonRequest.get("lat").toString()));
+    customStop.setLon(Double.valueOf(jsonRequest.get("lon").toString()));
+    customStop.setNumberOfPersons(Integer.valueOf(jsonRequest.get("numberOfPersons").toString()));
+    customStop.setDeviceId(jsonRequest.get("deviceId").toString());
+    customStop.setUserName(jsonRequest.get("userName").toString());
+    customStop.setUserAddress(jsonRequest.get("userAddress").toString());
     @SuppressWarnings("unchecked")
     List<Integer> userAssistance = (List<Integer>) jsonRequest.get("userAssistance");
-
+    String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
+    customStop.setUserAssistance(userAssist);
     DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     Date pickUpTime;
     try {
@@ -214,11 +220,16 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       e1.printStackTrace();
       pickUpTime = null;
     }
+    customStop.setPickUpTime(pickUpTime);
+
+    customStop.setStatus(1); // Status set to "pending" initially
+    Date date = new Date();
+    Date currTimeStamp = new Timestamp(date.getTime());
+    customStop.setTimeStamp(currTimeStamp);
 
     try {
 
-      this.linemanagement.newCustomStop(lineId, pickUpTime, lat, lon, numberOfPersons, deviceId, userName, userAddress,
-          userAssistance);
+      this.linemanagement.newCustomStopE(customStop);
       return Response.status(200).build();
 
     } catch (Exception e) {

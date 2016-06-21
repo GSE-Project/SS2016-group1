@@ -153,4 +153,6 @@ public interface Linemanagement {
   public Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
       String userName, String userAddress, List<Integer> userAssistance);
 
+  public Long newCustomStopE(CustomStopEto customStop);
+
 }
