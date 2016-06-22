@@ -228,8 +228,8 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
       String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
 
     String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
-    Long requestId = this.CustomStopDao.newCustomStop(lineId, pickUpTime, lat, lon, numberOfPersons, deviceId, userName,
-        userAddress, userAssist);
+    Long requestId = this.CustomStopDao.newCustomStopTransaction(lineId, pickUpTime, lat, lon, numberOfPersons,
+        deviceId, userName, userAddress, userAssist);
     /*
      * List<String> stringList = Arrays.asList(userAssist.split(",")); List<Integer> returnList = new ArrayList<>(); for
      * (String num : stringList) { returnList.add(Integer.valueOf(num)); }
