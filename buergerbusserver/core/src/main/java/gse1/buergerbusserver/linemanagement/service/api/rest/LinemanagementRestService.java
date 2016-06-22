@@ -150,6 +150,6 @@ public interface LinemanagementRestService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Path("customStop/newRequest/")
-  public List<CustomStopEto> newCustomStop(HashMap<String, Object> jsonRequest);
+  public CustomStopEto newCustomStop(HashMap<String, Object> jsonRequest);
 
 }

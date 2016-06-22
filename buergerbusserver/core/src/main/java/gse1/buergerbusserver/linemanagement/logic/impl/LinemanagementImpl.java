@@ -1,6 +1,5 @@
 package gse1.buergerbusserver.linemanagement.logic.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -240,7 +239,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<CustomStopEto> newCustomStopE(@Valid CustomStopEto customStop) {
+  public CustomStopEto newCustomStopE(@Valid CustomStopEto customStop) {
 
     // Long requestId = customStop.getId();
 
@@ -249,10 +248,9 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     Long modReqId = this.CustomStopDao.save(customStopEntity).getId();
     System.out.println("modReqId: " + modReqId);
 
-    List<CustomStopEto> cseto = new ArrayList<>();
-    cseto.add(customStop);
+    customStop.setId(modReqId);
 
-    return cseto;
+    return customStop;
   }
 
 }

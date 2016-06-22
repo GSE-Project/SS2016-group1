@@ -197,7 +197,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<CustomStopEto> newCustomStop(HashMap<String, Object> jsonRequest) {
+  public CustomStopEto newCustomStop(HashMap<String, Object> jsonRequest) {
 
     @SuppressWarnings("unchecked")
     List<Integer> userAssistance = (List<Integer>) jsonRequest.get("userAssistance");
@@ -229,7 +229,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     customStop.setTimeStamp(currTimeStamp);
 
     try {
-      List<CustomStopEto> theRequest = this.linemanagement.newCustomStopE(customStop);
+      CustomStopEto theRequest = this.linemanagement.newCustomStopE(customStop);
       // return Response.status(200).build();
       return theRequest;
     } catch (Exception e) {

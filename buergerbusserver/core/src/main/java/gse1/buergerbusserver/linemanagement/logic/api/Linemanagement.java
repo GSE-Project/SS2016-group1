@@ -158,6 +158,6 @@ public interface Linemanagement {
    * @param customStop CustomStopEto object
    * @return All information for that request
    */
-  public List<CustomStopEto> newCustomStopE(CustomStopEto customStop);
+  public CustomStopEto newCustomStopE(CustomStopEto customStop);
 
 }

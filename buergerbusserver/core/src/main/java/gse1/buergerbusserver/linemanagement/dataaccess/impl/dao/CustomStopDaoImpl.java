@@ -111,6 +111,7 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       cq.select(ro);
       cq.where(cb.and(cb.equal(ro.get("lineId"), lineId),
           (cb.greaterThanOrEqualTo(ro.<Date> get("pickUpTime"), currDate)), (cb.equal(ro.get("status"), 1))));
+
       // cq.where(cb.equal(ro.get("lineId"), lineId));
 
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
