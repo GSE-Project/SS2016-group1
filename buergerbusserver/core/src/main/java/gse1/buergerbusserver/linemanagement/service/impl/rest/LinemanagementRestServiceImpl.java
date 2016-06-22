@@ -154,24 +154,6 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public CustomStopEto getCustomStopStatus(Long requestId, String deviceId) {
-
-    return this.linemanagement.getCustomStopStatus(requestId, deviceId);
-  }
-
-  @Override
-  public List<CustomStopEto> getCustomStopDevice(String deviceId) {
-
-    return this.linemanagement.getCustomStopDevice(deviceId);
-  }
-
-  @Override
-  public List<CustomStopEto> getCustomStopLine(Long lineId) {
-
-    return this.linemanagement.getCustomStopLine(lineId);
-  }
-
-  @Override
   public List<CustomStopEto> getCustomStopRequests(int status) {
 
     // TODO Auto-generated method stub
@@ -229,7 +211,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     customStop.setTimeStamp(currTimeStamp);
 
     try {
-      CustomStopEto theRequest = this.linemanagement.newCustomStopE(customStop);
+      CustomStopEto theRequest = this.linemanagement.newCustomStop(customStop);
       // return Response.status(200).build();
       return theRequest;
     } catch (Exception e) {
@@ -237,6 +219,20 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       // return Response.status(500).build();
       return null;
     }
+  }
+
+  @Override
+  public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId) {
+
+    if (requestId != null && deviceId != null && !deviceId.isEmpty())
+      return this.linemanagement.getCustomStopStatus(requestId, deviceId);
+    if (deviceId != null && !deviceId.isEmpty())
+      return this.linemanagement.getCustomStopDevice(deviceId);
+    if (lineId != null)
+      return this.linemanagement.getCustomStopLine(lineId);
+
+    return null;
+
   }
 
 }
