@@ -1,5 +1,10 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -16,11 +21,6 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.springframework.util.StringUtils;
-
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
-import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
 /**
  * @author Jay
@@ -161,15 +161,15 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public Response updateCustomStopStatus(HashMap<String, Long> jsonRequest) {
+  public Response updateCustomStop(long customStopId,
+                                  HashMap<String, Long> jsonRequest) {
 
-    Long requestId = jsonRequest.get("requestId");
     long temp = Long.valueOf(jsonRequest.get("status"));
     int status = (int) temp;
 
     try {
 
-      this.linemanagement.updateCustomStopStatus(requestId, status);
+      this.linemanagement.updateCustomStopStatus(customStopId, status);
       return Response.status(200).build();
 
     } catch (Exception e) {

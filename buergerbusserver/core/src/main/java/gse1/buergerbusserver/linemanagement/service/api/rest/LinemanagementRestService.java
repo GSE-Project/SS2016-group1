@@ -1,5 +1,9 @@
 package gse1.buergerbusserver.linemanagement.service.api.rest;
 
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -13,10 +17,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 
 /**
  * @author ahsan
@@ -154,8 +154,9 @@ public interface LinemanagementRestService {
    */
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  @Path("/customStop/updStatus/")
-  public Response updateCustomStopStatus(HashMap<String, Long> jsonRequest);
+  @Path("/customStops/{customStopId}")
+  public Response updateCustomStop(@PathParam("customStopId") long customStopID,
+                                        HashMap<String, Long> jsonRequest);
 
   /**
    * @param jsonRequest create a new custom stop request with the jsonRequest
@@ -163,7 +164,7 @@ public interface LinemanagementRestService {
    */
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  @Path("customStop/newRequest/")
+  @Path("customStops")
   public CustomStopEto newCustomStop(HashMap<String, Object> jsonRequest);
 
 }
