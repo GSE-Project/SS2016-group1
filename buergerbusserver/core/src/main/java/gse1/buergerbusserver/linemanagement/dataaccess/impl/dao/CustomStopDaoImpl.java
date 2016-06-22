@@ -2,6 +2,7 @@ package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -107,10 +108,14 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
 
       Calendar cal = Calendar.getInstance();
       Date currDate = cal.getTime();
+      List<Integer> statusValues = new ArrayList<>();
+      statusValues.add(1);
+      statusValues.add(3);
 
       cq.select(ro);
-      cq.where(cb.and(cb.equal(ro.get("lineId"), lineId),
-          (cb.greaterThanOrEqualTo(ro.<Date> get("pickUpTime"), currDate)), (cb.equal(ro.get("status"), 1))));
+      cq.where(
+          cb.and(cb.equal(ro.get("lineId"), lineId), cb.greaterThanOrEqualTo(ro.<Date> get("pickUpTime"), currDate),
+              cb.or(cb.equal(ro.get("status"), 1), cb.equal(ro.get("status"), 3))));
 
       // cq.where(cb.equal(ro.get("lineId"), lineId));
 
@@ -165,8 +170,8 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   }
 
   @Override
-  public Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
-      String userName, String userAddress, String userAssistance) {
+  public Long newCustomStopTransaction(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
+      String deviceId, String userName, String userAddress, String userAssistance) {
 
     // Session session = HibernateUtil.getSessionFactory().openSession();
     // buildSessionFactory
