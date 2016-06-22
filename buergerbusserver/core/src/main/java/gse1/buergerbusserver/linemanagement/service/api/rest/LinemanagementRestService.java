@@ -1,5 +1,9 @@
 package gse1.buergerbusserver.linemanagement.service.api.rest;
 
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,12 +14,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 
 /**
  * @author ahsan
@@ -100,32 +101,45 @@ public interface LinemanagementRestService {
   public Response setLastPosition(HashMap<String, Object> jsonRequest);
 
   /**
-   * @param requestId requestID of the request
-   * @param deviceId device ID from which the request was made
-   * @return Status of the custom stop request along with other customer info
+   * @param requestId of the request
+   * @param deviceId from which the request was made
+   * @param lineId for which the request was made
+   * @return Status of the custom stop requests along with other customer info
    */
-  @GET
-  // @Path("/customStop?requestId={requestId}")
-  @Path("/customStop/requestid/{requestId}/{deviceId}")
-  public CustomStopEto getCustomStopStatus(@PathParam("requestId") Long requestId,
-      @PathParam("deviceId") String deviceId);
 
-  /**
-   * @param deviceId Device ID from which the request was received
-   * @return All the requests from that device
-   */
+  // @Path("/customStops?requestId={requestId}")
   @GET
-  @Path("/customStop/deviceid/{deviceId}")
-  public List<CustomStopEto> getCustomStopDevice(@PathParam("deviceId") String deviceId);
+  @Path("/customStops")
+  public List<CustomStopEto> getCustomStops(@QueryParam("requestId") Long requestId,
+      @QueryParam("deviceId") String deviceId, @QueryParam("lineId") Long lineId);
 
-  /**
-   * @param lineId Line ID of the bus
-   * @return All pending requests for that day
-   */
-  @GET
-  @Path("/customStop/lineid/{lineId}")
-  public List<CustomStopEto> getCustomStopLine(@PathParam("lineId") Long lineId);
-
+  // /**
+  // * @param requestId of the request
+  // * @param deviceId from which the request was made
+  // * @return Status of the custom stop request along with other customer info
+  // */
+  // @GET
+  // // @Path("/customStop?requestId={requestId}")
+  // @Path("/customStop/requestid/{requestId}/{deviceId}")
+  // public List<CustomStopEto> getCustomStopStatus(@PathParam("requestId") Long requestId,
+  // @PathParam("deviceId") String deviceId);
+  //
+  // /**
+  // * @param deviceId Device ID from which the request was received
+  // * @return All the requests from that device
+  // */
+  // @GET
+  // @Path("/customStop/deviceid/{deviceId}")
+  // public List<CustomStopEto> getCustomStopDevice(@PathParam("deviceId") String deviceId);
+  //
+  // /**
+  // * @param lineId Line ID of the bus
+  // * @return All pending requests for that day
+  // */
+  // @GET
+  // @Path("/customStop/lineid/{lineId}")
+  // public List<CustomStopEto> getCustomStopLine(@PathParam("lineId") Long lineId);
+  //
   /**
    * @param status Status of the Custom Stop Request
    * @return All requests in that status
@@ -140,8 +154,9 @@ public interface LinemanagementRestService {
    */
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  @Path("/customStop/updStatus/")
-  public Response updateCustomStopStatus(HashMap<String, Long> jsonRequest);
+  @Path("/customStops/{customStopId}")
+  public Response updateCustomStop(@PathParam("customStopId") long customStopID,
+                                        HashMap<String, Long> jsonRequest);
 
   /**
    * @param jsonRequest create a new custom stop request with the jsonRequest
@@ -149,7 +164,7 @@ public interface LinemanagementRestService {
    */
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  @Path("customStop/newRequest/")
+  @Path("customStops")
   public CustomStopEto newCustomStop(HashMap<String, Object> jsonRequest);
 
 }

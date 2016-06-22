@@ -183,11 +183,11 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public CustomStopEto getCustomStopStatus(Long requestId, String deviceId) {
+  public List<CustomStopEto> getCustomStopStatus(Long requestId, String deviceId) {
 
     List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopStatus(requestId, deviceId);
     List<CustomStopEto> customStopsMapped = getBeanMapper().mapList(customStops, CustomStopEto.class);
-    return customStopsMapped.get(0);
+    return customStopsMapped;
   }
 
   @Override
@@ -224,8 +224,8 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
-      String userName, String userAddress, List<Integer> userAssistance) {
+  public Long newCustomStopTransaction(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
+      String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
 
     String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
     Long requestId = this.CustomStopDao.newCustomStop(lineId, pickUpTime, lat, lon, numberOfPersons, deviceId, userName,
@@ -239,15 +239,12 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public CustomStopEto newCustomStopE(@Valid CustomStopEto customStop) {
+  public CustomStopEto newCustomStop(@Valid CustomStopEto customStop) {
 
     // Long requestId = customStop.getId();
 
     CustomStopEntity customStopEntity = getBeanMapper().map(customStop, CustomStopEntity.class);
-
     Long modReqId = this.CustomStopDao.save(customStopEntity).getId();
-    System.out.println("modReqId: " + modReqId);
-
     customStop.setId(modReqId);
 
     return customStop;
