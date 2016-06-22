@@ -1,5 +1,6 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,8 @@ import javax.inject.Named;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
+
+import org.springframework.util.StringUtils;
 
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
@@ -133,14 +136,14 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     busId = Long.valueOf(jsonRequest.get("busId").toString());
 
     int takenSeats = Integer.parseInt(jsonRequest.get("takenSeats").toString());
-    
+
     HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("position");
     ArrayList<?> coordinates = (ArrayList<?>) obj.get("coordinates");
     lon = (Double) coordinates.get(0);
     lat = (Double) coordinates.get(1);
     try {
 
-      this.linemanagement.setLastPosition(busId, lon, lat,takenSeats);
+      this.linemanagement.setLastPosition(busId, lon, lat, takenSeats);
       return Response.status(200).build();
 
     } catch (Exception e) {
@@ -148,24 +151,6 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       return Response.status(500).build();
     }
 
-  }
-
-  @Override
-  public HashMap<String, Integer> getCustomStopStatus(Long requestId, String deviceId) {
-
-    return this.linemanagement.getCustomStopStatus(requestId, deviceId);
-  }
-
-  @Override
-  public List<CustomStopEto> getCustomStopDevice(String deviceId) {
-
-    return this.linemanagement.getCustomStopDevice(deviceId);
-  }
-
-  @Override
-  public List<CustomStopEto> getCustomStopLine(Long lineId) {
-
-    return this.linemanagement.getCustomStopLine(lineId);
   }
 
   @Override
@@ -194,19 +179,14 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public Response newCustomStop(HashMap<String, Object> jsonRequest) {
+  public CustomStopEto newCustomStop(HashMap<String, Object> jsonRequest) {
 
-    System.out.println("Ricardas phone is ringing");
-    Long lineId = Long.valueOf(jsonRequest.get("lineId").toString());
-    Double lat = Double.valueOf(jsonRequest.get("lat").toString());
-    Double lon = Double.valueOf(jsonRequest.get("lon").toString());
-    int numberOfPersons = Integer.valueOf(jsonRequest.get("numberOfPersons").toString());
-    String deviceId = jsonRequest.get("deviceId").toString();
-    String userName = jsonRequest.get("userName").toString();
-    String userAddress = jsonRequest.get("userAddress").toString();
     @SuppressWarnings("unchecked")
     List<Integer> userAssistance = (List<Integer>) jsonRequest.get("userAssistance");
+    String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
 
+    Date date = new Date();
+    Date currTimeStamp = new Timestamp(date.getTime());
     DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     Date pickUpTime;
     try {
@@ -216,16 +196,43 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       pickUpTime = null;
     }
 
+    CustomStopEto customStop = new CustomStopEto();
+
+    customStop.setLineId(Long.valueOf(jsonRequest.get("lineId").toString()));
+    customStop.setLat(Double.valueOf(jsonRequest.get("lat").toString()));
+    customStop.setLon(Double.valueOf(jsonRequest.get("lon").toString()));
+    customStop.setNumberOfPersons(Integer.valueOf(jsonRequest.get("numberOfPersons").toString()));
+    customStop.setDeviceId(jsonRequest.get("deviceId").toString());
+    customStop.setUserName(jsonRequest.get("userName").toString());
+    customStop.setUserAddress(jsonRequest.get("userAddress").toString());
+    customStop.setUserAssistance(userAssist);
+    customStop.setPickUpTime(pickUpTime);
+    customStop.setStatus(1); // Status set to "pending" initially
+    customStop.setTimeStamp(currTimeStamp);
+
     try {
-
-      this.linemanagement.newCustomStop(lineId, pickUpTime, lat, lon, numberOfPersons, deviceId, userName, userAddress,
-          userAssistance);
-      return Response.status(200).build();
-
+      CustomStopEto theRequest = this.linemanagement.newCustomStop(customStop);
+      // return Response.status(200).build();
+      return theRequest;
     } catch (Exception e) {
       e.printStackTrace();
-      return Response.status(500).build();
+      // return Response.status(500).build();
+      return null;
     }
+  }
+
+  @Override
+  public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId) {
+
+    if (requestId != null && deviceId != null && !deviceId.isEmpty())
+      return this.linemanagement.getCustomStopStatus(requestId, deviceId);
+    if (deviceId != null && !deviceId.isEmpty())
+      return this.linemanagement.getCustomStopDevice(deviceId);
+    if (lineId != null)
+      return this.linemanagement.getCustomStopLine(lineId);
+
+    return null;
+
   }
 
 }

@@ -89,8 +89,9 @@ public interface Linemanagement {
    * @param busId Sets the busId
    * @param lon sets the Longitude of the Last Position of bus
    * @param lat Sets the Latitude of the last position of bus
+   * @param takenSeats number of seats taken
    */
-  void setLastPosition(Long busId, double lon, double lat,int takenSeats);
+  void setLastPosition(Long busId, double lon, double lat, int takenSeats);
 
   /**
    * Returns a list of all {@link CustomStopEntity} pending {@link CustomStop} as given by requestId and deviceId (For
@@ -100,7 +101,7 @@ public interface Linemanagement {
    * @param deviceId
    * @return {@link List} of Custom Stop requests pending for the request ID and device ID
    **/
-  HashMap<String, Integer> getCustomStopStatus(Long requestId, String deviceId);
+  List<CustomStopEto> getCustomStopStatus(Long requestId, String deviceId);
 
   /**
    * Returns a list of all {@link CustomStopEntity} pending {@link CustomStop} as given by deviceId (For Citizen)
@@ -150,7 +151,13 @@ public interface Linemanagement {
    *
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  public Long newCustomStop(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons, String deviceId,
-      String userName, String userAddress, List<Integer> userAssistance);
+  public Long newCustomStopTransaction(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
+      String deviceId, String userName, String userAddress, List<Integer> userAssistance);
+
+  /**
+   * @param customStop CustomStopEto object
+   * @return All information for that request
+   */
+  public CustomStopEto newCustomStop(CustomStopEto customStop);
 
 }

@@ -1,6 +1,8 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +17,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
@@ -101,13 +105,14 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
 
-      // DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-      // Date date = new Date();
-      // Date currDate = dateFormat.format(date);
+      Calendar cal = Calendar.getInstance();
+      Date currDate = cal.getTime();
 
       cq.select(ro);
-      // cq.where(cb.and(cb.equal(ro.get("lineId"), lineId), (cb.equal(ro.<Date> get("pickUpTime"), currDate))));
-      cq.where(cb.equal(ro.get("lineId"), lineId));
+      cq.where(cb.and(cb.equal(ro.get("lineId"), lineId),
+          (cb.greaterThanOrEqualTo(ro.<Date> get("pickUpTime"), currDate)), (cb.equal(ro.get("status"), 1))));
+
+      // cq.where(cb.equal(ro.get("lineId"), lineId));
 
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
       return result;
@@ -167,21 +172,16 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
     // buildSessionFactory
     // session.beginTransaction();
 
-    System.out.println("Ricardas phone stopped ringing");
-
-    // Configuration configuration = new Configuration();
-    // configuration.configure();
-    // ServiceRegistry serviceRegistry =
-    // new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-    // ;
-    SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-
-    Session session = sessionFactory.openSession();
-    Transaction tx = null;
     Date date = new Date();
     Date currTimeStamp = new Timestamp(date.getTime());
 
-    System.out.println("Ricardas phone stopped ringing twice");
+    Configuration config = new Configuration().configure("hibernate.cfg.xml");
+    StandardServiceRegistry serviceRegistry =
+        new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
+
+    SessionFactory sessionFactory = config.buildSessionFactory(serviceRegistry);
+    Session session = sessionFactory.openSession();
+    Transaction tx = null;
 
     try {
       tx = session.beginTransaction();
@@ -199,10 +199,19 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       cse.setUserAddress(userAddress);
       cse.setUserAssistance(userAssistance);
       cse.setTimeStamp(currTimeStamp);
-      Long requestID = (Long) session.save(cse);
+      // Long requestId = (Long) session.save(cse);
+
+      Long requestId = cse.getId();
+      System.out.println("requestId: " + requestId);
+      // session.save(cse);
+      Serializable reqID = session.save(cse);
+      Long req = (Long) reqID;
+      long requestID = req.longValue();
+
+      System.out.println("requestID: " + requestID);
       tx.commit();
 
-      return requestID;
+      return requestId;
     } catch (HibernateException e) {
       if (tx != null)
         tx.rollback();

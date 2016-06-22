@@ -2,16 +2,24 @@ package gse1.buergerbusserver.linemanagement.logic.api.to;
 
 import java.util.Date;
 
+import gse1.buergerbusserver.linemanagement.common.api.CustomStop;
+import io.oasp.module.basic.common.api.to.AbstractEto;
+
 /**
  * @author ricarda
  *
  *         edited JAYU
  */
-public class CustomStopEto {// extends AbstractEto implements CustomStop {
+public class CustomStopEto extends AbstractEto implements CustomStop {
+
+  /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
 
   private Long lineId;
 
-  private Long id;
+  // private Long id;
 
   private Date pickUpTime;
 
@@ -43,20 +51,21 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
     super();
   }
 
-  public Long getId() {
-
-    return this.id;
-  }
-
-  public void setId(Long id) {
-
-    this.id = id;
-  }
+  // public Long getId() {
+  //
+  // return this.id;
+  // }
+  //
+  // public void setId(Long id) {
+  //
+  // this.id = id;
+  // }
 
   /**
    *
    * @param lineId new value of {@link #getLineId}.
    */
+  @Override
   public void setLineId(Long lineId) {
 
     this.lineId = lineId;
@@ -66,32 +75,34 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return lineId
    */
+  @Override
   public Long getLineId() {
 
     return this.lineId;
   }
 
-  /**
-   *
-   * @param requestId new value of {@link #getRequestId}.
-   */
-
-  public void setRequestId(Long requestId) {
-
-    this.id = requestId;
-  }
-
-  /**
-   * @return requestId
-   */
-  public Long getRequestId() {
-
-    return this.id;
-  }
+  // /**
+  // *
+  // * @param requestId new value of {@link #getRequestId}.
+  // */
+  //
+  // public void setRequestId(Long requestId) {
+  //
+  // this.id = requestId;
+  // }
+  //
+  // /**
+  // * @return requestId
+  // */
+  // public Long getRequestId() {
+  //
+  // return this.id;
+  // }
 
   /**
    * @param pickUpTime pickUpTime new value of {@link #getPickUpTime}
    */
+  @Override
   public void setPickUpTime(Date pickUpTime) {
 
     this.pickUpTime = pickUpTime;
@@ -101,6 +112,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return pickUpTime
    */
+  @Override
   public Date getPickUpTime() {
 
     return this.pickUpTime;
@@ -109,6 +121,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @param lon Longitude of the requested Stop
    */
+  @Override
   public void setLon(double lon) {
 
     this.lon = lon;
@@ -118,6 +131,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return Longitude of the requested Stop
    */
+  @Override
   public double getLon() {
 
     return this.lon;
@@ -126,6 +140,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @param lat Latitude of the requested Stop
    */
+  @Override
   public void setLat(double lat) {
 
     this.lat = lat;
@@ -135,6 +150,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return Latitude of the requested Stop
    */
+  @Override
   public double getLat() {
 
     return this.lat;
@@ -144,6 +160,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
    * @param numberOfPersons Sets No.of persons who requested the customed Stop
    *
    */
+  @Override
   public void setNumberOfPersons(int numberOfPersons) {
 
     this.numberOfPersons = numberOfPersons;
@@ -153,14 +170,16 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return NumberOfPersons who requested the Custom Stop
    */
+  @Override
   public int getNumberOfPersons() {
 
     return this.numberOfPersons;
   }
 
   /**
-   * @param deviceId new value of {@link #getRequestId}.
+   * @param deviceId new value of {@link #getId}.
    */
+  @Override
   public void setDeviceId(String deviceId) {
 
     this.deviceId = deviceId;
@@ -170,6 +189,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return deviceId
    */
+  @Override
   public String getDeviceId() {
 
     return this.deviceId;
@@ -178,6 +198,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @param userName new value of {@link #getUserName}.
    */
+  @Override
   public void setUserName(String userName) {
 
     this.userName = userName;
@@ -187,6 +208,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return UserName
    */
+  @Override
   public String getUserName() {
 
     return this.userName;
@@ -195,6 +217,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @param userAddress Set the User Address of the Persons
    */
+  @Override
   public void setUserAddress(String userAddress) {
 
     this.userAddress = userAddress;
@@ -204,6 +227,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return userAddress
    */
+  @Override
   public String getUserAddress() {
 
     return this.userAddress;
@@ -213,6 +237,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
    * @param userAssistance new value of {@link #getUserAssistance}
    *
    */
+  @Override
   public void setUserAssistance(String userAssistance) {
 
     this.userAssistance = userAssistance;
@@ -222,6 +247,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return UserAssistance
    */
+  @Override
   public String getUserAssistance() {
 
     return this.userAssistance;
@@ -230,6 +256,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @param status Set the Status of the Bus
    */
+  @Override
   public void setStatus(int status) {
 
     this.status = status;
@@ -239,6 +266,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return Status of the Bus
    */
+  @Override
   public int getStatus() {
 
     return this.status;
@@ -248,6 +276,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
    *
    * @param busId new value of {@link #getBusId}.
    */
+  @Override
   public void setBusId(Long busId) {
 
     this.busId = busId;
@@ -257,6 +286,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
   /**
    * @return busId
    */
+  @Override
   public Long getBusId() {
 
     return this.busId;
@@ -266,6 +296,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
    * @param timeStamp Sets date time on create/update
    *
    */
+  @Override
   public void setTimeStamp(Date timeStamp) {
 
     this.timeStamp = timeStamp;
@@ -277,6 +308,7 @@ public class CustomStopEto {// extends AbstractEto implements CustomStop {
    *
    * @return timestamp for the line when it last updated
    */
+  @Override
   public Date getTimeStamp() {
 
     return this.timeStamp;
