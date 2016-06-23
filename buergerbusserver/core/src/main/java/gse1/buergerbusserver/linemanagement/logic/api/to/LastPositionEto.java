@@ -20,7 +20,7 @@ public class LastPositionEto {
   private double lon;
 
   private Date timeStamp;
-  
+
   private int takenSeats;
 
   /**
@@ -102,13 +102,19 @@ public class LastPositionEto {
 
     this.lon = lon;
   }
-  
+
+  /**
+   * @param takenSeats Sets the increased number of the person boarding the bus
+   */
   public void setTakenSeats(int takenSeats) {
 
     this.takenSeats = takenSeats;
-    
+
   }
 
+  /**
+   * @return takenSeats that increments the number of the persons boarding the bus
+   */
   public int getTakenSeats() {
 
     return this.takenSeats;

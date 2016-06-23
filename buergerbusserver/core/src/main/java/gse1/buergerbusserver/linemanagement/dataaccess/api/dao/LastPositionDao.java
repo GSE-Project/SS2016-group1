@@ -14,7 +14,7 @@ public interface LastPositionDao extends ApplicationDao<LastPositionEntity>, Mas
 
   /**
    * get the last Position of Bus in {@link LastPositionEntity}
-   * 
+   *
    * @param busId sets the busId of the Bus
    *
    * @return busId with the Last Position of the Bus
@@ -26,6 +26,7 @@ public interface LastPositionDao extends ApplicationDao<LastPositionEntity>, Mas
    * @param busId Sets the busId of the Bus
    * @param lon Sets the Longitude of the Last position
    * @param lat Sets the Latitude of the Last position
+   * @param takenSeats Seats that are reserved.
    */
   void setLastPosition(Long busId, double lon, double lat, int takenSeats);
 }

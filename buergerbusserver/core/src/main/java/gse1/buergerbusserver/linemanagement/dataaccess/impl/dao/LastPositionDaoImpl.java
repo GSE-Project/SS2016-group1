@@ -1,10 +1,6 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
-import java.util.List;
-
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
@@ -52,35 +48,29 @@ public class LastPositionDaoImpl extends ApplicationMasterDataDaoImpl<LastPositi
   public void setLastPosition(Long busId, double lon, double lat, int takenSeats) {
 
     try {
-      
-      
+
       CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
       CriteriaUpdate<LastPositionEntity> update = criteriaBuilder.createCriteriaUpdate(LastPositionEntity.class);
       Root<LastPositionEntity> lastPosition = update.from(LastPositionEntity.class);
 
-      if(takenSeats > -1)
-      {
+      if (takenSeats > -1) {
         BusEntity bus = Alias.alias(BusEntity.class);
         EntityPathBase<BusEntity> alias = Alias.$(bus);
         JPAQuery query = new JPAQuery(getEntityManager()).from(alias);
 
         query.where(Alias.$(bus.getId()).eq(busId));
-        
-        if(query.list(alias).get(0).getTotalSeats()< takenSeats)
+
+        if (query.list(alias).get(0).getTotalSeats() < takenSeats)
           throw new Exception("Specified seats are greater than vehicle capacity.");
         update.set(lastPosition.get("takenSeats"), takenSeats);
-      }
-      else
-      {
+      } else {
         update.set(lastPosition.get("lon"), lon);
         update.set(lastPosition.get("lat"), lat);
       }
-      
+
       update.where(criteriaBuilder.equal(lastPosition.get("busId"), busId));
-      
 
       getEntityManager().createQuery(update).executeUpdate();
-      
 
     } catch (Exception e) {
       e.printStackTrace();

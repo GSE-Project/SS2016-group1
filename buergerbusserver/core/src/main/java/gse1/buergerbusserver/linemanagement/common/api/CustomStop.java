@@ -5,6 +5,10 @@ import java.util.Date;
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 
 /**
+ * This is the interface for Custop Stop of the Bus. It provides information regarding the BusId, LineId, PickUpTime,
+ * NumberOfPersons, DevieId, UserName, UserAddress, UserAssistance, status, Latitude and Longitude of Custom Stop and
+ * the object carries a timestamp.
+ *
  * @author ricarda42
  *
  */
