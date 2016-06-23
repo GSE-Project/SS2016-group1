@@ -273,7 +273,11 @@
           </excludes>
         </configuration>
       </plugin>
+    </plugins>
+  </build>
 
+  <reporting>
+    <plugins>
       <!-- Code Coverage -->
       <plugin>
         <groupId>org.jacoco</groupId>
@@ -298,6 +302,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
       </plugin>
     </plugins>
-  </build>
+  </reporting>
 
 </project>
