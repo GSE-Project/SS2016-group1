@@ -4,4 +4,4 @@ before_install:
   - cd buergerbusserver
 
 after_success:
-  - mvn clean -Pjacoco org.eluder.coveralls:coveralls-maven-plugin:report
+  - mvn clean test jacoco:report coveralls:report
