@@ -1,10 +1,5 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
-import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
-
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -21,6 +16,11 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.springframework.util.StringUtils;
+
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
 /**
  * @author Jay
@@ -161,8 +161,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public Response updateCustomStop(long customStopId,
-                                  HashMap<String, Long> jsonRequest) {
+  public Response updateCustomStop(long customStopId, HashMap<String, Long> jsonRequest) {
 
     long temp = Long.valueOf(jsonRequest.get("status"));
     int status = (int) temp;
@@ -196,11 +195,17 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       pickUpTime = null;
     }
 
+    Double lon, lat;
+    HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("position");
+    ArrayList<?> coordinates = (ArrayList<?>) obj.get("coordinates");
+    lon = (Double) coordinates.get(0);
+    lat = (Double) coordinates.get(1);
+
     CustomStopEto customStop = new CustomStopEto();
 
     customStop.setLineId(Long.valueOf(jsonRequest.get("lineId").toString()));
-    customStop.setLat(Double.valueOf(jsonRequest.get("lat").toString()));
-    customStop.setLon(Double.valueOf(jsonRequest.get("lon").toString()));
+    customStop.setLon(lon);
+    customStop.setLat(lat);
     customStop.setNumberOfPersons(Integer.valueOf(jsonRequest.get("numberOfPersons").toString()));
     customStop.setDeviceId(jsonRequest.get("deviceId").toString());
     customStop.setUserName(jsonRequest.get("userName").toString());
