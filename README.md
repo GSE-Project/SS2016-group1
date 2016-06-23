@@ -1,5 +1,10 @@
 # Digitale Dörfer - mobile people’s bus system
 
+|Branch|Build status|Test coverage|
+|---|---|---|
+|Development|[![Build Status](https://travis-ci.org/GSE-Project/SS2016-group1.svg?branch=developmentIt3)](https://travis-ci.org/GSE-Project/SS2016-group1)|[![Coverage Status](https://coveralls.io/repos/github/GSE-Project/SS2016-group1/badge.svg?branch=developmentIt3)](https://coveralls.io/github/GSE-Project/SS2016-group1?branch=developmentIt3)|
+|Master|[![Build Status](https://travis-ci.org/GSE-Project/SS2016-group1.svg?branch=master)](https://travis-ci.org/GSE-Project/SS2016-group1)|[![Coverage Status](https://coveralls.io/repos/github/GSE-Project/SS2016-group1/badge.svg?branch=master)](https://coveralls.io/github/GSE-Project/SS2016-group1?branch=master)|
+
 This project deals with the development of a mobile people’s bus system. The system consists of a mobile app that serves as the people’s bus host system, another mobile app for citizens to use the different people’s busses and a server for interconnection of the two Apps. It is intended that the system will be used within the project [Digitale Dörfer](http://www.digitale-doerfer.de).
 
 ## Server ##
