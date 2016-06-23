@@ -3,5 +3,5 @@ language: java
 before_install:
   - cd buergerbusserver
 
-  after_success:
-- mvn clean -Pjacoco org.eluder.coveralls:coveralls-maven-plugin:report
+after_success:
+  - mvn clean -Pjacoco org.eluder.coveralls:coveralls-maven-plugin:report
