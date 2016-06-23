@@ -196,7 +196,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     }
 
     Double lon, lat;
-    HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("position");
+    HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("location");
     ArrayList<?> coordinates = (ArrayList<?>) obj.get("coordinates");
     lon = (Double) coordinates.get(0);
     lat = (Double) coordinates.get(1);
