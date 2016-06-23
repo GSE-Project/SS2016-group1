@@ -4,4 +4,5 @@ before_install:
   - cd buergerbusserver
 
 after_success:
-  - mvn clean test jacoco:report coveralls:report
+  - cd core
+  - mvn clean jacoco:report coveralls:report
