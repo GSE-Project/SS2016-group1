@@ -3,8 +3,6 @@ package gse1.buergerbusserver.schedulemanagement.logic.api.to;
 import java.util.Date;
 
 /**
- * JAYU This type ...
- *
  * @author JAYU
  * @since 0.1
  */
@@ -27,7 +25,7 @@ public class StopEto {
   private Date timeStamp;
 
   /**
-   * @return name
+   * @return name of the Stop
    */
   public String getName() {
 
@@ -83,7 +81,7 @@ public class StopEto {
   }
 
   /**
-   * @return Id
+   * @return Id of the Stop
    */
   public long getId() {
 
