@@ -26,8 +26,8 @@
 
   <modules>
     <module>core</module>
-    <module>buergerbusserver-ear</module>
-    <module>server</module>
+    <!--<module>buergerbusserver-ear</module>-->
+    <!--<module>server</module>-->
   </modules>
 
   <dependencyManagement>
