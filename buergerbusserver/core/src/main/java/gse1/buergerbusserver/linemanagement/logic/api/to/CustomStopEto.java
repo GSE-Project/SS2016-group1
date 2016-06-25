@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import gse1.buergerbusserver.general.common.api.datatype.GeoJsonPoint;
+import gse1.buergerbusserver.general.common.api.datatype.InfoObject;
 import gse1.buergerbusserver.linemanagement.common.api.CustomStop;
 import io.oasp.module.basic.common.api.to.AbstractEto;
 
@@ -350,9 +351,9 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
     return new GeoJsonPoint(this.lon, this.lat);
   }
 
-  /**
+ /* *//**
    * @return User Assistance options as a list of integers
-   */
+   *//*
   public List<Integer> getUserAssist() {
 
     List<String> stringList = Arrays.asList(this.userAssistance.split(","));
@@ -361,6 +362,10 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
       returnList.add(Integer.valueOf(num));
     }
     return returnList;
+  }*/
+  
+  public InfoObject getInfo(){
+	  return new InfoObject(this.userName, this.userAddress, this.userAssistance);
   }
 
 }
