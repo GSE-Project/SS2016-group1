@@ -180,11 +180,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public CustomStopEto newCustomStop(HashMap<String, Object> jsonRequest) {
 
-    @SuppressWarnings("unchecked")
-    List<Integer> userAssistance = (List<Integer>) jsonRequest.get("userAssistance");
-    String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
-
-    Date date = new Date();
+	Date date = new Date();
     Date currTimeStamp = new Timestamp(date.getTime());
     DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     Date pickUpTime;
@@ -194,12 +190,24 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       e1.printStackTrace();
       pickUpTime = null;
     }
-
+    
+    
     Double lon, lat;
     HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("location");
     ArrayList<?> coordinates = (ArrayList<?>) obj.get("coordinates");
     lon = (Double) coordinates.get(0);
-    lat = (Double) coordinates.get(1);
+    lat = (Double) coordinates.get(1);   
+
+    
+    HashMap<?, ?> info = (HashMap<?, ?>) jsonRequest.get("info");    
+    String custName = (String) info.get("name");
+    String custAddress = (String) info.get("address");
+    ArrayList<?> userAss = (ArrayList<?>) info.get("assistance");   
+	List<Integer> ua = new ArrayList<Integer>();
+    ua.add((Integer) userAss.get(0));
+    ua.add((Integer) userAss.get(1));
+    String custAssistance = StringUtils.collectionToDelimitedString(ua, ",");
+    	    
 
     CustomStopEto customStop = new CustomStopEto();
 
@@ -208,9 +216,9 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     customStop.setLat(lat);
     customStop.setNumberOfPersons(Integer.valueOf(jsonRequest.get("numberOfPersons").toString()));
     customStop.setDeviceId(jsonRequest.get("deviceId").toString());
-    customStop.setUserName(jsonRequest.get("userName").toString());
-    customStop.setUserAddress(jsonRequest.get("userAddress").toString());
-    customStop.setUserAssistance(userAssist);
+    customStop.setUserName(custName);
+    customStop.setUserAddress(custAddress);
+    customStop.setUserAssistance(custAssistance);
     customStop.setPickUpTime(pickUpTime);
     customStop.setStatus(1); // Status set to "pending" initially
     customStop.setTimeStamp(currTimeStamp);
