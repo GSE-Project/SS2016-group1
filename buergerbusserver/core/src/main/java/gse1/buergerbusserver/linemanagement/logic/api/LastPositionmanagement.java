@@ -20,6 +20,7 @@ public interface LastPositionmanagement {
    * @param busId sets the busId
    * @param lon Sets the Longitude of the Last Position
    * @param lat sets the Latitude of the last Position
+   * @param takenSeats Increments the number of persons boards the bus
    */
-  void setLastPosition(Long busId, double lon, double lat);
+  void setLastPosition(Long busId, double lon, double lat, int takenSeats);
 }

@@ -1,6 +1,6 @@
 -- This is the SQL script for setting up the DDL for the h2 database
 -- In a typical project you would only distinguish between main and test for flyway SQLs
--- However, in this sample application we provde support for multiple databases in parallel
+-- However, in this sample application we provide support for multiple databases in parallel
 -- You can simply choose the DB of your choice by setting spring.profiles.active=XXX in config/application.properties
 -- Assuming that the preconfigured user exists with according credentials using the included SQLs
 
@@ -46,6 +46,7 @@ CREATE TABLE LASTPOSITION(
     modificationCounter INTEGER NOT NULL,  --#is this needed  for all entities
     lat  DOUBLE NOT NULL,
     lon  DOUBLE NOT NUll,
+    takenSeats int,
     "TIMESTAMP" timestamp NOT NULL
 );
 ALTER TABLE  LASTPOSITION ADD CONSTRAINT UC_LASTPOSITION_BUSID UNIQUE(busId);
@@ -87,6 +88,26 @@ CREATE TABLE SCHEDULE(
 ALTER TABLE SCHEDULE ADD CONSTRAINT PK_SCHEDULE PRIMARY KEY(id);
 ALTER TABLE SCHEDULE ADD CONSTRAINT FK_SCHEDULE2STOP FOREIGN KEY(stopId) REFERENCES STOP(id);
 
+-- *** CustomStops ***
+CREATE TABLE CUSTOMSTOP(
+    id BIGINT NOT NULL,
+    modificationCounter INTEGER NOT NULL,
+    lineId BIGINT NOT NULL,
+    pickUpTime timestamp NOT NULL,
+    lat DOUBLE NOT NULL,
+    lon DOUBLE NOT NULL,
+    numberOfPersons INTEGER NOT NULL,
+    deviceId VARCHAR(50) NOT NULL,
+    userName VARCHAR(255),
+    userAddress VARCHAR(MAX),
+    userAssistance VARCHAR(255),
+    status INTEGER NOT NULL,
+    busId BIGINT,
+    "TIMESTAMP" timestamp NOT NULL
+);
+ALTER TABLE CUSTOMSTOP ADD CONSTRAINT PK_CUSTOMSTOP PRIMARY KEY(id);
+ALTER TABLE CUSTOMSTOP ADD CONSTRAINT FK_CUSTOMSTOP_BUS FOREIGN KEY(busId) REFERENCES BUS(id);
+ALTER TABLE CUSTOMSTOP ADD CONSTRAINT FK_CUSTOMSTOP_LINE FOREIGN KEY(lineId) REFERENCES LINE(id);
 
 
 

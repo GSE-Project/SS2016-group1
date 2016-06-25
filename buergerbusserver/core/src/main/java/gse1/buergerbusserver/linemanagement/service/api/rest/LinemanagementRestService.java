@@ -2,6 +2,7 @@ package gse1.buergerbusserver.linemanagement.service.api.rest;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -9,10 +10,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 
 /**
@@ -94,7 +97,74 @@ public interface LinemanagementRestService {
    * @return {@link HashMap} of the Last Position with jsonRequest
    */
   @POST
-  @Path("/realTimeData")
+  @Path("/realTimeData/")
   public Response setLastPosition(HashMap<String, Object> jsonRequest);
+
+  /**
+   * @param requestId of the request
+   * @param deviceId from which the request was made
+   * @param lineId for which the request was made
+   * @return Status of the custom stop requests along with other customer info
+   */
+
+  // @Path("/customStops?requestId={requestId}")
+  @GET
+  @Path("/customStops")
+  public List<CustomStopEto> getCustomStops(@QueryParam("requestId") Long requestId,
+      @QueryParam("deviceId") String deviceId, @QueryParam("lineId") Long lineId);
+
+  // /**
+  // * @param requestId of the request
+  // * @param deviceId from which the request was made
+  // * @return Status of the custom stop request along with other customer info
+  // */
+  // @GET
+  // // @Path("/customStop?requestId={requestId}")
+  // @Path("/customStop/requestid/{requestId}/{deviceId}")
+  // public List<CustomStopEto> getCustomStopStatus(@PathParam("requestId") Long requestId,
+  // @PathParam("deviceId") String deviceId);
+  //
+  // /**
+  // * @param deviceId Device ID from which the request was received
+  // * @return All the requests from that device
+  // */
+  // @GET
+  // @Path("/customStop/deviceid/{deviceId}")
+  // public List<CustomStopEto> getCustomStopDevice(@PathParam("deviceId") String deviceId);
+  //
+  // /**
+  // * @param lineId Line ID of the bus
+  // * @return All pending requests for that day
+  // */
+  // @GET
+  // @Path("/customStop/lineid/{lineId}")
+  // public List<CustomStopEto> getCustomStopLine(@PathParam("lineId") Long lineId);
+  //
+  /**
+   * @param status Status of the Custom Stop Request
+   * @return All requests in that status
+   */
+  @GET
+  @Path("/customStop/status/{status}")
+  public List<CustomStopEto> getCustomStopRequests(@PathParam("status") int status);
+
+  /**
+   * @param customStopID the unique request ID
+   * @param jsonRequest Set the Status with the jsonRequest
+   * @return {@link HashMap} of the Status with jsonRequest
+   */
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Path("/customStops/{customStopId}")
+  public Response updateCustomStop(@PathParam("customStopId") long customStopID, HashMap<String, Long> jsonRequest);
+
+  /**
+   * @param jsonRequest create a new custom stop request with the jsonRequest
+   * @return {@link HashMap} requestID of the request with jsonRequest
+   */
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Path("customStops")
+  public CustomStopEto newCustomStop(HashMap<String, Object> jsonRequest);
 
 }

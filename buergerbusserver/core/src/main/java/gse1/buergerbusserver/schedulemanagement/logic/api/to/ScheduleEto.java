@@ -41,7 +41,7 @@ public class ScheduleEto {
   /**
    *
    *
-   * @return linename
+   * @return LineName
    */
   public String getLineName() {
 
