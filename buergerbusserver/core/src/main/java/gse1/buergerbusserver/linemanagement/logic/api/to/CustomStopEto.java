@@ -1,10 +1,6 @@
 package gse1.buergerbusserver.linemanagement.logic.api.to;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-
 import gse1.buergerbusserver.general.common.api.datatype.GeoJsonPoint;
 import gse1.buergerbusserver.general.common.api.datatype.InfoObject;
 import gse1.buergerbusserver.linemanagement.common.api.CustomStop;
@@ -88,23 +84,7 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
     return this.lineId;
   }
 
-  // /**
-  // *
-  // * @param requestId new value of {@link #getRequestId}.
-  // */
-  //
-  // public void setRequestId(Long requestId) {
-  //
-  // this.id = requestId;
-  // }
-  //
-  // /**
-  // * @return requestId
-  // */
-  // public Long getRequestId() {
-  //
-  // return this.id;
-  // }
+ 
 
   /**
    * @param pickUpTime pickUpTime new value of {@link #getPickUpTime}
@@ -351,21 +331,16 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
     return new GeoJsonPoint(this.lon, this.lat);
   }
 
- /* *//**
-   * @return User Assistance options as a list of integers
-   *//*
-  public List<Integer> getUserAssist() {
-
-    List<String> stringList = Arrays.asList(this.userAssistance.split(","));
-    List<Integer> returnList = new ArrayList<>();
-    for (String num : stringList) {
-      returnList.add(Integer.valueOf(num));
-    }
-    return returnList;
-  }*/
+ 
   
   public InfoObject getInfo(){
 	  return new InfoObject(this.userName, this.userAddress, this.userAssistance);
+  }
+  
+
+  public int getState() {
+
+    return this.status;
   }
 
 }
