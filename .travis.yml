@@ -1,13 +1,9 @@
 language: java
-<<<<<<< HEAD
-before_install: 
-  - cd buergerbusserver
-=======
 
 before_install:
-  - cd buergerbusserver
+   cd buergerbusserver
 
 after_success:
-  - cd core
-  - mvn clean test jacoco:report coveralls:report
->>>>>>> fb3746c63422d34f9d9fc858c0f32936ecefe19f
+   cd core
+   mvn clean test jacoco:report coveralls:report
+
