@@ -1,9 +1,11 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
+
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,11 +18,6 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.springframework.util.StringUtils;
-
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
-import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
 /**
  * @author Jay
@@ -182,32 +179,34 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
 	Date date = new Date();
     Date currTimeStamp = new Timestamp(date.getTime());
-    DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
     Date pickUpTime;
     try {
-      pickUpTime = format.parse(jsonRequest.get("pickUpTime").toString());
-    } catch (ParseException e1) {
+      pickUpTime =  new java.util.Date(Long.parseLong(jsonRequest.get("pickUpTime").toString())*1000);
+
+    } catch (NumberFormatException e1) {
       e1.printStackTrace();
       pickUpTime = null;
     }
-    
-    
+
+
     Double lon, lat;
     HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("location");
-    ArrayList<?> coordinates = (ArrayList<?>) obj.get("coordinates");
-    lon = (Double) coordinates.get(0);
-    lat = (Double) coordinates.get(1);   
+    ArrayList<Integer> coordinates = (ArrayList<Integer>) obj.get("coordinates");
+    lon = (double) coordinates.get(0).intValue();
+    lat = (double) coordinates.get(1).intValue();
 
-    
-    HashMap<?, ?> info = (HashMap<?, ?>) jsonRequest.get("info");    
-    String custName = (String) info.get("name");
-    String custAddress = (String) info.get("address");
-    ArrayList<?> userAss = (ArrayList<?>) info.get("assistance");   
+
+    HashMap<?, ?> info = (HashMap<?, ?>) jsonRequest.get("info");
+    String custName = (String) info.get("userName");
+    String custAddress = (String) info.get("userAddress");
+    ArrayList<Integer> userAss =  (ArrayList<Integer>) info.get("assistance");
 	List<Integer> ua = new ArrayList<Integer>();
-    ua.add((Integer) userAss.get(0));
-    ua.add((Integer) userAss.get(1));
+	for(Integer userAssistance:userAss)
+      ua.add(userAssistance);
+
     String custAssistance = StringUtils.collectionToDelimitedString(ua, ",");
-    	    
+
 
     CustomStopEto customStop = new CustomStopEto();
 
