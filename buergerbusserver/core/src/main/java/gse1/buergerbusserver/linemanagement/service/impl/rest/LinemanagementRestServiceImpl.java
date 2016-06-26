@@ -197,8 +197,8 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     lat = (double) coordinates.get(1);
 
     HashMap<?, ?> info = (HashMap<?, ?>) jsonRequest.get("info");
-    String custName = (String) info.get("userName");
-    String custAddress = (String) info.get("userAddress");
+    String custName = (String) info.get("name");
+    String custAddress = (String) info.get("address");
     @SuppressWarnings("unchecked")
     ArrayList<Integer> userAss = (ArrayList<Integer>) info.get("assistance");
     List<Integer> ua = new ArrayList<Integer>();
