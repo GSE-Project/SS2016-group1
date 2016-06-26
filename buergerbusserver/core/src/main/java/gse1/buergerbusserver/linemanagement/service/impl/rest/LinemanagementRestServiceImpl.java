@@ -1,10 +1,5 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
-import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +13,11 @@ import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.springframework.util.StringUtils;
+
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
 /**
  * @author Jay
@@ -177,38 +177,35 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public CustomStopEto newCustomStop(HashMap<String, Object> jsonRequest) {
 
-	Date date = new Date();
+    Date date = new Date();
     Date currTimeStamp = new Timestamp(date.getTime());
 
     Date pickUpTime;
     try {
-      pickUpTime =  new java.util.Date(Long.parseLong(jsonRequest.get("pickUpTime").toString())*1000);
+      pickUpTime = new java.util.Date(Long.parseLong(jsonRequest.get("pickUpTime").toString()) * 1000);
 
     } catch (NumberFormatException e1) {
       e1.printStackTrace();
       pickUpTime = null;
     }
 
-
     Double lon, lat;
     HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("location");
     @SuppressWarnings("unchecked")
-	ArrayList<Double> coordinates = (ArrayList<Double>) obj.get("coordinates");
+    ArrayList<Double> coordinates = (ArrayList<Double>) obj.get("coordinates");
     lon = (double) coordinates.get(0);
     lat = (double) coordinates.get(1);
-
 
     HashMap<?, ?> info = (HashMap<?, ?>) jsonRequest.get("info");
     String custName = (String) info.get("userName");
     String custAddress = (String) info.get("userAddress");
     @SuppressWarnings("unchecked")
-	ArrayList<Integer> userAss =  (ArrayList<Integer>) info.get("assistance");
-	List<Integer> ua = new ArrayList<Integer>();
-	for(Integer userAssistance:userAss)
+    ArrayList<Integer> userAss = (ArrayList<Integer>) info.get("assistance");
+    List<Integer> ua = new ArrayList<Integer>();
+    for (Integer userAssistance : userAss)
       ua.add(userAssistance);
 
     String custAssistance = StringUtils.collectionToDelimitedString(ua, ",");
-
 
     CustomStopEto customStop = new CustomStopEto();
 
@@ -216,7 +213,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     customStop.setLon(lon);
     customStop.setLat(lat);
     customStop.setNumberOfPersons(Integer.valueOf(jsonRequest.get("numberOfPersons").toString()));
-    customStop.setDeviceId(jsonRequest.get("deviceId").toString());
+    customStop.setDeviceId(jsonRequest.get("deviceID").toString());// changed in rescue mission
     customStop.setUserName(custName);
     customStop.setUserAddress(custAddress);
     customStop.setUserAssistance(custAssistance);

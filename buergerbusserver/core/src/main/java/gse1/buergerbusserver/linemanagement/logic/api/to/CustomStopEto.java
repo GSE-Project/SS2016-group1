@@ -1,6 +1,7 @@
 package gse1.buergerbusserver.linemanagement.logic.api.to;
 
 import java.util.Date;
+
 import gse1.buergerbusserver.general.common.api.datatype.GeoJsonPoint;
 import gse1.buergerbusserver.general.common.api.datatype.InfoObject;
 import gse1.buergerbusserver.linemanagement.common.api.CustomStop;
@@ -83,8 +84,6 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
 
     return this.lineId;
   }
-
- 
 
   /**
    * @param pickUpTime pickUpTime new value of {@link #getPickUpTime}
@@ -331,16 +330,19 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
     return new GeoJsonPoint(this.lon, this.lat);
   }
 
- 
-  
-  public InfoObject getInfo(){
-	  return new InfoObject(this.userName, this.userAddress, this.userAssistance);
+  public InfoObject getInfo() {
+
+    return new InfoObject(this.userName, this.userAddress, this.userAssistance);
   }
-  
 
   public int getState() {
 
     return this.status;
+  }
+
+  public String getDeviceID() {
+
+    return this.deviceId;
   }
 
 }
