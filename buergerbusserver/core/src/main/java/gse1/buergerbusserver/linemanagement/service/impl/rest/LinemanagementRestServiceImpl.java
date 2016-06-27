@@ -150,12 +150,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
   }
 
-  @Override
-  public List<CustomStopEto> getCustomStopRequests(int status) {
-
-    // TODO Auto-generated method stub
-    return null;
-  }
+ 
 
   @Override
   public Response updateCustomStop(long customStopId, HashMap<String, Long> jsonRequest) {
@@ -241,6 +236,8 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       return this.linemanagement.getCustomStopDevice(deviceId);
     if (lineId != null)
       return this.linemanagement.getCustomStopLine(lineId);
+    if (requestId != null)
+    	return this.linemanagement.getCustomStopRequests(requestId);
 
     return null;
 

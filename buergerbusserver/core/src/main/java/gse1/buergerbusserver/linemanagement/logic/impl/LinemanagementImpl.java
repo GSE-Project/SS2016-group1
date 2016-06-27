@@ -95,7 +95,6 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     return getBeanMapper().mapList(buses, BusEto.class);
   }
 
-  @SuppressWarnings("unused")
   @Override
   public HashMap<String, Object> getAllRoutes() {
 
@@ -107,7 +106,6 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     return returnHM;
   }
 
-  @SuppressWarnings("unused")
   @Override
   public HashMap<String, Object> getAllLinesWithBusIds() {
 
@@ -148,7 +146,6 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     return updates;
   }
 
-  @SuppressWarnings("unused")
   @Override
   public HashMap<String, Object> getAllBusesListWithTimeStamp() {
 
@@ -206,10 +203,10 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<CustomStopEto> getCustomStopRequests(int status) {
+  public List<CustomStopEto> getCustomStopRequests(Long requestId) {
 
-    // TODO Auto-generated method stub
-    return null;
+	  List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopRequests(requestId);
+	    return getBeanMapper().mapList(customStops, CustomStopEto.class);
   }
 
   @Override
