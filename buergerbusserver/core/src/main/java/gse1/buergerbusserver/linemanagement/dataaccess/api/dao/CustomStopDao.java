@@ -50,7 +50,7 @@ public interface CustomStopDao extends ApplicationDao<CustomStopEntity>, MasterD
    * @return {@link List} of Custom Stop requests in that status (1 - Accepted, 2 - Declined, 3 - Pending, 4 -
    *         Completed, 5 - Cancelled) Not really needed right now...
    **/
-  List<CustomStopEntity> getCustomStopRequests(int status);
+  List<CustomStopEntity> getCustomStopRequests(Long requestId);
 
   /**
    * Update the status of the {@link CustomStopEntity} request for {@link CustomStop} as given by request ID

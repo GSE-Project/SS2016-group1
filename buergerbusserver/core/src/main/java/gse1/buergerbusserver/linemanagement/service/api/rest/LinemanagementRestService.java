@@ -140,13 +140,7 @@ public interface LinemanagementRestService {
   // @Path("/customStop/lineid/{lineId}")
   // public List<CustomStopEto> getCustomStopLine(@PathParam("lineId") Long lineId);
   //
-  /**
-   * @param status Status of the Custom Stop Request
-   * @return All requests in that status
-   */
-  @GET
-  @Path("/customStop/status/{status}")
-  public List<CustomStopEto> getCustomStopRequests(@PathParam("status") int status);
+ 
 
   /**
    * @param customStopID the unique request ID

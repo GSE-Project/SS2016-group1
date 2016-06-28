@@ -1,5 +1,10 @@
 package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 
+import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.LastPositionEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LastPositionDao;
+
 import javax.inject.Named;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaUpdate;
@@ -8,11 +13,6 @@ import javax.persistence.criteria.Root;
 import com.mysema.query.alias.Alias;
 import com.mysema.query.jpa.impl.JPAQuery;
 import com.mysema.query.types.path.EntityPathBase;
-
-import gse1.buergerbusserver.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
-import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
-import gse1.buergerbusserver.linemanagement.dataaccess.api.LastPositionEntity;
-import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LastPositionDao;
 
 /**
  * @author ricarda42
@@ -63,10 +63,10 @@ public class LastPositionDaoImpl extends ApplicationMasterDataDaoImpl<LastPositi
         if (query.list(alias).get(0).getTotalSeats() < takenSeats)
           throw new Exception("Specified seats are greater than vehicle capacity.");
         update.set(lastPosition.get("takenSeats"), takenSeats);
-      } else {
+      }
         update.set(lastPosition.get("lon"), lon);
         update.set(lastPosition.get("lat"), lat);
-      }
+
 
       update.where(criteriaBuilder.equal(lastPosition.get("busId"), busId));
 

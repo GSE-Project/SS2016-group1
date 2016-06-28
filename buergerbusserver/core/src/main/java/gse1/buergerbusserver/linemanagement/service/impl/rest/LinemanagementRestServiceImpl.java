@@ -150,12 +150,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
   }
 
-  @Override
-  public List<CustomStopEto> getCustomStopRequests(int status) {
-
-    // TODO Auto-generated method stub
-    return null;
-  }
+ 
 
   @Override
   public Response updateCustomStop(long customStopId, HashMap<String, Long> jsonRequest) {
@@ -197,8 +192,8 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     lat = (double) coordinates.get(1);
 
     HashMap<?, ?> info = (HashMap<?, ?>) jsonRequest.get("info");
-    String custName = (String) info.get("userName");
-    String custAddress = (String) info.get("userAddress");
+    String custName = (String) info.get("name");
+    String custAddress = (String) info.get("address");
     @SuppressWarnings("unchecked")
     ArrayList<Integer> userAss = (ArrayList<Integer>) info.get("assistance");
     List<Integer> ua = new ArrayList<Integer>();
@@ -241,6 +236,8 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       return this.linemanagement.getCustomStopDevice(deviceId);
     if (lineId != null)
       return this.linemanagement.getCustomStopLine(lineId);
+    if (requestId != null)
+    	return this.linemanagement.getCustomStopRequests(requestId);
 
     return null;
 

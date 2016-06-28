@@ -126,7 +126,7 @@ public interface Linemanagement {
    * @return {@link List} of Custom Stop requests in that status (1 - Accepted, 2 - Declined, 3 - Pending, 4 -
    *         Completed, 5 - Cancelled) Not really needed right now...
    **/
-  List<CustomStopEto> getCustomStopRequests(int status);
+  List<CustomStopEto> getCustomStopRequests(Long requestId);
 
   /**
    * Update the status of the {@link CustomStopEntity} request for {@link CustomStop} as given by request ID

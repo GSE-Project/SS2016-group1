@@ -129,7 +129,7 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   }
 
   @Override
-  public List<CustomStopEntity> getCustomStopRequests(int status) {
+  public List<CustomStopEntity> getCustomStopRequests(Long requestId) {
 
     try {
       EntityManager em = getEntityManager();
@@ -138,7 +138,7 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
 
       cq.select(ro);
-      cq.where(cb.equal(ro.get("status"), status));
+      cq.where(cb.equal(ro.get("id"), requestId));
 
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
       return result;
