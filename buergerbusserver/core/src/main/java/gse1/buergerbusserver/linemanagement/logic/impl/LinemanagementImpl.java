@@ -7,19 +7,24 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import gse1.buergerbusserver.general.logic.base.AbstractComponentFacade;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.CustomStopEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.LastPositionEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.LineEntity;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.BusDao;
+import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.CustomStopDao;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LastPositionDao;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.LineDao;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.dao.RouteDao;
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.BusEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LineWithBusIdsCto;
@@ -27,13 +32,16 @@ import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
 
 /**
- * @author razadfki
+ * @author JAYU
  *
  */
 @Named
 @Component
 @Transactional
 public class LinemanagementImpl extends AbstractComponentFacade implements Linemanagement {
+
+  @Inject
+  private CustomStopDao CustomStopDao;
 
   @Inject
   private LineDao lineDao;
@@ -87,7 +95,6 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     return getBeanMapper().mapList(buses, BusEto.class);
   }
 
-  @SuppressWarnings("unused")
   @Override
   public HashMap<String, Object> getAllRoutes() {
 
@@ -99,7 +106,6 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     return returnHM;
   }
 
-  @SuppressWarnings("unused")
   @Override
   public HashMap<String, Object> getAllLinesWithBusIds() {
 
@@ -123,7 +129,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     try {
       this.busDao.updateBusStatus(busId, lineId);
     } catch (Exception e) {
-      // TODO Auto-generated catch block
+
       e.printStackTrace();
     }
 
@@ -140,7 +146,6 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
     return updates;
   }
 
-  @SuppressWarnings("unused")
   @Override
   public HashMap<String, Object> getAllBusesListWithTimeStamp() {
 
@@ -164,14 +169,82 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public void setLastPosition(Long busId, double lon, double lat) {
+  public void setLastPosition(Long busId, double lon, double lat, int takenSeats) {
 
     try {
-      this.lastPositionDao.setLastPosition(busId, lon, lat);
+      this.lastPositionDao.setLastPosition(busId, lon, lat, takenSeats);
     } catch (Exception e) {
       e.printStackTrace();
     }
 
+  }
+
+  @Override
+  public List<CustomStopEto> getCustomStopStatus(Long requestId, String deviceId) {
+
+    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopStatus(requestId, deviceId);
+    List<CustomStopEto> customStopsMapped = getBeanMapper().mapList(customStops, CustomStopEto.class);
+    return customStopsMapped;
+  }
+
+  @Override
+
+  public List<CustomStopEto> getCustomStopDevice(String deviceId) {
+
+    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopDevice(deviceId);
+    return getBeanMapper().mapList(customStops, CustomStopEto.class);
+  }
+
+  @Override
+  public List<CustomStopEto> getCustomStopLine(Long lineId) {
+
+    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopLine(lineId);
+    return getBeanMapper().mapList(customStops, CustomStopEto.class);
+  }
+
+  @Override
+  public List<CustomStopEto> getCustomStopRequests(Long requestId) {
+
+	  List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopRequests(requestId);
+	    return getBeanMapper().mapList(customStops, CustomStopEto.class);
+  }
+
+  @Override
+  public void updateCustomStopStatus(Long requestId, int status) {
+
+    try {
+      this.CustomStopDao.updateCustomStopStatus(requestId, status);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  @Override
+  public Long newCustomStopTransaction(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
+      String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
+
+    String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
+    Long requestId = this.CustomStopDao.newCustomStopTransaction(lineId, pickUpTime, lat, lon, numberOfPersons,
+        deviceId, userName, userAddress, userAssist);
+    /*
+     * List<String> stringList = Arrays.asList(userAssist.split(",")); List<Integer> returnList = new ArrayList<>(); for
+     * (String num : stringList) { returnList.add(Integer.valueOf(num)); }
+     */
+
+    return requestId;
+  }
+
+  @Override
+  public CustomStopEto newCustomStop(@Valid CustomStopEto customStop) {
+
+    // Long requestId = customStop.getId();
+
+    CustomStopEntity customStopEntity = getBeanMapper().map(customStop, CustomStopEntity.class);
+    Long modReqId = this.CustomStopDao.save(customStopEntity).getId();
+    customStop.setId(modReqId);
+
+    return customStop;
   }
 
 }

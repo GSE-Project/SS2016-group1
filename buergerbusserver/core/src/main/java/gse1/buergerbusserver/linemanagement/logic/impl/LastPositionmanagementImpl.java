@@ -39,10 +39,10 @@ public class LastPositionmanagementImpl extends AbstractComponentFacade implemen
   }
 
   @Override
-  public void setLastPosition(Long busId, double lon, double lat) {
+  public void setLastPosition(Long busId, double lon, double lat, int takenSeats) {
 
     try {
-      this.lastPositionDao.setLastPosition(busId, lon, lat);
+      this.lastPositionDao.setLastPosition(busId, lon, lat,takenSeats);
     } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

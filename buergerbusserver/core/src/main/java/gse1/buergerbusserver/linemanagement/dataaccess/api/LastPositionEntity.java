@@ -32,6 +32,8 @@ public class LastPositionEntity extends ApplicationPersistenceEntity implements 
   private double lat;
 
   private double lon;
+  
+  private int takenSeats;
 
   /**
    * @return Id
@@ -105,6 +107,19 @@ public class LastPositionEntity extends ApplicationPersistenceEntity implements 
   public double getLon() {
 
     return this.lon;
+  }
+
+  @Override
+  public void setTakenSeats(int takenSeats) {
+
+    this.takenSeats = takenSeats;
+    
+  }
+
+  @Override
+  public int getTakenSeats() {
+
+    return this.takenSeats;
   }
 
 }
