@@ -20,15 +20,16 @@ Implementation follows the framework of the [Open Application Standard Platform 
 
 [Interfaces to clients](https://github.com/GSE-Project/SS2016-group1/wiki/Server-interfaces)
 
-[Traceability matrix](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Traceability%20matrix.pdf)
+[Traceability matrix](https://github.com/GSE-Project/SS2016-group1/blob/developmentIt3/Documentation/Updated%20Traceability%20matrix.pdf)
 
 #### Design ####
 [Component Diagram](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Component%20Diagram.png)
 
-[Traceability of System functions to components](https://github.com/GSE-Project/SS2016-group1/blob/master/Documentation/Traceability%20SF%20to%20components.pdf)
+[Traceability of System functions to components](https://github.com/GSE-Project/SS2016-group1/blob/developmentIt3/Documentation/Updated%20Traceability%20SF%20to%20components.pdf)
 
 #### Quality Assurance ####
-[System test specification for server tests](https://github.com/GSE-Project/SS2016-group1/blob/master/Test/Test%20Cases_reviewed.pdf)
+[System test specification for server tests](https://github.com/GSE-Project/SS2016-group1/blob/master/Test/Extended%20TC_reviewed_redone.pdf)
+
 [System test specification for integration tests](https://github.com/GSE-Project/SS2016-group1/blob/master/Test/System%20Test%20cases%20Document%20for%20Integration%20tests.pdf)
 
 
