@@ -228,14 +228,14 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId) {
+  public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId,Long busId) {
 
     if (requestId != null && deviceId != null && !deviceId.isEmpty())
       return this.linemanagement.getCustomStopStatus(requestId, deviceId);
     if (deviceId != null && !deviceId.isEmpty())
       return this.linemanagement.getCustomStopDevice(deviceId);
-    if (lineId != null)
-      return this.linemanagement.getCustomStopLine(lineId);
+    if (lineId != null && busId!=null)
+      return this.linemanagement.getCustomStopLine(lineId,busId);
     if (requestId != null)
     	return this.linemanagement.getCustomStopRequests(requestId);
 

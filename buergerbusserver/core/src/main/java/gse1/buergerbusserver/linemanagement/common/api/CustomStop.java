@@ -117,12 +117,22 @@ public interface CustomStop extends ApplicationEntity {
   /**
    * @param busId
    */
-  void setBusId(Long busId);
+  void setAcceptingBus(Long busId);
 
   /**
    * @return Id of bus serving this request
    */
-  Long getBusId();
+  Long getAcceptingBus();
+  
+  /**
+   * @param busId
+   */
+  void setRejectingBus(String rejectingBus);
+
+  /**
+   * @return Id of bus serving this request
+   */
+  String getRejectingBus();
 
   /**
    * @param timeStamp

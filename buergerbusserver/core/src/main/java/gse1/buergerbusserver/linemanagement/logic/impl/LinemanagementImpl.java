@@ -196,9 +196,9 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<CustomStopEto> getCustomStopLine(Long lineId) {
+  public List<CustomStopEto> getCustomStopLine(Long lineId,Long busId) {
 
-    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopLine(lineId);
+    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopLine(lineId,busId);
     return getBeanMapper().mapList(customStops, CustomStopEto.class);
   }
 

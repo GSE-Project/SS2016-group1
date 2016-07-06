@@ -41,10 +41,10 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
 
   private int status;
 
-  private Long busId;
-
+  private Long acceptingBus;
+  
   private Date timeStamp;
-
+  
   /**
    * The constructor.
    */
@@ -52,6 +52,32 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
 
     super();
   }
+  
+  public Long getAcceptingBus() {
+  
+    return acceptingBus;
+  }
+
+  public void setAcceptingBus(Long acceptingBus) {
+  
+    this.acceptingBus = acceptingBus;
+  }
+
+  public String getRejectingBus() {
+  
+    return rejectingBus;
+  }
+
+  public void setRejectingBus(String rejectingBus) {
+  
+    this.rejectingBus = rejectingBus;
+  }
+
+  private String rejectingBus;
+
+
+
+
 
   // public Long getId() {
   //
@@ -276,27 +302,7 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
     return this.status;
   }
 
-  /**
-   *
-   * @param busId new value of {@link #getBusId}.
-   */
 
-  @Override
-  public void setBusId(Long busId) {
-
-    this.busId = busId;
-
-  }
-
-  /**
-   * @return busId
-   */
-
-  @Override
-  public Long getBusId() {
-
-    return this.busId;
-  }
 
   /**
    * @param timeStamp Sets date time on create/update

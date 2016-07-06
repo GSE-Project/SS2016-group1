@@ -51,7 +51,29 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
 
   private int status;
 
-  private Long busId;
+  private Long acceptingBus;
+  
+  public Long getAcceptingBus() {
+  
+    return acceptingBus;
+  }
+
+  public void setAcceptingBus(Long acceptingBus) {
+  
+    this.acceptingBus = acceptingBus;
+  }
+
+  public String getRejectingBus() {
+  
+    return rejectingBus;
+  }
+
+  public void setRejectingBus(String rejectingBus) {
+  
+    this.rejectingBus = rejectingBus;
+  }
+
+  private String rejectingBus;
 
   private Date timeStamp;
 
@@ -73,17 +95,7 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   // this.id = id;
   // }
 
-  @Override
-  public Long getBusId() {
 
-    return this.busId;
-  }
-
-  @Override
-  public void setBusId(Long busId) {
-
-    this.busId = busId;
-  }
 
   @Override
   public Long getLineId() {

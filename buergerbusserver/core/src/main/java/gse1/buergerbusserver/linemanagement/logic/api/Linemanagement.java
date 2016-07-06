@@ -117,7 +117,7 @@ public interface Linemanagement {
    * @param lineId
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  List<CustomStopEto> getCustomStopLine(Long lineId);
+  List<CustomStopEto> getCustomStopLine(Long lineId,Long busId);
 
   /**
    * Returns a list of all {@link CustomStopEntity} for {@link CustomStop} as given by Status (For Driver/Citizen)

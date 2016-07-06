@@ -111,7 +111,7 @@ public interface LinemanagementRestService {
   @GET
   @Path("/customStops")
   public List<CustomStopEto> getCustomStops(@QueryParam("requestId") Long requestId,
-      @QueryParam("deviceId") String deviceId, @QueryParam("lineId") Long lineId);
+      @QueryParam("deviceId") String deviceId, @QueryParam("lineId") Long lineId,@QueryParam("busId")Long busId);
 
   // /**
   // * @param requestId of the request

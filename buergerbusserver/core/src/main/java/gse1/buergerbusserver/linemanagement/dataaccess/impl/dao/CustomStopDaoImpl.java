@@ -98,7 +98,7 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   }
 
   @Override
-  public List<CustomStopEntity> getCustomStopLine(Long lineId) {
+  public List<CustomStopEntity> getCustomStopLine(Long lineId, Long busId) {
 
     try {
       EntityManager em = getEntityManager();
@@ -115,11 +115,22 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       cq.select(ro);
       cq.where(
           cb.and(cb.equal(ro.get("lineId"), lineId), cb.greaterThanOrEqualTo(ro.<Date> get("pickUpTime"), currDate),
-              cb.or(cb.equal(ro.get("status"), 1), cb.equal(ro.get("status"), 3))));
+              cb.or(cb.equal(ro.get("status"), 1), cb.and(cb.equal(ro.get("status"), 2),cb.equal(ro.get("acceptingBus"), busId)),
+                  cb.and(cb.equal(ro.get("status"), 6),cb.equal(ro.get("acceptingBus"), busId)))));
 
       // cq.where(cb.equal(ro.get("lineId"), lineId));
 
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
+      for(int i =0;i<result.size();i++)
+      {
+        if(result.get(i).getRejectingBus()!=null)
+        {
+          for (String rejectingBus : result.get(i).getRejectingBus().split(",")) {
+            if(rejectingBus.equals(busId.toString()))
+              result.remove(i);
+          }
+        }
+      }
       return result;
     } catch (Exception e) {
       e.printStackTrace();
