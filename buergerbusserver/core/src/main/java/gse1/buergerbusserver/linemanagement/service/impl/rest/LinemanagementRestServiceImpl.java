@@ -208,7 +208,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     customStop.setLon(lon);
     customStop.setLat(lat);
     customStop.setNumberOfPersons(Integer.valueOf(jsonRequest.get("numberOfPersons").toString()));
-    customStop.setDeviceId(jsonRequest.get("deviceID").toString());// changed in rescue mission
+    customStop.setDeviceId(jsonRequest.get("deviceId").toString());// changed in rescue mission
     customStop.setUserName(custName);
     customStop.setUserAddress(custAddress);
     customStop.setUserAssistance(custAssistance);

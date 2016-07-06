@@ -335,14 +335,4 @@ public class CustomStopEto extends AbstractEto implements CustomStop {
     return new InfoObject(this.userName, this.userAddress, this.userAssistance);
   }
 
-  public int getState() {
-
-    return this.status;
-  }
-
-  public String getDeviceID() {
-
-    return this.deviceId;
-  }
-
 }
