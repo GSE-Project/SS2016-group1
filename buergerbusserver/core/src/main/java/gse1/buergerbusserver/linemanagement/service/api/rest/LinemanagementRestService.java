@@ -140,7 +140,6 @@ public interface LinemanagementRestService {
   // @Path("/customStop/lineid/{lineId}")
   // public List<CustomStopEto> getCustomStopLine(@PathParam("lineId") Long lineId);
   //
- 
 
   /**
    * @param customStopID the unique request ID
@@ -158,7 +157,7 @@ public interface LinemanagementRestService {
    */
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  @Path("customStops")
+  @Path("/customStops")
   public CustomStopEto newCustomStop(HashMap<String, Object> jsonRequest);
 
 }

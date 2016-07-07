@@ -181,8 +181,8 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   }
 
   @Override
-  public Long newCustomStopTransaction(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
-      String deviceId, String userName, String userAddress, String userAssistance) {
+  public Long newCustomStopTransaction(Long lineId, Date pickUpTime, String location, int numberOfPersons,
+      String deviceId, String info) {
 
     // Session session = HibernateUtil.getSessionFactory().openSession();
     // buildSessionFactory
@@ -205,15 +205,12 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       CustomStopEntity cse = new CustomStopEntity();
 
       cse.setDeviceId(deviceId);
-      cse.setLat(lat);
-      cse.setLon(lon);
+      cse.setUserInfo(info);
       cse.setLineId(lineId);
       cse.setPickUpTime(pickUpTime);
       cse.setNumberOfPersons(numberOfPersons);
       cse.setStatus(5);
-      cse.setUserName(userName);
-      cse.setUserAddress(userAddress);
-      cse.setUserAssistance(userAssistance);
+      // cse.setStopLocation(location);
       cse.setTimeStamp(currTimeStamp);
       // Long requestId = (Long) session.save(cse);
 

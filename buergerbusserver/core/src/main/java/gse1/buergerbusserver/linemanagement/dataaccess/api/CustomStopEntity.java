@@ -2,13 +2,17 @@ package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
 import java.util.Date;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import org.geojson.Point;
+
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
+import gse1.buergerbusserver.general.dataaccess.base.PointConverter;
 import gse1.buergerbusserver.linemanagement.common.api.CustomStop;
 import gse1.buergerbusserver.linemanagement.common.api.Line;
 
@@ -31,23 +35,17 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   // // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
   // private Long id;
 
-  private String userAssistance;
-
   private Long lineId;
 
   private Date pickUpTime;
 
-  private double lat;
-
-  private double lon;
+  private Point stopLocation;
 
   private int numberOfPersons;
 
   private String deviceId;
 
-  private String userName;
-
-  private String userAddress;
+  private String userInfo;
 
   private int status;
 
@@ -122,27 +120,16 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   }
 
   @Override
-  public double getLat() {
+  @Convert(converter = PointConverter.class)
+  public Point getStopLocation() {
 
-    return this.lat;
+    return this.stopLocation;
   }
 
   @Override
-  public void setLat(double lat) {
+  public void setStopLocation(Point stopLocation) {
 
-    this.lat = lat;
-  }
-
-  @Override
-  public double getLon() {
-
-    return this.lon;
-  }
-
-  @Override
-  public void setLon(double lon) {
-
-    this.lon = lon;
+    this.stopLocation = stopLocation;
   }
 
   @Override
@@ -170,40 +157,18 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   }
 
   @Override
-  public String getUserName() {
+  // @Convert(converter = StringListConverter.class)
+  public String getUserInfo() {
 
-    return this.userName;
+    return this.userInfo;
   }
 
   @Override
-  public void setUserName(String userName) {
+  // @Convert(converter = StringListConverter.class)
+  public void setUserInfo(String userInfo) {
 
-    this.userName = userName;
-  }
+    this.userInfo = userInfo;
 
-  @Override
-  public String getUserAddress() {
-
-    return this.userAddress;
-  }
-
-  @Override
-  public void setUserAddress(String userAddress) {
-
-    this.userAddress = userAddress;
-  }
-
-  @Override
-  public String getUserAssistance() {
-
-    return this.userAssistance;
-
-  }
-
-  @Override
-  public void setUserAssistance(String userAssistance) {
-
-    this.userAssistance = userAssistance;
   }
 
   @Override
