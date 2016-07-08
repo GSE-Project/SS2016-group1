@@ -221,25 +221,29 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
         }
         break;
       case 3:
+        // add bus to rejecting busses
         List<String> rejectingBus = this.CustomStopDao.updateCustomStopRejectingBus(requestId, busId);
+        // check if rejecting busses now contains all busses on this line; if yes, set global status to reject
         if (getCustomStopRequests(requestId).get(0).getStatus() == 1
             && rejectingBus.size() == getBusesOnLine(getCustomStopRequests(requestId).get(0).getLineId()).size()) {
           this.CustomStopDao.updateCustomStopStatus(requestId, status);
         }
         break;
-      case 4:
+      case 4:// global status is accepted, bus which accepted request sets status to completed
         if (oldStatus == 2 && getCustomStopRequests(requestId).get(0).getAcceptingBus() == busId) {
           this.CustomStopDao.updateCustomStopStatus(requestId, status);
         }
         break;
-      case 5:
+      case 5:// global status is accepted, bus which accepted request sets status to not shown up
         if (oldStatus == 2 && getCustomStopRequests(requestId).get(0).getAcceptingBus() == busId) {
           this.CustomStopDao.updateCustomStopStatus(requestId, status);
         }
         break;
-      case 6:
+      case 6:// status is set to canceled
         this.CustomStopDao.updateCustomStopStatus(requestId, status);
         break;
+      default:// any other given number will simply be stored in the global status
+        this.CustomStopDao.updateCustomStopStatus(requestId, status);
       }
     } catch (Exception e) {
       e.printStackTrace();
