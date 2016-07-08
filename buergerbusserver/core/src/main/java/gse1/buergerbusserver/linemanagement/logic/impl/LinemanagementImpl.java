@@ -195,9 +195,9 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<CustomStopEto> getCustomStopLine(Long lineId,Long busId) {
+  public List<CustomStopEto> getCustomStopLine(Long lineId, Long busId) {
 
-    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopLine(lineId,busId);
+    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopLine(lineId, busId);
     return getBeanMapper().mapList(customStops, CustomStopEto.class);
   }
 
@@ -209,10 +209,38 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public void updateCustomStopStatus(Long requestId, int status) {
+  public void updateCustomStopStatus(Long requestId, int status, Long busId) {
 
     try {
-      this.CustomStopDao.updateCustomStopStatus(requestId, status);
+      int oldStatus = getCustomStopRequests(requestId).get(0).getStatus();
+      switch (status) {
+      case 2:// global status is pending, the bus accepts the request
+        if (getCustomStopRequests(requestId).get(0).getStatus() == 1) {
+          this.CustomStopDao.updateCustomStopStatus(requestId, status);
+          this.CustomStopDao.updateCustomStopAcceptingBus(requestId, busId);
+        }
+        break;
+      case 3:
+        List<String> rejectingBus = this.CustomStopDao.updateCustomStopRejectingBus(requestId, busId);
+        if (getCustomStopRequests(requestId).get(0).getStatus() == 1
+            && rejectingBus.size() == getBusesOnLine(getCustomStopRequests(requestId).get(0).getLineId()).size()) {
+          this.CustomStopDao.updateCustomStopStatus(requestId, status);
+        }
+        break;
+      case 4:
+        if (oldStatus == 2 && getCustomStopRequests(requestId).get(0).getAcceptingBus() == busId) {
+          this.CustomStopDao.updateCustomStopStatus(requestId, status);
+        }
+        break;
+      case 5:
+        if (oldStatus == 2 && getCustomStopRequests(requestId).get(0).getAcceptingBus() == busId) {
+          this.CustomStopDao.updateCustomStopStatus(requestId, status);
+        }
+        break;
+      case 6:
+        this.CustomStopDao.updateCustomStopStatus(requestId, status);
+        break;
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }

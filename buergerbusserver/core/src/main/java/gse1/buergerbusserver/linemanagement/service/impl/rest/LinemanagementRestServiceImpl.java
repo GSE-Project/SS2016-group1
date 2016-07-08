@@ -156,10 +156,11 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
     long temp = Long.valueOf(jsonRequest.get("status"));
     int status = (int) temp;
+    Long busId = jsonRequest.get("busId");
 
     try {
 
-      this.linemanagement.updateCustomStopStatus(customStopId, status);
+      this.linemanagement.updateCustomStopStatus(customStopId, status, busId);
       return Response.status(200).build();
 
     } catch (Exception e) {
@@ -224,14 +225,14 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId,Long busId) {
+  public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId, Long busId) {
 
     if (requestId != null && deviceId != null && !deviceId.isEmpty())
       return this.linemanagement.getCustomStopStatus(requestId, deviceId);
     if (deviceId != null && !deviceId.isEmpty())
       return this.linemanagement.getCustomStopDevice(deviceId);
-    if (lineId != null && busId!=null)
-      return this.linemanagement.getCustomStopLine(lineId,busId);
+    if (lineId != null && busId != null)
+      return this.linemanagement.getCustomStopLine(lineId, busId);
     if (requestId != null)
       return this.linemanagement.getCustomStopRequests(requestId);
 

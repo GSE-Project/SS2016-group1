@@ -3,6 +3,7 @@ package gse1.buergerbusserver.linemanagement.dataaccess.impl.dao;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -115,18 +117,17 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       cq.select(ro);
       cq.where(
           cb.and(cb.equal(ro.get("lineId"), lineId), cb.greaterThanOrEqualTo(ro.<Date> get("pickUpTime"), currDate),
-              cb.or(cb.equal(ro.get("status"), 1), cb.and(cb.equal(ro.get("status"), 2),cb.equal(ro.get("acceptingBus"), busId)),
-                  cb.and(cb.equal(ro.get("status"), 6),cb.equal(ro.get("acceptingBus"), busId)))));
+              cb.or(cb.equal(ro.get("status"), 1),
+                  cb.and(cb.equal(ro.get("status"), 2), cb.equal(ro.get("acceptingBus"), busId)),
+                  cb.and(cb.equal(ro.get("status"), 6), cb.equal(ro.get("acceptingBus"), busId)))));
 
       // cq.where(cb.equal(ro.get("lineId"), lineId));
 
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
-      for(int i =0;i<result.size();i++)
-      {
-        if(result.get(i).getRejectingBus()!=null)
-        {
+      for (int i = 0; i < result.size(); i++) {
+        if (result.get(i).getRejectingBus() != null) {
           for (String rejectingBus : result.get(i).getRejectingBus().split(",")) {
-            if(rejectingBus.equals(busId.toString()))
+            if (rejectingBus.equals(busId.toString()))
               result.remove(i);
           }
         }
@@ -178,6 +179,53 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       e.printStackTrace();
     }
 
+  }
+
+  @Override
+  public void updateCustomStopAcceptingBus(Long requestId, Long busId) {
+
+    try {
+      EntityManager em = getEntityManager();
+      CriteriaBuilder cb = em.getCriteriaBuilder();
+      CriteriaUpdate<CustomStopEntity> cu = cb.createCriteriaUpdate((CustomStopEntity.class));
+      Root<CustomStopEntity> ro = cu.from(CustomStopEntity.class);
+
+      cu.set(ro.get("acceptingBus"), busId);
+      cu.where(cb.equal(ro.get("id"), requestId));
+
+      em.createQuery(cu).executeUpdate();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public List<String> updateCustomStopRejectingBus(Long requestId, Long busId) {
+
+    try {
+      EntityManager em = getEntityManager();
+      CriteriaBuilder cb = em.getCriteriaBuilder();
+      CriteriaUpdate<CustomStopEntity> cu = cb.createCriteriaUpdate((CustomStopEntity.class));
+      Root<CustomStopEntity> ro = cu.from(CustomStopEntity.class);
+
+      List<String> rejectingBus = new ArrayList<>();
+      if (getCustomStopRequests(requestId).get(0).getRejectingBus() != null) {
+        rejectingBus.addAll(Arrays.asList(getCustomStopRequests(requestId).get(0).getRejectingBus().split(",")));
+      }
+      rejectingBus.add(busId.toString());
+      String rejectingBusString = StringUtils.join(rejectingBus, ',');
+
+      cu.set(ro.get("rejectingBus"), rejectingBusString);
+      cu.where(cb.equal(ro.get("id"), requestId));
+
+      em.createQuery(cu).executeUpdate();
+      return rejectingBus;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   @Override

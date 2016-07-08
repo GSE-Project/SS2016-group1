@@ -95,9 +95,9 @@ public interface CustomStop extends ApplicationEntity {
    * @return Id of bus serving this request
    */
   Long getAcceptingBus();
-  
+
   /**
-   * @param busId
+   * @param rejectingBus
    */
   void setRejectingBus(String rejectingBus);
 

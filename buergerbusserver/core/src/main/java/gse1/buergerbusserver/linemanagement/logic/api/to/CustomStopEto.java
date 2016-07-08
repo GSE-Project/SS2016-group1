@@ -47,21 +47,33 @@ public class CustomStopEto extends AbstractEto {
     super();
   }
 
+  /**
+   * @return acceptingBus
+   */
   public Long getAcceptingBus() {
 
     return this.acceptingBus;
   }
 
+  /**
+   * @param acceptingBus bus that accepted the request
+   */
   public void setAcceptingBus(Long acceptingBus) {
 
     this.acceptingBus = acceptingBus;
   }
 
+  /**
+   * @return rejectingBus
+   */
   public String getRejectingBus() {
 
     return this.rejectingBus;
   }
 
+  /**
+   * @param rejectingBus list of busses that rejected the request
+   */
   public void setRejectingBus(String rejectingBus) {
 
     this.rejectingBus = rejectingBus;
@@ -188,6 +200,9 @@ public class CustomStopEto extends AbstractEto {
 
   }
 
+  /**
+   * @return userInfo
+   */
   // @Convert(converter = StringListConverter.class)
   public String getUserInfo() {
 
@@ -204,6 +219,9 @@ public class CustomStopEto extends AbstractEto {
 
   }
 
+  /**
+   * @return status
+   */
   public int getStatus() {
 
     return this.status;

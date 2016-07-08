@@ -115,13 +115,14 @@ public interface Linemanagement {
    * Returns a list of all {@link CustomStopEntity} pending {@link Line} as given by lineId (For Driver)
    *
    * @param lineId
+   * @param busId
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  List<CustomStopEto> getCustomStopLine(Long lineId,Long busId);
+  List<CustomStopEto> getCustomStopLine(Long lineId, Long busId);
 
   /**
    * Returns a list of all {@link CustomStopEntity} for {@link CustomStop} as given by Status (For Driver/Citizen)
-   * 
+   *
    * @param requestId ID of the requested custom stop
    * @return {@link List} of Custom Stop requests in that status (1 - Accepted, 2 - Declined, 3 - Pending, 4 -
    *         Completed, 5 - Cancelled) Not really needed right now...
@@ -133,8 +134,9 @@ public interface Linemanagement {
    *
    * @param status
    * @param requestId
+   * @param busId
    **/
-  void updateCustomStopStatus(Long requestId, int status);
+  void updateCustomStopStatus(Long requestId, int status, Long busId);
 
   /**
    * Update the status of the {@link CustomStopEntity} request for {@link CustomStop} as given by request ID

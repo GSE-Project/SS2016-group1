@@ -39,6 +39,7 @@ public interface CustomStopDao extends ApplicationDao<CustomStopEntity>, MasterD
    * Returns a list of all {@link CustomStopEntity} pending {@link Line} as given by lineId (For Driver)
    *
    * @param lineId
+   * @param busId
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
   List<CustomStopEntity> getCustomStopLine(Long lineId, Long busId);
@@ -61,6 +62,23 @@ public interface CustomStopDao extends ApplicationDao<CustomStopEntity>, MasterD
    * @param requestId
    **/
   void updateCustomStopStatus(Long requestId, int status);
+
+  /**
+   * Add busId of the bus which has accepted the custom stop request with givn requestId
+   *
+   * @param requestId id of custom stop request
+   * @param busId id of bus accepting the request
+   */
+  public void updateCustomStopAcceptingBus(Long requestId, Long busId);
+
+  /**
+   * Add bus given by busId to the list of busses that rejected the custm stop given by request id
+   *
+   * @param requestId id of custom stop request
+   * @param busId id of bus rejecting the request
+   * @return list of Strings with busIds of all busses rejecting the request
+   */
+  public List<String> updateCustomStopRejectingBus(Long requestId, Long busId);
 
   /**
    * Update the status of the {@link CustomStopEntity} request for {@link CustomStop} as given by request ID
