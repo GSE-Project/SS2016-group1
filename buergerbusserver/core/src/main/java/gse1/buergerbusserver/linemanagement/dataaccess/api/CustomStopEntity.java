@@ -39,7 +39,7 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
 
   private Date pickUpTime;
 
-  private Point stopLocation;
+  private Point location;
 
   private int numberOfPersons;
 
@@ -50,24 +50,28 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   private int status;
 
   private Long acceptingBus;
-  
+
+  @Override
   public Long getAcceptingBus() {
-  
-    return acceptingBus;
+
+    return this.acceptingBus;
   }
 
+  @Override
   public void setAcceptingBus(Long acceptingBus) {
-  
+
     this.acceptingBus = acceptingBus;
   }
 
+  @Override
   public String getRejectingBus() {
-  
-    return rejectingBus;
+
+    return this.rejectingBus;
   }
 
+  @Override
   public void setRejectingBus(String rejectingBus) {
-  
+
     this.rejectingBus = rejectingBus;
   }
 
@@ -92,8 +96,6 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   //
   // this.id = id;
   // }
-
-
 
   @Override
   public Long getLineId() {
@@ -121,15 +123,15 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
 
   @Override
   @Convert(converter = PointConverter.class)
-  public Point getStopLocation() {
+  public Point getLocation() {
 
-    return this.stopLocation;
+    return this.location;
   }
 
   @Override
-  public void setStopLocation(Point stopLocation) {
+  public void setLocation(Point location) {
 
-    this.stopLocation = stopLocation;
+    this.location = location;
   }
 
   @Override

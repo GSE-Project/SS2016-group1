@@ -94,7 +94,7 @@ CREATE TABLE CUSTOMSTOP(
     modificationCounter INTEGER NOT NULL,
     lineId BIGINT NOT NULL,
     pickUpTime timestamp NOT NULL,
-    stopLocation VARCHAR(MAX) NOT NULL,
+    location VARCHAR(MAX) NOT NULL,
     numberOfPersons INTEGER NOT NULL,
     deviceId VARCHAR(50) NOT NULL,
     userInfo VARCHAR(MAX) NOT NULL,

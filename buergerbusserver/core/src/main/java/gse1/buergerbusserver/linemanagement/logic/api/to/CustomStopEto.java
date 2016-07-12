@@ -25,7 +25,7 @@ public class CustomStopEto extends AbstractEto {
 
   private Date pickUpTime;
 
-  private Point stopLocation;
+  private Point location;
 
   private int numberOfPersons;
 
@@ -136,18 +136,18 @@ public class CustomStopEto extends AbstractEto {
    */
 
   // @Convert(converter = LineStringConverter.class)
-  public void setStopLocation(Point stopLocation) {
+  public void setLocation(Point location) {
 
-    this.stopLocation = stopLocation;
+    this.location = location;
   }
 
   // @Convert(converter = LineStringConverter.class)
   /**
    * @return points
    */
-  public Point getStopLocation() {
+  public Point getLocation() {
 
-    return this.stopLocation;
+    return this.location;
   }
 
   /**

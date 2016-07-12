@@ -37,14 +37,14 @@ public interface CustomStop extends ApplicationEntity {
   Date getPickUpTime();
 
   /**
-   * @param stopLocation set GPS coordinates
+   * @param location set GPS coordinates
    */
-  void setStopLocation(Point stopLocation);
+  void setLocation(Point location);
 
   /**
    * @return location
    */
-  Point getStopLocation();
+  Point getLocation();
 
   /**
    * @param numberOfPersons

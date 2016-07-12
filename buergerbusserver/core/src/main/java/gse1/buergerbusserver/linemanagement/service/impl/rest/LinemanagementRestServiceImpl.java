@@ -205,7 +205,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
     customStop.setLineId(Long.valueOf(jsonRequest.get("lineId").toString()));
 
-    customStop.setStopLocation((new PointConverter()).convertToEntityAttribute(custLocation));
+    customStop.setLocation((new PointConverter()).convertToEntityAttribute(custLocation));
     customStop.setNumberOfPersons(Integer.valueOf(jsonRequest.get("numberOfPersons").toString()));
     customStop.setDeviceId(jsonRequest.get("deviceId").toString());// changed in rescue mission
     customStop.setUserInfo(custInfo);
