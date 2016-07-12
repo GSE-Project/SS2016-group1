@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.util.StringUtils;
 
+import gse1.buergerbusserver.general.dataaccess.base.PointConverter;
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
@@ -150,17 +151,16 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
   }
 
- 
-
   @Override
   public Response updateCustomStop(long customStopId, HashMap<String, Long> jsonRequest) {
 
     long temp = Long.valueOf(jsonRequest.get("status"));
     int status = (int) temp;
+    Long busId = jsonRequest.get("busId");
 
     try {
 
-      this.linemanagement.updateCustomStopStatus(customStopId, status);
+      this.linemanagement.updateCustomStopStatus(customStopId, status, busId);
       return Response.status(200).build();
 
     } catch (Exception e) {
@@ -184,34 +184,31 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
       pickUpTime = null;
     }
 
-    Double lon, lat;
     HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("location");
     @SuppressWarnings("unchecked")
     ArrayList<Double> coordinates = (ArrayList<Double>) obj.get("coordinates");
-    lon = (double) coordinates.get(0);
-    lat = (double) coordinates.get(1);
+    String custLocation = StringUtils.collectionToDelimitedString(coordinates, ",");
 
     HashMap<?, ?> info = (HashMap<?, ?>) jsonRequest.get("info");
     String custName = (String) info.get("name");
     String custAddress = (String) info.get("address");
     @SuppressWarnings("unchecked")
     ArrayList<Integer> userAss = (ArrayList<Integer>) info.get("assistance");
-    List<Integer> ua = new ArrayList<Integer>();
+    List<Integer> ua = new ArrayList<>();
     for (Integer userAssistance : userAss)
       ua.add(userAssistance);
-
     String custAssistance = StringUtils.collectionToDelimitedString(ua, ",");
+
+    String custInfo = custName + ";" + custAddress + ";" + custAssistance;
 
     CustomStopEto customStop = new CustomStopEto();
 
     customStop.setLineId(Long.valueOf(jsonRequest.get("lineId").toString()));
-    customStop.setLon(lon);
-    customStop.setLat(lat);
+
+    customStop.setStopLocation((new PointConverter()).convertToEntityAttribute(custLocation));
     customStop.setNumberOfPersons(Integer.valueOf(jsonRequest.get("numberOfPersons").toString()));
-    customStop.setDeviceId(jsonRequest.get("deviceID").toString());// changed in rescue mission
-    customStop.setUserName(custName);
-    customStop.setUserAddress(custAddress);
-    customStop.setUserAssistance(custAssistance);
+    customStop.setDeviceId(jsonRequest.get("deviceId").toString());// changed in rescue mission
+    customStop.setUserInfo(custInfo);
     customStop.setPickUpTime(pickUpTime);
     customStop.setStatus(1); // Status set to "pending" initially
     customStop.setTimeStamp(currTimeStamp);
@@ -228,16 +225,16 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId) {
+  public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId, Long busId) {
 
     if (requestId != null && deviceId != null && !deviceId.isEmpty())
       return this.linemanagement.getCustomStopStatus(requestId, deviceId);
     if (deviceId != null && !deviceId.isEmpty())
       return this.linemanagement.getCustomStopDevice(deviceId);
-    if (lineId != null)
-      return this.linemanagement.getCustomStopLine(lineId);
+    if (lineId != null && busId != null)
+      return this.linemanagement.getCustomStopLine(lineId, busId);
     if (requestId != null)
-    	return this.linemanagement.getCustomStopRequests(requestId);
+      return this.linemanagement.getCustomStopRequests(requestId);
 
     return null;
 

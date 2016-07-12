@@ -10,7 +10,6 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import gse1.buergerbusserver.general.logic.base.AbstractComponentFacade;
 import gse1.buergerbusserver.linemanagement.dataaccess.api.BusEntity;
@@ -98,7 +97,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   @Override
   public HashMap<String, Object> getAllRoutes() {
 
-    HashMap<String, Object> returnHM = new HashMap<String, Object>();
+    HashMap<String, Object> returnHM = new HashMap<>();
     List<RouteEto> routeEtoList = getBeanMapper().mapList(this.routeDao.findAll(), RouteEto.class);
     returnHM.put("routes", routeEtoList);
     returnHM.put("timeStamp", this.routeDao.lastUpdate());
@@ -109,7 +108,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   @Override
   public HashMap<String, Object> getAllLinesWithBusIds() {
 
-    HashMap<String, Object> returnHM = new HashMap<String, Object>();
+    HashMap<String, Object> returnHM = new HashMap<>();
     List<LineWithBusIdsCto> lineCtoList = getBeanMapper().mapList(this.lineDao.findAll(), LineWithBusIdsCto.class);
 
     for (LineWithBusIdsCto lineCto : lineCtoList) {
@@ -149,7 +148,7 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   @Override
   public HashMap<String, Object> getAllBusesListWithTimeStamp() {
 
-    HashMap<String, Object> returnHM = new HashMap<String, Object>();
+    HashMap<String, Object> returnHM = new HashMap<>();
 
     returnHM.put("busses", getAllBuses());
     returnHM.put("timeStamp", this.busDao.lastUpdate());
@@ -196,24 +195,56 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public List<CustomStopEto> getCustomStopLine(Long lineId) {
+  public List<CustomStopEto> getCustomStopLine(Long lineId, Long busId) {
 
-    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopLine(lineId);
+    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopLine(lineId, busId);
     return getBeanMapper().mapList(customStops, CustomStopEto.class);
   }
 
   @Override
   public List<CustomStopEto> getCustomStopRequests(Long requestId) {
 
-	  List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopRequests(requestId);
-	    return getBeanMapper().mapList(customStops, CustomStopEto.class);
+    List<CustomStopEntity> customStops = this.CustomStopDao.getCustomStopRequests(requestId);
+    return getBeanMapper().mapList(customStops, CustomStopEto.class);
   }
 
   @Override
-  public void updateCustomStopStatus(Long requestId, int status) {
+  public void updateCustomStopStatus(Long requestId, int status, Long busId) {
 
     try {
-      this.CustomStopDao.updateCustomStopStatus(requestId, status);
+      int oldStatus = getCustomStopRequests(requestId).get(0).getStatus();
+      switch (status) {
+      case 2:// global status is pending, the bus accepts the request
+        if (getCustomStopRequests(requestId).get(0).getStatus() == 1) {
+          this.CustomStopDao.updateCustomStopStatus(requestId, status);
+          this.CustomStopDao.updateCustomStopAcceptingBus(requestId, busId);
+        }
+        break;
+      case 3:
+        // add bus to rejecting busses
+        List<String> rejectingBus = this.CustomStopDao.updateCustomStopRejectingBus(requestId, busId);
+        // check if rejecting busses now contains all busses on this line; if yes, set global status to reject
+        if (getCustomStopRequests(requestId).get(0).getStatus() == 1
+            && rejectingBus.size() == getBusesOnLine(getCustomStopRequests(requestId).get(0).getLineId()).size()) {
+          this.CustomStopDao.updateCustomStopStatus(requestId, status);
+        }
+        break;
+      case 4:// global status is accepted, bus which accepted request sets status to completed
+        if (oldStatus == 2 && getCustomStopRequests(requestId).get(0).getAcceptingBus() == busId) {
+          this.CustomStopDao.updateCustomStopStatus(requestId, status);
+        }
+        break;
+      case 5:// global status is accepted, bus which accepted request sets status to not shown up
+        if (oldStatus == 2 && getCustomStopRequests(requestId).get(0).getAcceptingBus() == busId) {
+          this.CustomStopDao.updateCustomStopStatus(requestId, status);
+        }
+        break;
+      case 6:// status is set to canceled
+        this.CustomStopDao.updateCustomStopStatus(requestId, status);
+        break;
+      default:// any other given number will simply be stored in the global status
+        this.CustomStopDao.updateCustomStopStatus(requestId, status);
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -221,12 +252,12 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   }
 
   @Override
-  public Long newCustomStopTransaction(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
-      String deviceId, String userName, String userAddress, List<Integer> userAssistance) {
+  public Long newCustomStopTransaction(Long lineId, Date pickUpTime, String location, int numberOfPersons,
+      String deviceId, String info) {
 
-    String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
-    Long requestId = this.CustomStopDao.newCustomStopTransaction(lineId, pickUpTime, lat, lon, numberOfPersons,
-        deviceId, userName, userAddress, userAssist);
+    // String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
+    Long requestId =
+        this.CustomStopDao.newCustomStopTransaction(lineId, pickUpTime, location, numberOfPersons, deviceId, info);
     /*
      * List<String> stringList = Arrays.asList(userAssist.split(",")); List<Integer> returnList = new ArrayList<>(); for
      * (String num : stringList) { returnList.add(Integer.valueOf(num)); }
