@@ -3,6 +3,8 @@ package gse1.buergerbusserver.schedulemanagement.logic.api.to;
 import java.util.Date;
 
 /**
+ * Stop Entity transfer object with setter and getters only.
+ * 
  * @author JAYU
  * @since 0.1
  */

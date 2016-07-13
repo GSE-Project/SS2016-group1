@@ -12,6 +12,8 @@ import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity
 import gse1.buergerbusserver.schedulemanagement.common.api.Schedule;
 
 /**
+ * ScheduleEntity implementing Schedule interface implies overriding and setter getters only
+ * 
  * @author mbaniasad
  *
  */

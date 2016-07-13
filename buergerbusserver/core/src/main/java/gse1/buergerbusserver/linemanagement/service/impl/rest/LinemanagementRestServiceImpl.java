@@ -129,6 +129,8 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public Response setLastPosition(HashMap<String, Object> jsonRequest) {
 
+    //here we simply fetch the relevant variables from json object and perform simple checks on data
+    //and then call the relevant functions.
     Long busId;
     Double lon, lat;
     busId = Long.valueOf(jsonRequest.get("busId").toString());
@@ -154,6 +156,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public Response updateCustomStop(long customStopId, HashMap<String, Long> jsonRequest) {
 
+    //fetching variable for using as parameters of the relevant function call
     long temp = Long.valueOf(jsonRequest.get("status"));
     int status = (int) temp;
     Long busId = jsonRequest.get("busId");
@@ -227,6 +230,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId, Long busId) {
 
+    //basic data checks and then simply calling the relevant method in the logic layer which further calls in data access methods
     if (requestId != null && deviceId != null && !deviceId.isEmpty())
       return this.linemanagement.getCustomStopStatus(requestId, deviceId);
     if (deviceId != null && !deviceId.isEmpty())

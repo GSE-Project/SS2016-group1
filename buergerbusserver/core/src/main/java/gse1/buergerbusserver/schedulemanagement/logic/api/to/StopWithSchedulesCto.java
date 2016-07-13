@@ -7,6 +7,9 @@ import java.util.List;
 import gse1.buergerbusserver.general.common.api.datatype.GeoJsonPoint;
 
 /**
+ * Composite transfer object, defined where mesh of two object values are required.
+ * in this case, stop and schedule is meshing.
+ * 
  * @author JAYU
  *
  */

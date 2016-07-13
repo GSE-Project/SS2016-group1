@@ -19,6 +19,10 @@ import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 
 /**
+ * interface for the linemanagement component which is going to be exposed as a service
+ * only the needed method signature has precise comments
+ * for further information please refer to {@link https://github.com/GSE-Project/SS2016-group1/wiki/Server-interfaces} 
+ * 
  * @author ahsan
  *
  */
@@ -78,6 +82,9 @@ public interface LinemanagementRestService {
   public Response updateBusStatus(HashMap<String, Long> jsonRequest);
 
   /**
+   * returns the last udpate timestamps of buses, lines, routes and stops, so that client can check if their
+   * cached data is worn-out or note.
+   * 
    * @return {@link HashMap} of timeStamp when it was last updated .
    */
   @GET
