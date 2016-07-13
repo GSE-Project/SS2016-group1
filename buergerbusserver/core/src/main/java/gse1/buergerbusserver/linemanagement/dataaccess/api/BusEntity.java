@@ -14,6 +14,8 @@ import gse1.buergerbusserver.linemanagement.common.api.Bus;
  * {@link ApplicationPersistenceEntity Entity} representing a {@link Bus}. A bus has a number plate, a color and picture
  * and can have a line assigned to it.
  *
+ * BusEntity implementing Bus interface implies setter getter properties.
+ * 
  * @author ricarda42
  *
  */

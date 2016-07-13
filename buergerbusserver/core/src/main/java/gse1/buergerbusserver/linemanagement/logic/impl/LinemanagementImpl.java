@@ -31,6 +31,9 @@ import gse1.buergerbusserver.linemanagement.logic.api.to.RouteEto;
 import gse1.buergerbusserver.schedulemanagement.dataaccess.api.dao.StopDao;
 
 /**
+ * 
+ * Since, this implementation is for the Entity transfer objects. we are performing some logics
+ * and then simply calling the functions defined in the data access package
  * @author JAYU
  *
  */

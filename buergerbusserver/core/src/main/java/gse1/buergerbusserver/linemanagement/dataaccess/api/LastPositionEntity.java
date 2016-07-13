@@ -14,6 +14,8 @@ import gse1.buergerbusserver.linemanagement.common.api.LastPosition;
  * {@link ApplicationPersistenceEntity Entity} representing a {@link LastPosition}. It provides information about the
  * LastPosition of the bus ,which inlcudes BusId, TimeStamp, Latitude and Longitude.
  *
+ * LastPositionEntity implementing LastPosition interface implies setter getter properties.
+ *
  * @author Jay
  *
  */

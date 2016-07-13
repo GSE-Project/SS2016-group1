@@ -20,6 +20,8 @@ import gse1.buergerbusserver.linemanagement.common.api.Line;
  * {@link ApplicationPersistenceEntity Entity} representing a {@link Line}. A Custom stop has the location and pick up
  * time and is associated with a lineID
  *
+ * CustomStopEntity implementing CustomStop interface implies setter getter properties.
+ *
  * @author Sriramk88
  *
  **/

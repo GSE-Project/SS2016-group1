@@ -5,8 +5,8 @@ import java.util.Date;
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 
 /**
- * This is the interface for LastPostition of the Bus. It provides information regarding the Latitude and Longitude of
- * LastPosition and is referenced to a Bus by its BusID and the object carries a timestamp.
+ * This is the interface for LastPostition as well as for the occupied no.of seats of the Bus. It provides information regarding the 
+ * last known Location(Latitude and Longitude) and occupied seats of the Bus. It is referenced to a Bus by its BusID and the object carries a timestamp.
  *
  * @author JAYU
  *

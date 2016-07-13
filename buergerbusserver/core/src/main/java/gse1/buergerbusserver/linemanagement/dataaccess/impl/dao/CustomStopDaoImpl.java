@@ -61,20 +61,22 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   public List<CustomStopEntity> getCustomStopStatus(Long requestId, String deviceId) {
 
     try {
+      //selecting table for required records
       EntityManager em = getEntityManager();
       CriteriaBuilder cb = em.getCriteriaBuilder();
       CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
 
+      //selecting all the values against the criteria
       cq.select(ro);
       cq.where(cb.and(cb.equal(ro.get("id"), requestId), cb.equal(ro.get("deviceId"), deviceId)));
 
+      //fetching results into list and then returning it
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
       return result;
     } catch (Exception e) {
       e.printStackTrace();
-      List<CustomStopEntity> result = null;
-      return result;
+      return null;
     }
   }
 
@@ -82,20 +84,23 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   public List<CustomStopEntity> getCustomStopDevice(String deviceId) {
 
     try {
+      //selecting table for desired records
       EntityManager em = getEntityManager();
       CriteriaBuilder cb = em.getCriteriaBuilder();
       CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
 
+      //selecting values matching the given criteria
       cq.select(ro);
       cq.where(cb.equal(ro.get("deviceId"), deviceId));
 
+      //fetching results into list
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
+      //returning the list
       return result;
     } catch (Exception e) {
       e.printStackTrace();
-      List<CustomStopEntity> result = null;
-      return result;
+      return null;
     }
   }
 
@@ -103,17 +108,25 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   public List<CustomStopEntity> getCustomStopLine(Long lineId, Long busId) {
 
     try {
+      //selecting the desire table for records
       EntityManager em = getEntityManager();
       CriteriaBuilder cb = em.getCriteriaBuilder();
       CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
 
+      //getting current time date
       Calendar cal = Calendar.getInstance();
       Date currDate = cal.getTime();
       List<Integer> statusValues = new ArrayList<>();
       statusValues.add(1);
       statusValues.add(3);
 
+      /**
+       * selecting values against given criteria. This cretira is quite complex please! to get fair understanding 
+       * refer to {@link https://github.com/GSE-Project/SS2016-group1/wiki/server-standard-values} for integer values
+       * refer to {@link FIXME:}
+       */
+      //FIXME: @ricarda42 please provide the link above for all the criteria below
       cq.select(ro);
       cq.where(
           cb.and(cb.equal(ro.get("lineId"), lineId), cb.greaterThanOrEqualTo(ro.<Date> get("pickUpTime"), currDate),
@@ -123,15 +136,20 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
 
       // cq.where(cb.equal(ro.get("lineId"), lineId));
 
+      //getting all the results into list
       List<CustomStopEntity> result = em.createQuery(cq).getResultList();
+      //iterating over the result list so that we can remove the buses which has rejected the customStop request so far.
       for (int i = 0; i < result.size(); i++) {
+        //here we're check if the rejectingBus field is not empty
         if (result.get(i).getRejectingBus() != null) {
+          //if rejectingBus field not empty then because its CSV values we split it and then remove form our resutl list
           for (String rejectingBus : result.get(i).getRejectingBus().split(",")) {
             if (rejectingBus.equals(busId.toString()))
               result.remove(i);
           }
         }
       }
+      //returning the final and desired results
       return result;
     } catch (Exception e) {
       e.printStackTrace();
@@ -204,21 +222,26 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
   public List<String> updateCustomStopRejectingBus(Long requestId, Long busId) {
 
     try {
+      //selecting table for updation process
       EntityManager em = getEntityManager();
       CriteriaBuilder cb = em.getCriteriaBuilder();
       CriteriaUpdate<CustomStopEntity> cu = cb.createCriteriaUpdate((CustomStopEntity.class));
       Root<CustomStopEntity> ro = cu.from(CustomStopEntity.class);
 
       List<String> rejectingBus = new ArrayList<>();
+      //if rejectingBus field is not empty then we split CSV into our defined List of strings
       if (getCustomStopRequests(requestId).get(0).getRejectingBus() != null) {
         rejectingBus.addAll(Arrays.asList(getCustomStopRequests(requestId).get(0).getRejectingBus().split(",")));
       }
+      //here we add our new busId into the list of rejectingBus. the buses which has rejected the customStop request so far.
       rejectingBus.add(busId.toString());
       String rejectingBusString = StringUtils.join(rejectingBus, ',');
 
+      //here we're updating the rejectingBus field against requestId
       cu.set(ro.get("rejectingBus"), rejectingBusString);
       cu.where(cb.equal(ro.get("id"), requestId));
 
+      //committing the changes here
       em.createQuery(cu).executeUpdate();
       return rejectingBus;
 
@@ -236,6 +259,8 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
     // buildSessionFactory
     // session.beginTransaction();
 
+    //I've no idea what is going on here :/ razadfki
+    //FIXME: @Sriramk88 could you please add some comments for future developer to understand what this code is doing
     Date date = new Date();
     Date currTimeStamp = new Timestamp(date.getTime());
 

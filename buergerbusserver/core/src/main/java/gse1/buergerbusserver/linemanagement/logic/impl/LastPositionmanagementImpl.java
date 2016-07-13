@@ -13,7 +13,7 @@ import gse1.buergerbusserver.linemanagement.logic.api.LastPositionmanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 
 /**
- *
+ *  No specific logic, simply calling the functions defined in the data access package
  *
  * @author razadfki
  * @since 0.1

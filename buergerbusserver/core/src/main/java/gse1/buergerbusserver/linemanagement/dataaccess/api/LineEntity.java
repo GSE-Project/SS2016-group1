@@ -14,6 +14,8 @@ import gse1.buergerbusserver.linemanagement.common.api.Line;
  * {@link ApplicationPersistenceEntity Entity} representing a {@link Line}. A line has a name, routeID and timestamp and
  * a bus is asociated to the line.
  * 
+ * LineEntity implementing Line interface implies setter getter properties.
+ * 
  * @author razadfki
  *
  */
