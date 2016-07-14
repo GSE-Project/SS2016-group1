@@ -8,11 +8,11 @@ import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 
 /**
  * This is the interface for Custom Stop of the Bus. It provides information regarding the BusId, LineId, PickUpTime,
- * NumberOfPersons, DeviceId, UserName, UserAddress, UserAssistance, status, Location(Latitude and Longitude) of Custom Stop and
- * the object carries a timeStamp.
- * 
+ * NumberOfPersons, DeviceId, UserName, UserAddress, UserAssistance, status, Location(Latitude and Longitude) of Custom
+ * Stop and the object carries a timeStamp.
+ *
  * Custom Stop meaning "Bus will stop on user requested location and time"
- * 
+ *
  * @author ricarda42
  *
  */
@@ -69,14 +69,14 @@ public interface CustomStop extends ApplicationEntity {
   String getDeviceId();
 
   /**
-   * @param info set user info: name, address and assistance
+   * @param userInfo set user info: name, address and assistance
    */
-  void setInfo(String info);
+  void setUserInfo(String userInfo);
 
   /**
    * @return user info
    */
-  String getInfo();
+  String getUserInfo();
 
   /**
    * @param status

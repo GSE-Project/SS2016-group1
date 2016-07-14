@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.geojson.Point;
 
+import gse1.buergerbusserver.general.common.api.datatype.InfoObject;
 import io.oasp.module.basic.common.api.to.AbstractEto;
 
 /**
@@ -30,7 +31,7 @@ public class CustomStopEto extends AbstractEto {
 
   private String deviceId;
 
-  private String info;
+  private String userInfo;
 
   private int status;
 
@@ -186,20 +187,20 @@ public class CustomStopEto extends AbstractEto {
   }
 
   /**
-   * @param info new value of user info
+   * @param userInfo new value of user info
    */
-  public void setInfo(String info) {
+  public void setUserInfo(String userInfo) {
 
-    this.info = info;
+    this.userInfo = userInfo;
 
   }
 
   /**
-   * @return info
+   * @return userInfo
    */
-  public String getInfo() {
+  public String getUserInfo() {
 
-    return this.info;
+    return this.userInfo;
   }
 
   /**
@@ -240,14 +241,15 @@ public class CustomStopEto extends AbstractEto {
     return this.timeStamp;
   }
 
-  // /**
-  // * @return user information
-  // */
-  // public InfoObject getInfo() {
-  //
-  // return new InfoObject((new StringListConverter()).convertToDatabaseColumn(this.userInfo));
-  //
-  // }
+  /**
+   * @return user information
+   */
+  public InfoObject getInfo() {
+
+    // return new InfoObject((new StringListConverter()).convertToDatabaseColumn(this.userInfo));
+    return new InfoObject(this.userInfo);
+
+  }
 
   // /**
   // * @return location

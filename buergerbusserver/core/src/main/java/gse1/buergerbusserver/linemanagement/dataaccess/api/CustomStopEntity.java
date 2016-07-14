@@ -47,7 +47,7 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
 
   private String deviceId;
 
-  private String info;
+  private String userInfo;
 
   private int status;
 
@@ -162,15 +162,15 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
 
   @Override
   // @Convert(converter = StringListConverter.class)
-  public String getInfo() {
+  public String getUserInfo() {
 
-    return this.info;
+    return this.userInfo;
   }
 
   @Override
-  public void setInfo(String info) {
+  public void setUserInfo(String userInfo) {
 
-    this.info = info;
+    this.userInfo = userInfo;
 
   }
 
