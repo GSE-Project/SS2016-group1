@@ -278,7 +278,7 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       CustomStopEntity cse = new CustomStopEntity();
 
       cse.setDeviceId(deviceId);
-      cse.setUserInfo(info);
+      // cse.setUserInfo(info);
       cse.setLineId(lineId);
       cse.setPickUpTime(pickUpTime);
       cse.setNumberOfPersons(numberOfPersons);

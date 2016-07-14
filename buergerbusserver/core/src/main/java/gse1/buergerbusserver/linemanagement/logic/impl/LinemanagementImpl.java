@@ -258,21 +258,14 @@ public class LinemanagementImpl extends AbstractComponentFacade implements Linem
   public Long newCustomStopTransaction(Long lineId, Date pickUpTime, String location, int numberOfPersons,
       String deviceId, String info) {
 
-    // String userAssist = StringUtils.collectionToDelimitedString(userAssistance, ",");
     Long requestId =
         this.CustomStopDao.newCustomStopTransaction(lineId, pickUpTime, location, numberOfPersons, deviceId, info);
-    /*
-     * List<String> stringList = Arrays.asList(userAssist.split(",")); List<Integer> returnList = new ArrayList<>(); for
-     * (String num : stringList) { returnList.add(Integer.valueOf(num)); }
-     */
 
     return requestId;
   }
 
   @Override
   public CustomStopEto newCustomStop(@Valid CustomStopEto customStop) {
-
-    // Long requestId = customStop.getId();
 
     CustomStopEntity customStopEntity = getBeanMapper().map(customStop, CustomStopEntity.class);
     Long modReqId = this.CustomStopDao.save(customStopEntity).getId();

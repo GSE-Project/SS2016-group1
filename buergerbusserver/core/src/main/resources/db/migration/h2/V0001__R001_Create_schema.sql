@@ -97,7 +97,7 @@ CREATE TABLE CUSTOMSTOP(
     location VARCHAR(MAX) NOT NULL,
     numberOfPersons INTEGER NOT NULL,
     deviceId VARCHAR(50) NOT NULL,
-    userInfo VARCHAR(MAX) NOT NULL,
+    info VARCHAR(MAX) NOT NULL,
     status INTEGER NOT NULL,
 	acceptingBus BIGINT,
 	rejectingBus VARCHAR(MAX),

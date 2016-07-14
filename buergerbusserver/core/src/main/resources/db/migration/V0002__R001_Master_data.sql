@@ -80,5 +80,5 @@ INSERT INTO schedule(
 
 
 INSERT INTO CUSTOMSTOP(id, modificationCounter, lineId, pickUpTime, location, numberOfPersons, deviceId,
-            userInfo, status, acceptingBus, rejectingBus, "TIMESTAMP") VALUES
+            info, status, acceptingBus, rejectingBus, "TIMESTAMP") VALUES
             (1,0,1,GETDATE()+1, '7.60497, 49.21059', 3, '7', 'Schmidt;Brahmsweg 3, 67655 Kaiserslautern;1,2,5', 1, null, null, '2016-06-17 10:23:54');

@@ -12,6 +12,8 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.util.StringUtils;
 
 import gse1.buergerbusserver.general.dataaccess.base.PointConverter;
@@ -200,18 +202,24 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     List<Integer> ua = new ArrayList<>();
     for (Integer userAssistance : userAss)
       ua.add(userAssistance);
-    String custAssistance = StringUtils.collectionToDelimitedString(ua, ",");
 
-    String custInfo = custName + ";" + custAddress + ";" + custAssistance;
+    JSONObject jObj = new JSONObject();
+
+    try {
+      jObj.put("name", custName);
+      jObj.put("address", custAddress);
+      jObj.put("assistance", ua);
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
 
     CustomStopEto customStop = new CustomStopEto();
 
     customStop.setLineId(Long.valueOf(jsonRequest.get("lineId").toString()));
-
     customStop.setLocation((new PointConverter()).convertToEntityAttribute(custLocation));
     customStop.setNumberOfPersons(Integer.valueOf(jsonRequest.get("numberOfPersons").toString()));
     customStop.setDeviceId(jsonRequest.get("deviceId").toString());// changed in rescue mission
-    customStop.setUserInfo(custInfo);
+    customStop.setInfo(jObj.toString());
     customStop.setPickUpTime(pickUpTime);
     customStop.setStatus(1); // Status set to "pending" initially
     customStop.setTimeStamp(currTimeStamp);
@@ -219,6 +227,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     try {
       CustomStopEto theRequest = this.linemanagement.newCustomStop(customStop);
       // return Response.status(200).build();
+
       return theRequest;
     } catch (Exception e) {
       e.printStackTrace();

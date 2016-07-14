@@ -69,14 +69,14 @@ public interface CustomStop extends ApplicationEntity {
   String getDeviceId();
 
   /**
-   * @param userInfo set user info: name, address and assistance
+   * @param info set user info: name, address and assistance
    */
-  void setUserInfo(String userInfo);
+  void setInfo(String info);
 
   /**
    * @return user info
    */
-  String getUserInfo();
+  String getInfo();
 
   /**
    * @param status

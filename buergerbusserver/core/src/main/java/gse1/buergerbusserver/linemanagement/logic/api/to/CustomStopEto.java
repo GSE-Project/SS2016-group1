@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.geojson.Point;
 
-import gse1.buergerbusserver.general.common.api.datatype.InfoObject;
 import io.oasp.module.basic.common.api.to.AbstractEto;
 
 /**
@@ -31,7 +30,7 @@ public class CustomStopEto extends AbstractEto {
 
   private String deviceId;
 
-  private String userInfo;
+  private String info;
 
   private int status;
 
@@ -132,16 +131,13 @@ public class CustomStopEto extends AbstractEto {
 
   /**
    *
-   * @param stopLocation set the GPS coordinates
+   * @param location set the GPS coordinates
    */
-
-  // @Convert(converter = LineStringConverter.class)
   public void setLocation(Point location) {
 
     this.location = location;
   }
 
-  // @Convert(converter = LineStringConverter.class)
   /**
    * @return points
    */
@@ -190,23 +186,20 @@ public class CustomStopEto extends AbstractEto {
   }
 
   /**
-   * @param userInfo new value of user info
+   * @param info new value of user info
    */
+  public void setInfo(String info) {
 
-  // @Convert(converter = StringListConverter.class)
-  public void setUserInfo(String userInfo) {
-
-    this.userInfo = userInfo;
+    this.info = info;
 
   }
 
   /**
-   * @return userInfo
+   * @return info
    */
-  // @Convert(converter = StringListConverter.class)
-  public String getUserInfo() {
+  public String getInfo() {
 
-    return this.userInfo;
+    return this.info;
   }
 
   /**
@@ -247,14 +240,14 @@ public class CustomStopEto extends AbstractEto {
     return this.timeStamp;
   }
 
-  /**
-   * @return user information
-   */
-  public InfoObject getInfo() {
-
-    return new InfoObject(this.userInfo);
-
-  }
+  // /**
+  // * @return user information
+  // */
+  // public InfoObject getInfo() {
+  //
+  // return new InfoObject((new StringListConverter()).convertToDatabaseColumn(this.userInfo));
+  //
+  // }
 
   // /**
   // * @return location
