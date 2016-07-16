@@ -1,5 +1,11 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
+import gse1.buergerbusserver.general.dataaccess.base.PointConverter;
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,15 +18,11 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+//import org.json.JSONException;
+//import org.json.JSONObject;
 import org.springframework.util.StringUtils;
-
-import gse1.buergerbusserver.general.dataaccess.base.PointConverter;
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
-import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
 /**
  * @author Jay
