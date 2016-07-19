@@ -1,11 +1,5 @@
 package gse1.buergerbusserver.linemanagement.service.impl.rest;
 
-import gse1.buergerbusserver.general.dataaccess.base.PointConverter;
-import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
-import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
-import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
-import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +17,12 @@ import org.codehaus.jettison.json.JSONObject;
 //import org.json.JSONException;
 //import org.json.JSONObject;
 import org.springframework.util.StringUtils;
+
+import gse1.buergerbusserver.general.dataaccess.base.PointConverter;
+import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
+import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
+import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
+import gse1.buergerbusserver.linemanagement.service.api.rest.LinemanagementRestService;
 
 /**
  * @author Jay
@@ -184,7 +184,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
     Date pickUpTime;
     try {
-      pickUpTime = new java.util.Date(Long.parseLong(jsonRequest.get("pickUpTime").toString()) * 1000);
+      pickUpTime = new java.util.Date(Long.parseLong(jsonRequest.get("pickUpTime").toString()));// was *1000
 
     } catch (NumberFormatException e1) {
       e1.printStackTrace();
