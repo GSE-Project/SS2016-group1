@@ -184,7 +184,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
     Date pickUpTime;
     try {
-      pickUpTime = new java.util.Date(Long.parseLong(jsonRequest.get("pickUpTime").toString())*1000);// was *1000
+      pickUpTime = new java.util.Date(Long.parseLong(jsonRequest.get("pickUpTime").toString()));// was *1000
 
     } catch (NumberFormatException e1) {
       e1.printStackTrace();

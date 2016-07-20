@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -115,18 +114,21 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
 
       //getting current time date
-      Calendar cal = Calendar.getInstance();
-      Date currDate = cal.getTime();
+      long epochTime = System.currentTimeMillis() / 1000L;
+      Date currDate = new java.util.Date(epochTime);
+      
       List<Integer> statusValues = new ArrayList<>();
       statusValues.add(1);
-      statusValues.add(3);
-
+      statusValues.add(3);      
+    	        
       /**
-       * selecting values against given criteria. This cretira is quite complex please! to get fair understanding 
+       * selecting values against given criteria. This criteria is quite complex please! to get fair understanding 
        * refer to {@link https://github.com/GSE-Project/SS2016-group1/wiki/server-standard-values} for integer values
        * refer to {@link FIXME:}
        */
       //FIXME: @ricarda42 please provide the link above for all the criteria below
+      
+      
       cq.select(ro);
       cq.where(
           cb.and(cb.equal(ro.get("lineId"), lineId), cb.greaterThanOrEqualTo(ro.<Date> get("pickUpTime"), currDate),
@@ -149,8 +151,10 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
           }
         }
       }
+      
       //returning the final and desired results
       return result;
+      
     } catch (Exception e) {
       e.printStackTrace();
       List<CustomStopEntity> result = null;
@@ -260,7 +264,10 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
     // session.beginTransaction();
 
     //I've no idea what is going on here :/ razadfki
-    //FIXME: @Sriramk88 could you please add some comments for future developer to understand what this code is doing
+    // @Sriramk88 could you please add some comments for future developer to understand what this code is doing
+    // @razadfki We are currently not using this method at all.
+	// This code can be used to persist the data (which we are not doing currently).
+	  
     Date date = new Date();
     Date currTimeStamp = new Timestamp(date.getTime());
 

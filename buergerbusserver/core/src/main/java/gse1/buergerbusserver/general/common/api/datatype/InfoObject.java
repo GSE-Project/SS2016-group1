@@ -25,25 +25,12 @@ public class InfoObject {
    */
   public InfoObject(String userInfo) {
 
-    // List<String> stringList = Arrays.asList(userInfo.split(";"));
-    //
-    // this.name = stringList.get(0);
-    // this.address = stringList.get(1);
-    // this.assist = stringList.get(2);
-
     String strVal = userInfo;
 
-    System.out.println("strVal: " + strVal);
-
     this.name = strVal.substring(strVal.indexOf("name") + 7, strVal.indexOf("\",", strVal.indexOf("name")));
-    System.out.println("name: " + this.name);
-
     this.address = strVal.substring(strVal.indexOf("address") + 10, strVal.indexOf("\",", strVal.indexOf("address")));
-    System.out.println("address: " + this.address);
-
     this.assist =
         strVal.substring(strVal.indexOf("assistance") + 13, strVal.indexOf("]", strVal.indexOf("assistance")));
-    System.out.println("assistance: " + this.assist);
 
     if (!this.assist.isEmpty()) {
       List<String> assistList = Arrays.asList(this.assist.split(","));

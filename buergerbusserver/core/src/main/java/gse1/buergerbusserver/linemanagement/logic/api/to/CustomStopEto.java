@@ -251,21 +251,4 @@ public class CustomStopEto extends AbstractEto {
 
   }
 
-  // /**
-  // * @return location
-  // */
-  //
-  // public GeoJsonPoint getLocation() {
-  //
-  // List<String> stringList = Arrays.asList(this.stopLocation.split(","));
-  //
-  // double lon;
-  // double lat;
-  //
-  // lon = Double.parseDouble(stringList.get(0));
-  // lat = Double.parseDouble(stringList.get(1));
-  //
-  // return new GeoJsonPoint(lon, lat);
-  // }
-
 }
