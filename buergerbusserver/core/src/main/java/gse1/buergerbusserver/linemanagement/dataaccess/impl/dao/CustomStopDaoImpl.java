@@ -113,14 +113,15 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
       CriteriaQuery<CustomStopEntity> cq = cb.createQuery(CustomStopEntity.class);
       Root<CustomStopEntity> ro = cq.from(CustomStopEntity.class);
 
-      // getting current time date
+
+      //getting current time date
       long epochTime = System.currentTimeMillis() / 1000L;
       Date currDate = new java.util.Date(epochTime);
-
+      
       List<Integer> statusValues = new ArrayList<>();
       statusValues.add(1);
-      statusValues.add(3);
-
+      statusValues.add(3);      
+    	        
       /**
        * selecting values against given criteria. refer to
        * {@link https://github.com/GSE-Project/SS2016-group1/wiki/server-standard-values} for integer values refer to
@@ -154,7 +155,6 @@ public class CustomStopDaoImpl extends ApplicationMasterDataDaoImpl<CustomStopEn
 
       // returning the final and desired results
       return result;
-
     } catch (Exception e) {
       e.printStackTrace();
       List<CustomStopEntity> result = null;
