@@ -5,7 +5,7 @@ import java.util.Date;
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 
 /**
- * This is the interface for a bus of the system. It is characterized by its number plate, color and picture, is
+ * This is the interface for a bus Entity of the system. It is characterized by its number plate, total no.of seat, color and picture, is
  * referenced to a line by its lineID and the object carries a timestamp.
  *
  * @author ricarda42

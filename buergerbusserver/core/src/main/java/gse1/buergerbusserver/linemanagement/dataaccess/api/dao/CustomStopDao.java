@@ -39,12 +39,15 @@ public interface CustomStopDao extends ApplicationDao<CustomStopEntity>, MasterD
    * Returns a list of all {@link CustomStopEntity} pending {@link Line} as given by lineId (For Driver)
    *
    * @param lineId
+   * @param busId
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  List<CustomStopEntity> getCustomStopLine(Long lineId);
+  List<CustomStopEntity> getCustomStopLine(Long lineId, Long busId);
 
   /**
    * Returns a list of all {@link CustomStopEntity} for {@link CustomStop} as given by Status (For Driver/Citizen)
+   *
+   * @param requestId ID of the custom stop request
    *
    * @param status
    * @return {@link List} of Custom Stop requests in that status (1 - Accepted, 2 - Declined, 3 - Pending, 4 -
@@ -61,24 +64,36 @@ public interface CustomStopDao extends ApplicationDao<CustomStopEntity>, MasterD
   void updateCustomStopStatus(Long requestId, int status);
 
   /**
+   * Add busId of the bus which has accepted the custom stop request with givn requestId
+   *
+   * @param requestId id of custom stop request
+   * @param busId id of bus accepting the request
+   */
+  public void updateCustomStopAcceptingBus(Long requestId, Long busId);
+
+  /**
+   * Add bus given by busId to the list of busses that rejected the custm stop given by request id
+   *
+   * @param requestId id of custom stop request
+   * @param busId id of bus rejecting the request
+   * @return list of Strings with busIds of all busses rejecting the request
+   */
+  public List<String> updateCustomStopRejectingBus(Long requestId, Long busId);
+
+  /**
    * Update the status of the {@link CustomStopEntity} request for {@link CustomStop} as given by request ID
    *
    * @param lineId
    * @param pickUpTime
-   * @param lat
-   * @param lon
+   * @param location
    * @param numberOfPersons
    * @param deviceId
-   * @param userName
-   * @param userAddress
-   * @param userAssistance
-   *
+   * @param info
    * @param status
-   * @param requestId
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  Long newCustomStopTransaction(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
-      String deviceId, String userName, String userAddress, String userAssistance);
+  Long newCustomStopTransaction(Long lineId, Date pickUpTime, String location, int numberOfPersons, String deviceId,
+      String info);
 
   /**
    * get the last updated timeStamp in {@link CustomStopEntity}

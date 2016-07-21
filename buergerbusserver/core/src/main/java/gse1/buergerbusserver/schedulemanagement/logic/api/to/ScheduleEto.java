@@ -4,6 +4,8 @@ import java.sql.Time;
 import java.util.Date;
 
 /**
+ * Schedule Entity transfer object with setter and getters only.
+ * 
  * @author MOH
  * @since 0.1
  */

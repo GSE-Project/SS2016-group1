@@ -32,12 +32,15 @@ public class ScheduleDaoImpl extends ApplicationMasterDataDaoImpl<ScheduleEntity
   @Override
   public List<ScheduleEntity> getSchedulesByStopId(Long stopId) {
 
+    //selecting the table for the required results/records
     ScheduleEntity schedule = Alias.alias(ScheduleEntity.class);
     EntityPathBase<ScheduleEntity> alias = Alias.$(schedule);
     JPAQuery query = new JPAQuery(getEntityManager()).from(alias);
 
+    //providing the criteria
     query.where(Alias.$(schedule.getStopId()).eq(stopId));
 
+    //returning the list of the records
     return query.list(alias);
   }
 

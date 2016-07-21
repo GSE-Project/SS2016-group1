@@ -9,6 +9,10 @@ import javax.persistence.AttributeConverter;
 import org.geojson.LineString;
 import org.geojson.LngLatAlt;
 
+/**
+ * @author Sriram, Moh
+ *
+ */
 public class LineStringConverter implements AttributeConverter<LineString, String> {
 
   @Override
@@ -26,7 +30,7 @@ public class LineStringConverter implements AttributeConverter<LineString, Strin
   public LineString convertToEntityAttribute(String stringValue) {
 
     LineString ls = new LineString();
-    List<LngLatAlt> coordinates = new ArrayList<LngLatAlt>();
+    List<LngLatAlt> coordinates = new ArrayList<>();
     List<String> listOfLocations = Arrays.asList(stringValue.split("\\s*;\\s*"));
     LngLatAlt lla1 = new LngLatAlt(1, 2);
     lla1.toString();

@@ -19,6 +19,10 @@ import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
 
 /**
+ * interface for the linemanagement component which is going to be exposed as a service
+ * only the needed method signature has precise comments
+ * for further information please refer to {@link https://github.com/GSE-Project/SS2016-group1/wiki/Server-interfaces} 
+ * 
  * @author ahsan
  *
  */
@@ -78,6 +82,9 @@ public interface LinemanagementRestService {
   public Response updateBusStatus(HashMap<String, Long> jsonRequest);
 
   /**
+   * returns the last udpate timestamps of buses, lines, routes and stops, so that client can check if their
+   * cached data is worn-out or note.
+   * 
    * @return {@link HashMap} of timeStamp when it was last updated .
    */
   @GET
@@ -104,14 +111,14 @@ public interface LinemanagementRestService {
    * @param requestId of the request
    * @param deviceId from which the request was made
    * @param lineId for which the request was made
+   * @param busId of bus which makes the request
    * @return Status of the custom stop requests along with other customer info
    */
-
   // @Path("/customStops?requestId={requestId}")
   @GET
   @Path("/customStops")
   public List<CustomStopEto> getCustomStops(@QueryParam("requestId") Long requestId,
-      @QueryParam("deviceId") String deviceId, @QueryParam("lineId") Long lineId);
+      @QueryParam("deviceId") String deviceId, @QueryParam("lineId") Long lineId, @QueryParam("busId") Long busId);
 
   // /**
   // * @param requestId of the request
@@ -140,7 +147,6 @@ public interface LinemanagementRestService {
   // @Path("/customStop/lineid/{lineId}")
   // public List<CustomStopEto> getCustomStopLine(@PathParam("lineId") Long lineId);
   //
- 
 
   /**
    * @param customStopID the unique request ID
@@ -158,7 +164,7 @@ public interface LinemanagementRestService {
    */
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  @Path("customStops")
+  @Path("/customStops")
   public CustomStopEto newCustomStop(HashMap<String, Object> jsonRequest);
 
 }

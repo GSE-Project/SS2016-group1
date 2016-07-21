@@ -115,14 +115,15 @@ public interface Linemanagement {
    * Returns a list of all {@link CustomStopEntity} pending {@link Line} as given by lineId (For Driver)
    *
    * @param lineId
+   * @param busId
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  List<CustomStopEto> getCustomStopLine(Long lineId);
+  List<CustomStopEto> getCustomStopLine(Long lineId, Long busId);
 
   /**
    * Returns a list of all {@link CustomStopEntity} for {@link CustomStop} as given by Status (For Driver/Citizen)
    *
-   * @param status
+   * @param requestId ID of the requested custom stop
    * @return {@link List} of Custom Stop requests in that status (1 - Accepted, 2 - Declined, 3 - Pending, 4 -
    *         Completed, 5 - Cancelled) Not really needed right now...
    **/
@@ -133,26 +134,24 @@ public interface Linemanagement {
    *
    * @param status
    * @param requestId
+   * @param busId
    **/
-  void updateCustomStopStatus(Long requestId, int status);
+  void updateCustomStopStatus(Long requestId, int status, Long busId);
 
   /**
    * Update the status of the {@link CustomStopEntity} request for {@link CustomStop} as given by request ID
    *
    * @param lineId LineId reference of the Line
    * @param pickUpTime PickUpTime from the Custom Stop
-   * @param lat Latitude of the Custom Stop
-   * @param lon Longitude of the Custom Stop
+   * @param location GPS coordinates
    * @param numberOfPersons Number of Persons requested the custom Stop
    * @param deviceId devideId of the Person who requested the custom Stop
-   * @param userName Unique name of the person requesting custom stop
-   * @param userAddress User address of the person requesting custom stop
-   * @param userAssistance List of User assistance available
+   * @param info user information: name, address and assistance
    *
    * @return {@link List} of Custom Stop requests pending for the device ID
    **/
-  public Long newCustomStopTransaction(Long lineId, Date pickUpTime, double lat, double lon, int numberOfPersons,
-      String deviceId, String userName, String userAddress, List<Integer> userAssistance);
+  public Long newCustomStopTransaction(Long lineId, Date pickUpTime, String location, int numberOfPersons,
+      String deviceId, String info);
 
   /**
    * @param customStop CustomStopEto object

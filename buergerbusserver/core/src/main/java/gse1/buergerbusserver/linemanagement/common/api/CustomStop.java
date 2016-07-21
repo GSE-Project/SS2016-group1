@@ -2,12 +2,16 @@ package gse1.buergerbusserver.linemanagement.common.api;
 
 import java.util.Date;
 
+import org.geojson.Point;
+
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 
 /**
- * This is the interface for Custop Stop of the Bus. It provides information regarding the BusId, LineId, PickUpTime,
- * NumberOfPersons, DevieId, UserName, UserAddress, UserAssistance, status, Latitude and Longitude of Custom Stop and
- * the object carries a timestamp.
+ * This is the interface for Custom Stop of the Bus. It provides information regarding the BusId, LineId, PickUpTime,
+ * NumberOfPersons, DeviceId, UserName, UserAddress, UserAssistance, status, Location(Latitude and Longitude) of Custom
+ * Stop and the object carries a timeStamp.
+ *
+ * Custom Stop meaning "Bus will stop on user requested location and time"
  *
  * @author ricarda42
  *
@@ -35,24 +39,14 @@ public interface CustomStop extends ApplicationEntity {
   Date getPickUpTime();
 
   /**
-   * @param lon
+   * @param location set GPS coordinates
    */
-  void setLon(double lon);
+  void setLocation(Point location);
 
   /**
-   * @return longitude of position
+   * @return location
    */
-  double getLon();
-
-  /**
-   * @param lat
-   */
-  void setLat(double lat);
-
-  /**
-   * @return latitude of position
-   */
-  double getLat();
+  Point getLocation();
 
   /**
    * @param numberOfPersons
@@ -75,34 +69,14 @@ public interface CustomStop extends ApplicationEntity {
   String getDeviceId();
 
   /**
-   * @param userName
+   * @param userInfo set user info: name, address and assistance
    */
-  void setUserName(String userName);
+  void setUserInfo(String userInfo);
 
   /**
-   * @return Name of the customer
+   * @return user info
    */
-  String getUserName();
-
-  /**
-   * @param userAddress
-   */
-  void setUserAddress(String userAddress);
-
-  /**
-   * @return address where the customer wants to be picked up
-   */
-  String getUserAddress();
-
-  /**
-   * @param userAssistance
-   */
-  void setUserAssistance(String userAssistance);
-
-  /**
-   * @return array of encoded assistance requirements
-   */
-  String getUserAssistance();
+  String getUserInfo();
 
   /**
    * @param status
@@ -117,12 +91,22 @@ public interface CustomStop extends ApplicationEntity {
   /**
    * @param busId
    */
-  void setBusId(Long busId);
+  void setAcceptingBus(Long busId);
 
   /**
    * @return Id of bus serving this request
    */
-  Long getBusId();
+  Long getAcceptingBus();
+
+  /**
+   * @param rejectingBus
+   */
+  void setRejectingBus(String rejectingBus);
+
+  /**
+   * @return Id of bus serving this request
+   */
+  String getRejectingBus();
 
   /**
    * @param timeStamp
@@ -130,7 +114,7 @@ public interface CustomStop extends ApplicationEntity {
   void setTimeStamp(Date timeStamp);
 
   /**
-   * @return timestamp of data
+   * @return TimeStamp of data
    */
   Date getTimeStamp();
 

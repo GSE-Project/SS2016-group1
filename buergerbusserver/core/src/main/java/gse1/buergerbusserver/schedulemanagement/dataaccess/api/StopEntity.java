@@ -11,6 +11,8 @@ import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity
 import gse1.buergerbusserver.schedulemanagement.common.api.Stop;
 
 /**
+ * StopEntity implementing Stop interface implies overriding and setter getters only
+ * 
  * @author mbaniasad
  *
  */

@@ -5,7 +5,7 @@ import java.util.Date;
 import gse1.buergerbusserver.general.common.api.ApplicationEntity;
 
 /**
- * Interface of the line Entity of the system.
+ * Interface of the Line Entity of the system. It refers to Bus number e.g., How can I reach City Center? Take a Bus 115 or 105.
  *
  * @author JAYU
  */

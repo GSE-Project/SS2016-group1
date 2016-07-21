@@ -12,8 +12,13 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+//import org.json.JSONException;
+//import org.json.JSONObject;
 import org.springframework.util.StringUtils;
 
+import gse1.buergerbusserver.general.dataaccess.base.PointConverter;
 import gse1.buergerbusserver.linemanagement.logic.api.Linemanagement;
 import gse1.buergerbusserver.linemanagement.logic.api.to.CustomStopEto;
 import gse1.buergerbusserver.linemanagement.logic.api.to.LastPositionEto;
@@ -128,6 +133,8 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   @Override
   public Response setLastPosition(HashMap<String, Object> jsonRequest) {
 
+    // here we simply fetch the relevant variables from json object and perform simple checks on data
+    // and then call the relevant functions.
     Long busId;
     Double lon, lat;
     busId = Long.valueOf(jsonRequest.get("busId").toString());
@@ -150,17 +157,17 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
   }
 
- 
-
   @Override
   public Response updateCustomStop(long customStopId, HashMap<String, Long> jsonRequest) {
 
+    // fetching variable for using as parameters of the relevant function call
     long temp = Long.valueOf(jsonRequest.get("status"));
     int status = (int) temp;
+    Long busId = jsonRequest.get("busId");
 
     try {
 
-      this.linemanagement.updateCustomStopStatus(customStopId, status);
+      this.linemanagement.updateCustomStopStatus(customStopId, status, busId);
       return Response.status(200).build();
 
     } catch (Exception e) {
@@ -177,41 +184,44 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
 
     Date pickUpTime;
     try {
-      pickUpTime = new java.util.Date(Long.parseLong(jsonRequest.get("pickUpTime").toString()) * 1000);
+      pickUpTime = new java.util.Date(Long.parseLong(jsonRequest.get("pickUpTime").toString())*1000);// was *1000
 
     } catch (NumberFormatException e1) {
       e1.printStackTrace();
       pickUpTime = null;
     }
 
-    Double lon, lat;
     HashMap<?, ?> obj = (HashMap<?, ?>) jsonRequest.get("location");
     @SuppressWarnings("unchecked")
     ArrayList<Double> coordinates = (ArrayList<Double>) obj.get("coordinates");
-    lon = (double) coordinates.get(0);
-    lat = (double) coordinates.get(1);
+    String custLocation = StringUtils.collectionToDelimitedString(coordinates, ",");
 
     HashMap<?, ?> info = (HashMap<?, ?>) jsonRequest.get("info");
     String custName = (String) info.get("name");
     String custAddress = (String) info.get("address");
     @SuppressWarnings("unchecked")
     ArrayList<Integer> userAss = (ArrayList<Integer>) info.get("assistance");
-    List<Integer> ua = new ArrayList<Integer>();
+    List<Integer> ua = new ArrayList<>();
     for (Integer userAssistance : userAss)
       ua.add(userAssistance);
 
-    String custAssistance = StringUtils.collectionToDelimitedString(ua, ",");
+    JSONObject jObj = new JSONObject();
+
+    try {
+      jObj.put("name", custName);
+      jObj.put("address", custAddress);
+      jObj.put("assistance", ua);
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
 
     CustomStopEto customStop = new CustomStopEto();
 
     customStop.setLineId(Long.valueOf(jsonRequest.get("lineId").toString()));
-    customStop.setLon(lon);
-    customStop.setLat(lat);
+    customStop.setLocation((new PointConverter()).convertToEntityAttribute(custLocation));
     customStop.setNumberOfPersons(Integer.valueOf(jsonRequest.get("numberOfPersons").toString()));
-    customStop.setDeviceId(jsonRequest.get("deviceID").toString());// changed in rescue mission
-    customStop.setUserName(custName);
-    customStop.setUserAddress(custAddress);
-    customStop.setUserAssistance(custAssistance);
+    customStop.setDeviceId(jsonRequest.get("deviceId").toString());// changed in rescue mission
+    customStop.setUserInfo(jObj.toString());
     customStop.setPickUpTime(pickUpTime);
     customStop.setStatus(1); // Status set to "pending" initially
     customStop.setTimeStamp(currTimeStamp);
@@ -219,6 +229,7 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
     try {
       CustomStopEto theRequest = this.linemanagement.newCustomStop(customStop);
       // return Response.status(200).build();
+
       return theRequest;
     } catch (Exception e) {
       e.printStackTrace();
@@ -228,16 +239,18 @@ public class LinemanagementRestServiceImpl implements LinemanagementRestService 
   }
 
   @Override
-  public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId) {
+  public List<CustomStopEto> getCustomStops(Long requestId, String deviceId, Long lineId, Long busId) {
 
+    // basic data checks and then simply calling the relevant method in the logic layer which further calls in data
+    // access methods
     if (requestId != null && deviceId != null && !deviceId.isEmpty())
       return this.linemanagement.getCustomStopStatus(requestId, deviceId);
     if (deviceId != null && !deviceId.isEmpty())
       return this.linemanagement.getCustomStopDevice(deviceId);
-    if (lineId != null)
-      return this.linemanagement.getCustomStopLine(lineId);
+    if (lineId != null && busId != null)
+      return this.linemanagement.getCustomStopLine(lineId, busId);
     if (requestId != null)
-    	return this.linemanagement.getCustomStopRequests(requestId);
+      return this.linemanagement.getCustomStopRequests(requestId);
 
     return null;
 

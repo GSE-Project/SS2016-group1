@@ -18,6 +18,8 @@ import gse1.buergerbusserver.linemanagement.common.api.Route;
  * {@link ApplicationPersistenceEntity Entity} representing a {@link Route}. A route has a name, route and timestamp and
  * a bus associated to the route.
  * 
+ * RouteEntity implementing Route interface implies setter getter properties.
+ * 
  * @author MZEEN
  *
  */

@@ -2,19 +2,25 @@ package gse1.buergerbusserver.linemanagement.dataaccess.api;
 
 import java.util.Date;
 
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import org.geojson.Point;
+
 import gse1.buergerbusserver.general.dataaccess.api.ApplicationPersistenceEntity;
+import gse1.buergerbusserver.general.dataaccess.base.PointConverter;
 import gse1.buergerbusserver.linemanagement.common.api.CustomStop;
 import gse1.buergerbusserver.linemanagement.common.api.Line;
 
 /**
  * {@link ApplicationPersistenceEntity Entity} representing a {@link Line}. A Custom stop has the location and pick up
  * time and is associated with a lineID
+ *
+ * CustomStopEntity implementing CustomStop interface implies setter getter properties.
  *
  * @author Sriramk88
  *
@@ -31,27 +37,47 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   // // @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
   // private Long id;
 
-  private String userAssistance;
-
   private Long lineId;
 
   private Date pickUpTime;
 
-  private double lat;
-
-  private double lon;
+  private Point location;
 
   private int numberOfPersons;
 
   private String deviceId;
 
-  private String userName;
-
-  private String userAddress;
+  private String userInfo;
 
   private int status;
 
-  private Long busId;
+  private Long acceptingBus;
+
+  @Override
+  public Long getAcceptingBus() {
+
+    return this.acceptingBus;
+  }
+
+  @Override
+  public void setAcceptingBus(Long acceptingBus) {
+
+    this.acceptingBus = acceptingBus;
+  }
+
+  @Override
+  public String getRejectingBus() {
+
+    return this.rejectingBus;
+  }
+
+  @Override
+  public void setRejectingBus(String rejectingBus) {
+
+    this.rejectingBus = rejectingBus;
+  }
+
+  private String rejectingBus;
 
   private Date timeStamp;
 
@@ -72,18 +98,6 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   //
   // this.id = id;
   // }
-
-  @Override
-  public Long getBusId() {
-
-    return this.busId;
-  }
-
-  @Override
-  public void setBusId(Long busId) {
-
-    this.busId = busId;
-  }
 
   @Override
   public Long getLineId() {
@@ -110,27 +124,16 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   }
 
   @Override
-  public double getLat() {
+  @Convert(converter = PointConverter.class)
+  public Point getLocation() {
 
-    return this.lat;
+    return this.location;
   }
 
   @Override
-  public void setLat(double lat) {
+  public void setLocation(Point location) {
 
-    this.lat = lat;
-  }
-
-  @Override
-  public double getLon() {
-
-    return this.lon;
-  }
-
-  @Override
-  public void setLon(double lon) {
-
-    this.lon = lon;
+    this.location = location;
   }
 
   @Override
@@ -158,40 +161,17 @@ public class CustomStopEntity extends ApplicationPersistenceEntity implements Cu
   }
 
   @Override
-  public String getUserName() {
+  // @Convert(converter = StringListConverter.class)
+  public String getUserInfo() {
 
-    return this.userName;
+    return this.userInfo;
   }
 
   @Override
-  public void setUserName(String userName) {
+  public void setUserInfo(String userInfo) {
 
-    this.userName = userName;
-  }
+    this.userInfo = userInfo;
 
-  @Override
-  public String getUserAddress() {
-
-    return this.userAddress;
-  }
-
-  @Override
-  public void setUserAddress(String userAddress) {
-
-    this.userAddress = userAddress;
-  }
-
-  @Override
-  public String getUserAssistance() {
-
-    return this.userAssistance;
-
-  }
-
-  @Override
-  public void setUserAssistance(String userAssistance) {
-
-    this.userAssistance = userAssistance;
   }
 
   @Override

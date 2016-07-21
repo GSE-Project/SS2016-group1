@@ -34,12 +34,16 @@ public class StopDaoImpl extends ApplicationMasterDataDaoImpl<StopEntity> implem
   public Date lastUpdate() {
 
     try {
+      //selectin the table for the required records
       CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
       CriteriaQuery<Date> maxQuery = criteriaBuilder.createQuery(Date.class);
       Root stopEntityRoot = maxQuery.from(StopEntity.class);
 
+      //selecting the records the providing the criteria record with the max timeStamp value
+      //it should not return multiple records
       maxQuery.select(criteriaBuilder.max(stopEntityRoot.<Date> get("timeStamp")));
 
+      //to avoid problems only one record is returning here
       return getEntityManager().createQuery(maxQuery).getSingleResult();
     } catch (Exception e) {
       e.printStackTrace();
